@@ -49,6 +49,7 @@ namespace IMR.Crawler
             //UIHandler.SetDoubleBuffered(tblSearch);
 
             WebSearch.LogHandler += new LoggingHandler(Search_LogHandler);
+            DataSearch.LogHandler += new LoggingHandler(Search_LogHandler);
         }
         private void btSearch_Click(object sender, EventArgs e)
         {

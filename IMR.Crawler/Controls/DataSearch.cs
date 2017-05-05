@@ -17,18 +17,26 @@ namespace IMR.Crawler
         private int totalRecords;
         private const int pageSize = 10;
         private bool isDetail = false;
+        public static event LoggingHandler LogHandler;
+
 
         public DataSearch()
         {
             InitializeComponent();
 
 
+
         }
 
+        protected void Log(string message, MessageType messageType)
+        {
+            if (LogHandler != null)
+                LogHandler(message, messageType);
+        }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
 
-
+            try { 
             isDetail = false;
             grdResults.DataSource = null;
             grdResults.Rows.Clear();
@@ -61,6 +69,13 @@ namespace IMR.Crawler
             else
             {
                 DevComponents.DotNetBar.MessageBoxEx.Show(this, "No results found for the selected Search Criteria.", "No Results", MessageBoxButtons.OK);
+            }
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show(this, "Could not perform search" + "\n" + ex.ToString(), "Exception");
+                Log("Could not perform search" + "\n" + ex.ToString(), MessageType.Exception);
+
             }
         }
 
@@ -133,48 +148,58 @@ namespace IMR.Crawler
 
         private void btnSearchSeparate_Click(object sender, EventArgs e)
         {
-            isDetail = true;
-            grdResults.DataSource = null;
-            grdResults.Rows.Clear();
-            grdResults.Columns.Clear();
-            int age = 0;
-            if (txtAge.Text != "")
+            try
+
             {
-                if (!int.TryParse(txtAge.Text, out age))
+                isDetail = true;
+                grdResults.DataSource = null;
+                grdResults.Rows.Clear();
+                grdResults.Columns.Clear();
+                int age = 0;
+                if (txtAge.Text != "")
                 {
-                    DevComponents.DotNetBar.MessageBoxEx.Show(this, "Please enter numeric value for age");
-                    return;
+                    if (!int.TryParse(txtAge.Text, out age))
+                    {
+                        DevComponents.DotNetBar.MessageBoxEx.Show(this, "Please enter numeric value for age");
+                        return;
+                    }
+                }
+
+                IList<SearchCaseDetailResult> res = null;
+                DBHelper helper = new DBHelper();
+                res = helper.SearchCaseDetail(age, txtGender.Text, txtState.Text, txtSpecialty.Text, txtDiagnosis.Text);
+                if (res.Count > 0)
+                {
+
+                    grdResults.DataSource = res;
+                    DataGridViewButtonColumn bcol = new DataGridViewButtonColumn();
+                    bcol.HeaderText = " ";
+                    bcol.Text = "View Details";
+                    bcol.Name = "btnDetails";
+                    bcol.UseColumnTextForButtonValue = true;
+                    grdResults.Columns.Add(bcol);
+
+                    DataGridViewButtonColumn bcol1 = new DataGridViewButtonColumn();
+                    bcol1.HeaderText = " ";
+                    bcol1.Text = "View PDF";
+                    bcol1.Name = "btnView";
+                    bcol1.UseColumnTextForButtonValue = true;
+                    grdResults.Columns.Add(bcol1);
+                    grdResults.Columns[0].Visible = false;
+                    grdResults.Columns[10].Visible = false;
+                    grdResults.Columns[11].Visible = false;
+                    grdResults.Columns[12].Visible = false;
+                }
+                else
+                {
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, "No results found for the selected Search Criteria.", "No Results", MessageBoxButtons.OK);
                 }
             }
-
-            IList<SearchCaseDetailResult> res = null;
-            DBHelper helper = new DBHelper();
-            res = helper.SearchCaseDetail(age, txtGender.Text, txtState.Text,txtSpecialty.Text, txtDiagnosis.Text);
-            if (res.Count > 0)
+            catch(Exception ex)
             {
+                DevComponents.DotNetBar.MessageBoxEx.Show(this, "Could not perform search" + "\n" + ex.ToString(), "Exception");
+                Log("Could not perform search" + "\n" + ex.ToString(), MessageType.Exception);
 
-                grdResults.DataSource = res;
-                DataGridViewButtonColumn bcol = new DataGridViewButtonColumn();
-                bcol.HeaderText = " ";
-                bcol.Text = "View Details";
-                bcol.Name = "btnDetails";
-                bcol.UseColumnTextForButtonValue = true;
-                grdResults.Columns.Add(bcol);
-
-                DataGridViewButtonColumn bcol1 = new DataGridViewButtonColumn();
-                bcol1.HeaderText = " ";
-                bcol1.Text = "View PDF";
-                bcol1.Name = "btnView";
-                bcol1.UseColumnTextForButtonValue = true;
-                grdResults.Columns.Add(bcol1);
-                grdResults.Columns[0].Visible = false;
-                grdResults.Columns[10].Visible = false;
-                grdResults.Columns[11].Visible = false;
-                grdResults.Columns[12].Visible = false;
-            }
-            else
-            {
-                DevComponents.DotNetBar.MessageBoxEx.Show(this, "No results found for the selected Search Criteria.", "No Results", MessageBoxButtons.OK);
             }
         }
 

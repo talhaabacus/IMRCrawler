@@ -122,6 +122,17 @@ namespace IMR.Crawler
                         grdResults.Columns[12].Visible = false;
                         grdResults.Columns[13].Visible = false;
 
+
+                        grdResults.Columns[0].HeaderText = "";
+                        grdResults.Columns[2].HeaderText = "Case Number";
+                        grdResults.Columns[4].HeaderText = "Decision Date";
+                        grdResults.Columns[5].HeaderText = "Date of Injury";
+                        grdResults.Columns[6].HeaderText = "Received Date";
+                        grdResults.Columns[7].HeaderText = "IMRO Reviewer Specialty";
+                        grdResults.Columns[8].HeaderText = "Request Category";
+                        grdResults.Columns[9].HeaderText = "SubCategory/Drug";
+                        grdResults.Columns[10].HeaderText = "Request Decision";
+
                     }
                 }
             }

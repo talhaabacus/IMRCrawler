@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gpDataSearch = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.btnClearSeparate = new DevComponents.DotNetBar.ButtonX();
             this.btnSearchSeparate = new DevComponents.DotNetBar.ButtonX();
@@ -81,7 +81,7 @@
             this.gpDataSearch.DisabledBackColor = System.Drawing.Color.Empty;
             this.gpDataSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.gpDataSearch.Location = new System.Drawing.Point(0, 0);
-            this.gpDataSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpDataSearch.Margin = new System.Windows.Forms.Padding(2);
             this.gpDataSearch.Name = "gpDataSearch";
             this.gpDataSearch.Size = new System.Drawing.Size(918, 120);
             // 
@@ -120,7 +120,7 @@
             this.btnClearSeparate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnClearSeparate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnClearSeparate.Location = new System.Drawing.Point(853, 80);
-            this.btnClearSeparate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClearSeparate.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearSeparate.Name = "btnClearSeparate";
             this.btnClearSeparate.Size = new System.Drawing.Size(56, 19);
             this.btnClearSeparate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -132,8 +132,8 @@
             // 
             this.btnSearchSeparate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSearchSeparate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSearchSeparate.Location = new System.Drawing.Point(455, 83);
-            this.btnSearchSeparate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearchSeparate.Location = new System.Drawing.Point(455, 80);
+            this.btnSearchSeparate.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearchSeparate.Name = "btnSearchSeparate";
             this.btnSearchSeparate.Size = new System.Drawing.Size(56, 19);
             this.btnSearchSeparate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -151,7 +151,7 @@
             this.txtState.ButtonCustom.Tooltip = "";
             this.txtState.ButtonCustom2.Tooltip = "";
             this.txtState.Location = new System.Drawing.Point(455, 34);
-            this.txtState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtState.Margin = new System.Windows.Forms.Padding(2);
             this.txtState.Name = "txtState";
             this.txtState.PreventEnterBeep = true;
             this.txtState.Size = new System.Drawing.Size(172, 20);
@@ -165,7 +165,7 @@
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.Location = new System.Drawing.Point(402, 34);
-            this.labelX6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.labelX6.Margin = new System.Windows.Forms.Padding(2);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(48, 19);
             this.labelX6.TabIndex = 27;
@@ -181,7 +181,7 @@
             this.txtSpecialty.ButtonCustom.Tooltip = "";
             this.txtSpecialty.ButtonCustom2.Tooltip = "";
             this.txtSpecialty.Location = new System.Drawing.Point(746, 14);
-            this.txtSpecialty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSpecialty.Margin = new System.Windows.Forms.Padding(2);
             this.txtSpecialty.Name = "txtSpecialty";
             this.txtSpecialty.PreventEnterBeep = true;
             this.txtSpecialty.Size = new System.Drawing.Size(165, 20);
@@ -195,7 +195,7 @@
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.Location = new System.Drawing.Point(634, 12);
-            this.labelX5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.labelX5.Margin = new System.Windows.Forms.Padding(2);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(115, 19);
             this.labelX5.TabIndex = 25;
@@ -211,7 +211,7 @@
             this.txtDiagnosis.ButtonCustom.Tooltip = "";
             this.txtDiagnosis.ButtonCustom2.Tooltip = "";
             this.txtDiagnosis.Location = new System.Drawing.Point(455, 58);
-            this.txtDiagnosis.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDiagnosis.Margin = new System.Windows.Forms.Padding(2);
             this.txtDiagnosis.Name = "txtDiagnosis";
             this.txtDiagnosis.PreventEnterBeep = true;
             this.txtDiagnosis.Size = new System.Drawing.Size(456, 20);
@@ -227,7 +227,7 @@
             this.txtGender.ButtonCustom.Tooltip = "";
             this.txtGender.ButtonCustom2.Tooltip = "";
             this.txtGender.Location = new System.Drawing.Point(558, 11);
-            this.txtGender.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtGender.Margin = new System.Windows.Forms.Padding(2);
             this.txtGender.Name = "txtGender";
             this.txtGender.PreventEnterBeep = true;
             this.txtGender.Size = new System.Drawing.Size(69, 20);
@@ -243,7 +243,7 @@
             this.txtAge.ButtonCustom.Tooltip = "";
             this.txtAge.ButtonCustom2.Tooltip = "";
             this.txtAge.Location = new System.Drawing.Point(455, 11);
-            this.txtAge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAge.Margin = new System.Windows.Forms.Padding(2);
             this.txtAge.MaxLength = 3;
             this.txtAge.Name = "txtAge";
             this.txtAge.PreventEnterBeep = true;
@@ -258,7 +258,7 @@
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.Location = new System.Drawing.Point(403, 56);
-            this.labelX4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.labelX4.Margin = new System.Windows.Forms.Padding(2);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(95, 19);
             this.labelX4.TabIndex = 21;
@@ -272,7 +272,7 @@
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.Location = new System.Drawing.Point(512, 12);
-            this.labelX3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.labelX3.Margin = new System.Windows.Forms.Padding(2);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(56, 19);
             this.labelX3.TabIndex = 20;
@@ -286,7 +286,7 @@
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.Location = new System.Drawing.Point(402, 10);
-            this.labelX2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.labelX2.Margin = new System.Windows.Forms.Padding(2);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(95, 19);
             this.labelX2.TabIndex = 19;
@@ -297,7 +297,7 @@
             this.line1.BackColor = System.Drawing.Color.Transparent;
             this.line1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.line1.Location = new System.Drawing.Point(390, 2);
-            this.line1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.line1.Margin = new System.Windows.Forms.Padding(2);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(8, 94);
             this.line1.TabIndex = 18;
@@ -309,7 +309,7 @@
             this.btnClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnClear.Location = new System.Drawing.Point(292, 80);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(56, 19);
             this.btnClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -327,7 +327,7 @@
             this.txtCaseNo.ButtonCustom.Tooltip = "";
             this.txtCaseNo.ButtonCustom2.Tooltip = "";
             this.txtCaseNo.Location = new System.Drawing.Point(166, 39);
-            this.txtCaseNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCaseNo.Margin = new System.Windows.Forms.Padding(2);
             this.txtCaseNo.Name = "txtCaseNo";
             this.txtCaseNo.PreventEnterBeep = true;
             this.txtCaseNo.Size = new System.Drawing.Size(182, 20);
@@ -341,7 +341,7 @@
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Location = new System.Drawing.Point(14, 40);
-            this.labelX1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.labelX1.Margin = new System.Windows.Forms.Padding(2);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(142, 19);
             this.labelX1.TabIndex = 17;
@@ -352,7 +352,7 @@
             this.btnSubmit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSubmit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnSubmit.Location = new System.Drawing.Point(166, 80);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(56, 19);
             this.btnSubmit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -370,7 +370,7 @@
             this.txtSearch.ButtonCustom.Tooltip = "";
             this.txtSearch.ButtonCustom2.Tooltip = "";
             this.txtSearch.Location = new System.Drawing.Point(165, 11);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
             this.txtSearch.Size = new System.Drawing.Size(182, 20);
@@ -384,7 +384,7 @@
             // 
             this.lblCaseNo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblCaseNo.Location = new System.Drawing.Point(13, 12);
-            this.lblCaseNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblCaseNo.Margin = new System.Windows.Forms.Padding(2);
             this.lblCaseNo.Name = "lblCaseNo";
             this.lblCaseNo.Size = new System.Drawing.Size(142, 19);
             this.lblCaseNo.TabIndex = 2;
@@ -395,23 +395,23 @@
             this.grdResults.AllowUserToAddRows = false;
             this.grdResults.AllowUserToDeleteRows = false;
             this.grdResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdResults.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdResults.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdResults.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.grdResults.Location = new System.Drawing.Point(0, 120);

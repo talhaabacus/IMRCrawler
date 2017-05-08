@@ -165,6 +165,11 @@ namespace IMR.Crawler
                     }
                 }
 
+                if( !(System.Text.RegularExpressions.Regex.IsMatch(txtGender.Text, "^[a-zA-Z]+$")))
+                {
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, "Please enter proper value for gender");
+                    return;
+                }
                 IList<SearchCaseDetailResult> res = null;
                 DBHelper helper = new DBHelper();
                 res = helper.SearchCaseDetail(age, txtGender.Text, txtState.Text, txtSpecialty.Text, txtDiagnosis.Text);

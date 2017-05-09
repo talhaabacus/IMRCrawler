@@ -96,7 +96,10 @@ namespace IMR.Crawler
                 if ((e.RowIndex >= 0) && (e.ColumnIndex == 14))
                 {
                     string pdfLoc = ((SearchCaseResult)grdResults.Rows[e.RowIndex].DataBoundItem).LocalPDFLoc;
-                    Process.Start(pdfLoc);
+                    if (System.IO.File.Exists(pdfLoc))
+                        Process.Start(pdfLoc);
+                    else
+                        DevComponents.DotNetBar.MessageBoxEx.Show("PDF does not exist.");
                 }
                 else if ((e.RowIndex >= 0) && (e.ColumnIndex == 13))
                 {
@@ -116,7 +119,11 @@ namespace IMR.Crawler
                 if ((e.RowIndex >= 0) && (e.ColumnIndex == 14))
                 {
                     string pdfLoc = ((SearchCaseDetailResult)grdResults.Rows[e.RowIndex].DataBoundItem).LocalPDFLoc;
-                    Process.Start(pdfLoc);
+                    if (System.IO.File.Exists(pdfLoc))
+                        Process.Start(pdfLoc);
+                    else
+                        DevComponents.DotNetBar.MessageBoxEx.Show("PDF does not exist.");
+                
                 }
                 else if ((e.RowIndex >= 0) && (e.ColumnIndex == 13))
                 {

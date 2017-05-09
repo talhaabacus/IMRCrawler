@@ -287,7 +287,7 @@ namespace IMR.Crawler
                 {
                     Log(e4.Error.ToString(), MessageType.Error);
 
-                    DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.ToString(), "Exception");
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.Message, "Exception");
                 }
                 else
                 {
@@ -371,7 +371,7 @@ namespace IMR.Crawler
             {
 
                 Log(string.Concat("Search loading exception " + ex.ToString()), MessageType.Error);
-                DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("Search loading exception " + ex.ToString()), "Message");
+                DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("Search loading exception " + ex.Message), "Message");
             }
 
 
@@ -526,7 +526,7 @@ namespace IMR.Crawler
                 {
                     Log(e4.Error.ToString(), MessageType.Error);
 
-                    DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.ToString(), "Exception");
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.Message, "Exception");
                 }
                 else
                 {
@@ -613,7 +613,7 @@ namespace IMR.Crawler
             {
 
                 Log(string.Concat("Search loading exception " + ex.ToString()), MessageType.Error);
-                DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("Search loading exception " + ex.ToString()), "Message");
+                DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("Search loading exception " + ex.Message), "Message");
             }
 
 
@@ -788,7 +788,7 @@ namespace IMR.Crawler
                     {
                         Log(e4.Error.ToString(), MessageType.Error);
 
-                        DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.ToString(), "Exception");
+                        DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.Message, "Exception");
                     }
                     else
                     {
@@ -829,7 +829,7 @@ namespace IMR.Crawler
                 {
 
                     Log(string.Concat("PDF Downloading Exception " + ex.ToString()), MessageType.Error);
-                    DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("PDF Downloading Exception " + ex.ToString()), "Message");
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("PDF Downloading Exception " + ex.Message), "Message");
                 }
 
 
@@ -845,7 +845,7 @@ namespace IMR.Crawler
             try
             {
 
-
+                Log(string.Concat("Downloading " + t.CaseNumber + ".pdf"), MessageType.Info);
                 grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Moccasin;
                 if (t.PDFUrl != null)
                 {
@@ -855,12 +855,13 @@ namespace IMR.Crawler
                 }
                 grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
                 _success++;
+                Log(string.Concat("Successfully Downloaded" + t.CaseNumber + ".pdf"), MessageType.Info);
 
             }
             catch (Exception ex)
             {
                 Log(string.Concat("PDF Saving exception " + ex.ToString()), MessageType.Error);
-                _errorMessage += "\n" + ex.ToString();
+                _errorMessage += "\n" + ex.Message;
                 grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Red;
                 grdResults.Rows[t.RowIndex].ErrorText = ex.ToString();
                 _failed++;
@@ -957,7 +958,7 @@ namespace IMR.Crawler
                     {
                         Log(e4.Error.ToString(), MessageType.Error);
 
-                        DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.ToString(), "Exception");
+                        DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.Message, "Exception");
                     }
                     else
                     {
@@ -998,7 +999,7 @@ namespace IMR.Crawler
                 {
 
                     Log(string.Concat("PDF Downloading Exception " + ex.ToString()), MessageType.Error);
-                    DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("PDF Extraction Exception " + ex.ToString()), "Message");
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("PDF Extraction Exception " + ex.Message, "Message");
                 }
 
 
@@ -1017,6 +1018,7 @@ namespace IMR.Crawler
                 if (t.PDFUrl != null)
                 {
                     string dest = AppConfig.PDFSaveLocation + "\\" + t.CaseNumber + ".pdf";
+                    Log(string.Concat("Downloading and Extracting " + t.CaseNumber + ".pdf"), MessageType.Info);
                     string PDFText = "";
                     if (!File.Exists(dest))
                     {
@@ -1024,8 +1026,13 @@ namespace IMR.Crawler
                         ch.DownloadFile(t.PDFUrl, dest);
                     }
 
+
                     DBHelper db = new DBHelper();
                     PDDocument doc = null;
+                    if (!File.Exists(dest))
+                    {
+                        throw new Exception("Error Downloading file. PDF File " + t.CaseNumber + ".pdf not found.");
+                    }
 
                     try
                     {
@@ -1063,13 +1070,13 @@ namespace IMR.Crawler
                 }
                 grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
                 _success++;
-
+                Log(string.Concat("Successfully Downloaded and Extracted " + t.CaseNumber + ".pdf"), MessageType.Info);
             }
             catch (Exception ex)
             {
                 Log(string.Concat("PDF Extracting exception " + ex.ToString()), MessageType.Error);
 
-                _errorMessage += "\n" + ex.ToString();
+                _errorMessage += "\n" + ex.Message;
                 _failed++;
             }
 

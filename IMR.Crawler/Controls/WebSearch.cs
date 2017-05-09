@@ -942,7 +942,7 @@ namespace IMR.Crawler
 
                     try
                     {
-                        Parallel.ForEach(treatments, new ParallelOptions { MaxDegreeOfParallelism = 10 }, DownloadandExtractPDF);
+                        Parallel.ForEach(treatments, new ParallelOptions { MaxDegreeOfParallelism = 5 }, DownloadandExtractPDF);
                     }
                     catch (Exception ex)
                     {

@@ -67,6 +67,10 @@ namespace IMR.Crawler.Helper
             if (insert)
                 context.Treatments.InsertOnSubmit(treat);
             context.SubmitChanges();
+
+            context.Connection.Close();
+            context.Dispose();
+            context = null;
             return treat.TreatmentID;
 
         }
@@ -124,32 +128,34 @@ namespace IMR.Crawler.Helper
 
         public Format2Detail GetFormat2Detail(int tID)
         {
-            IMRDataContext context = new IMRDataContext();
-            if (context.Format2Details.Where(det => det.TreatmentID == tID).Any())
+            using (IMRDataContext context = new IMRDataContext())
             {
-                return context.Format2Details.Single(det => det.TreatmentID == tID);
+                if (context.Format2Details.Where(det => det.TreatmentID == tID).Any())
+                {
+                    return context.Format2Details.Single(det => det.TreatmentID == tID);
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
-            {
-                return null;
-            }
-
 
         }
 
         public Format3Detail GetFormat3Detail(int tID)
         {
-            IMRDataContext context = new IMRDataContext();
-            if (context.Format3Details.Where(det => det.TreatmentID == tID).Any())
+            using (IMRDataContext context = new IMRDataContext())
             {
-                return context.Format3Details.Single(det => det.TreatmentID == tID);
-            }
-            else
-            {
-                return null;
-            }
+                if (context.Format3Details.Where(det => det.TreatmentID == tID).Any())
+                {
+                    return context.Format3Details.Single(det => det.TreatmentID == tID);
+                }
+                else
+                {
+                    return null;
+                }
 
-
+            }
         }
         public int AddUpdateFormat1Detail(int tID, Format1 det )
         {
@@ -181,6 +187,9 @@ namespace IMR.Crawler.Helper
             if (addNew)
                 context.Format1Details.InsertOnSubmit(pdfDetails);
             context.SubmitChanges();
+            context.Connection.Close();
+            context.Dispose();
+            context = null;
             return 0;
         }
 
@@ -211,6 +220,9 @@ namespace IMR.Crawler.Helper
             if (addNew)
                 context.Format2Details.InsertOnSubmit(pdfDetails);
             context.SubmitChanges();
+            context.Connection.Close();
+            context.Dispose();
+            context = null;
             return 0;
         }
 
@@ -243,21 +255,25 @@ namespace IMR.Crawler.Helper
             if (addNew)
                 context.Format3Details.InsertOnSubmit(pdfDetails);
             context.SubmitChanges();
+            context.Connection.Close();
+            context.Dispose();
+            context = null;
             return 0;
         }
 
         public  Treatment GetTreatment(int tID)
         {
-            IMRDataContext context = new IMRDataContext();
-            if (context.Treatments.Where(det => det.TreatmentID == tID).Any())
+            using (IMRDataContext context = new IMRDataContext())
             {
-                return context.Treatments.Single(det => det.TreatmentID == tID);
+                if (context.Treatments.Where(det => det.TreatmentID == tID).Any())
+                {
+                    return context.Treatments.Single(det => det.TreatmentID == tID);
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
-            {
-                return null;
-            }
-
            
         }
     }

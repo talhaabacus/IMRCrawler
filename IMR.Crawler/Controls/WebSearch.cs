@@ -854,7 +854,7 @@ namespace IMR.Crawler
                     CrawlerHelper ch = new CrawlerHelper();
                     ch.DownloadFile(t.PDFUrl, dest);
                 }
-                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.CornflowerBlue;
                 _success++;
                 Log(string.Concat("Successfully Downloaded" + t.CaseNumber + ".pdf"), MessageType.Info);
 
@@ -1036,6 +1036,7 @@ namespace IMR.Crawler
                         throw new Exception("Error Downloading file. PDF File " + t.CaseNumber + ".pdf not found.");
                     }
 
+                    grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.CornflowerBlue;
                     try
                     {
                         doc = PDDocument.load(dest);
@@ -1088,9 +1089,12 @@ namespace IMR.Crawler
 
         private void btnGo_Click(object sender, EventArgs e)
         {
-            int val;
-            if (int.TryParse(txtPageNumber.Text, out val))
+
+            string pattern = @"^[1-9]\d{0,2}$";
+            if((txtPageNumber.Text != "") && (System.Text.RegularExpressions.Regex.IsMatch(txtPageNumber.Text, pattern)))
             {
+                int val = int.Parse(txtPageNumber.Text);
+
                 if (val > _totalpages)
                 {
                     DevComponents.DotNetBar.MessageBoxEx.Show(this, "Page does not exist");

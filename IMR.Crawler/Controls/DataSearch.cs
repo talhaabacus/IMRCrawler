@@ -65,8 +65,18 @@ namespace IMR.Crawler
                 grdResults.Columns[10].Visible = false;
                 grdResults.Columns[11].Visible = false;
                 grdResults.Columns[12].Visible = false;
-            }
-            else
+                    grdResults.Columns[1].HeaderText = "Case Number";
+                    grdResults.Columns[2].HeaderText = "Case Outcome";
+                    grdResults.Columns[3].HeaderText = "Decision Date";
+                    grdResults.Columns[4].HeaderText = "Date of Injury";
+                    grdResults.Columns[5].HeaderText = "Received Date";
+                    grdResults.Columns[6].HeaderText = "IMRO Reviewer Specialty";
+                    grdResults.Columns[7].HeaderText = "Request Category";
+                    grdResults.Columns[8].HeaderText = "SubCategory/Drug";
+                    grdResults.Columns[9].HeaderText = "Request Decision";
+
+                }
+                else
             {
                 DevComponents.DotNetBar.MessageBoxEx.Show(this, "No results found for the selected Search Criteria.", "No Results", MessageBoxButtons.OK);
             }
@@ -161,13 +171,17 @@ namespace IMR.Crawler
                     if (!int.TryParse(txtAge.Text, out age))
                     {
                         DevComponents.DotNetBar.MessageBoxEx.Show(this, "Please enter numeric value for age");
+                        txtAge.Focus();
+                        txtAge.SelectAll();
                         return;
                     }
                 }
 
-                if( !(System.Text.RegularExpressions.Regex.IsMatch(txtGender.Text, "^[a-zA-Z]+$")))
+                if( (txtGender.Text !="") &&  (!(System.Text.RegularExpressions.Regex.IsMatch(txtGender.Text, "^[a-zA-Z]+$"))))
                 {
                     DevComponents.DotNetBar.MessageBoxEx.Show(this, "Please enter proper value for gender");
+                    txtGender.Focus();
+                    txtGender.SelectAll();
                     return;
                 }
                 IList<SearchCaseDetailResult> res = null;
@@ -194,6 +208,20 @@ namespace IMR.Crawler
                     grdResults.Columns[10].Visible = false;
                     grdResults.Columns[11].Visible = false;
                     grdResults.Columns[12].Visible = false;
+
+                    grdResults.Columns[1].HeaderText = "Case Number";
+                    grdResults.Columns[2].HeaderText = "Case Outcome";
+                    grdResults.Columns[3].HeaderText = "Decision Date";
+                    grdResults.Columns[4].HeaderText = "Date of Injury";
+                    grdResults.Columns[5].HeaderText = "Received Date";
+                    grdResults.Columns[6].HeaderText = "IMRO Reviewer Specialty";
+                    grdResults.Columns[7].HeaderText = "Request Category";
+                    grdResults.Columns[8].HeaderText = "SubCategory/Drug";
+                    grdResults.Columns[9].HeaderText = "Request Decision";
+
+
+
+
                 }
                 else
                 {

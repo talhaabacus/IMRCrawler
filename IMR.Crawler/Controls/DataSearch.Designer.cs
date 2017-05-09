@@ -152,6 +152,7 @@
             this.txtState.ButtonCustom2.Tooltip = "";
             this.txtState.Location = new System.Drawing.Point(455, 34);
             this.txtState.Margin = new System.Windows.Forms.Padding(2);
+            this.txtState.MaxLength = 100;
             this.txtState.Name = "txtState";
             this.txtState.PreventEnterBeep = true;
             this.txtState.Size = new System.Drawing.Size(172, 20);
@@ -182,6 +183,7 @@
             this.txtSpecialty.ButtonCustom2.Tooltip = "";
             this.txtSpecialty.Location = new System.Drawing.Point(746, 14);
             this.txtSpecialty.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSpecialty.MaxLength = 100;
             this.txtSpecialty.Name = "txtSpecialty";
             this.txtSpecialty.PreventEnterBeep = true;
             this.txtSpecialty.Size = new System.Drawing.Size(165, 20);
@@ -212,6 +214,7 @@
             this.txtDiagnosis.ButtonCustom2.Tooltip = "";
             this.txtDiagnosis.Location = new System.Drawing.Point(455, 58);
             this.txtDiagnosis.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDiagnosis.MaxLength = 100;
             this.txtDiagnosis.Name = "txtDiagnosis";
             this.txtDiagnosis.PreventEnterBeep = true;
             this.txtDiagnosis.Size = new System.Drawing.Size(456, 20);
@@ -228,6 +231,7 @@
             this.txtGender.ButtonCustom2.Tooltip = "";
             this.txtGender.Location = new System.Drawing.Point(558, 11);
             this.txtGender.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGender.MaxLength = 6;
             this.txtGender.Name = "txtGender";
             this.txtGender.PreventEnterBeep = true;
             this.txtGender.Size = new System.Drawing.Size(69, 20);
@@ -328,6 +332,7 @@
             this.txtCaseNo.ButtonCustom2.Tooltip = "";
             this.txtCaseNo.Location = new System.Drawing.Point(166, 39);
             this.txtCaseNo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCaseNo.MaxLength = 40;
             this.txtCaseNo.Name = "txtCaseNo";
             this.txtCaseNo.PreventEnterBeep = true;
             this.txtCaseNo.Size = new System.Drawing.Size(182, 20);
@@ -371,6 +376,7 @@
             this.txtSearch.ButtonCustom2.Tooltip = "";
             this.txtSearch.Location = new System.Drawing.Point(165, 11);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSearch.MaxLength = 100;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
             this.txtSearch.Size = new System.Drawing.Size(182, 20);

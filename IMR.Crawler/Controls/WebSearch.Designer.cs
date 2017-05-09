@@ -50,6 +50,8 @@
             this.gpSearch = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.gpCaseAndTreatment = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.gpLegends = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.labelX19 = new DevComponents.DotNetBar.LabelX();
+            this.labelX20 = new DevComponents.DotNetBar.LabelX();
             this.labelX18 = new DevComponents.DotNetBar.LabelX();
             this.labelX17 = new DevComponents.DotNetBar.LabelX();
             this.labelX16 = new DevComponents.DotNetBar.LabelX();
@@ -351,9 +353,8 @@
             this.lblTotal,
             this.itemContainer1});
             this.ribbonBar1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbonBar1.Name = "ribbonBar1";
-            this.ribbonBar1.Size = new System.Drawing.Size(1488, 110);
+            this.ribbonBar1.Size = new System.Drawing.Size(1116, 89);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar1.TabIndex = 1;
             // 
@@ -444,6 +445,7 @@
             this.txtPageNumber.ButtonCustom.Tooltip = "";
             this.txtPageNumber.ButtonCustom2.Tooltip = "";
             this.txtPageNumber.Enabled = false;
+            this.txtPageNumber.MaxLength = 10;
             this.txtPageNumber.Name = "txtPageNumber";
             this.txtPageNumber.WatermarkColor = System.Drawing.SystemColors.GrayText;
             this.txtPageNumber.WatermarkText = "Page Number";
@@ -523,10 +525,10 @@
             this.gpSearch.Controls.Add(this.gpCaseSearch);
             this.gpSearch.DisabledBackColor = System.Drawing.Color.Empty;
             this.gpSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gpSearch.Location = new System.Drawing.Point(0, 110);
-            this.gpSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gpSearch.Location = new System.Drawing.Point(0, 89);
+            this.gpSearch.Margin = new System.Windows.Forms.Padding(2);
             this.gpSearch.Name = "gpSearch";
-            this.gpSearch.Size = new System.Drawing.Size(1488, 297);
+            this.gpSearch.Size = new System.Drawing.Size(1116, 241);
             // 
             // 
             // 
@@ -583,10 +585,10 @@
             this.gpCaseAndTreatment.Controls.Add(this.labelX11);
             this.gpCaseAndTreatment.DisabledBackColor = System.Drawing.Color.Empty;
             this.gpCaseAndTreatment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gpCaseAndTreatment.Location = new System.Drawing.Point(710, 0);
-            this.gpCaseAndTreatment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gpCaseAndTreatment.Location = new System.Drawing.Point(533, 0);
+            this.gpCaseAndTreatment.Margin = new System.Windows.Forms.Padding(2);
             this.gpCaseAndTreatment.Name = "gpCaseAndTreatment";
-            this.gpCaseAndTreatment.Size = new System.Drawing.Size(772, 291);
+            this.gpCaseAndTreatment.Size = new System.Drawing.Size(577, 235);
             // 
             // 
             // 
@@ -622,6 +624,8 @@
             // 
             this.gpLegends.CanvasColor = System.Drawing.SystemColors.Control;
             this.gpLegends.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.gpLegends.Controls.Add(this.labelX19);
+            this.gpLegends.Controls.Add(this.labelX20);
             this.gpLegends.Controls.Add(this.labelX18);
             this.gpLegends.Controls.Add(this.labelX17);
             this.gpLegends.Controls.Add(this.labelX16);
@@ -630,10 +634,9 @@
             this.gpLegends.Controls.Add(this.labelX13);
             this.gpLegends.DisabledBackColor = System.Drawing.Color.Empty;
             this.gpLegends.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gpLegends.Location = new System.Drawing.Point(575, 0);
-            this.gpLegends.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpLegends.Location = new System.Drawing.Point(428, 0);
             this.gpLegends.Name = "gpLegends";
-            this.gpLegends.Size = new System.Drawing.Size(191, 268);
+            this.gpLegends.Size = new System.Drawing.Size(143, 214);
             // 
             // 
             // 
@@ -664,6 +667,34 @@
             this.gpLegends.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.gpLegends.TabIndex = 38;
             // 
+            // labelX19
+            // 
+            this.labelX19.BackColor = System.Drawing.Color.CornflowerBlue;
+            // 
+            // 
+            // 
+            this.labelX19.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX19.Location = new System.Drawing.Point(92, 65);
+            this.labelX19.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX19.Name = "labelX19";
+            this.labelX19.Size = new System.Drawing.Size(31, 19);
+            this.labelX19.TabIndex = 27;
+            this.labelX19.Text = "  ";
+            // 
+            // labelX20
+            // 
+            this.labelX20.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX20.Location = new System.Drawing.Point(12, 65);
+            this.labelX20.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX20.Name = "labelX20";
+            this.labelX20.Size = new System.Drawing.Size(71, 19);
+            this.labelX20.TabIndex = 26;
+            this.labelX20.Text = "Downloaded";
+            // 
             // labelX18
             // 
             this.labelX18.BackColor = System.Drawing.Color.LightGreen;
@@ -671,10 +702,10 @@
             // 
             // 
             this.labelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX18.Location = new System.Drawing.Point(123, 79);
-            this.labelX18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX18.Location = new System.Drawing.Point(92, 91);
+            this.labelX18.Margin = new System.Windows.Forms.Padding(2);
             this.labelX18.Name = "labelX18";
-            this.labelX18.Size = new System.Drawing.Size(41, 23);
+            this.labelX18.Size = new System.Drawing.Size(31, 19);
             this.labelX18.TabIndex = 25;
             this.labelX18.Text = "  ";
             // 
@@ -685,10 +716,10 @@
             // 
             // 
             this.labelX17.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX17.Location = new System.Drawing.Point(123, 110);
-            this.labelX17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX17.Location = new System.Drawing.Point(92, 116);
+            this.labelX17.Margin = new System.Windows.Forms.Padding(2);
             this.labelX17.Name = "labelX17";
-            this.labelX17.Size = new System.Drawing.Size(41, 23);
+            this.labelX17.Size = new System.Drawing.Size(31, 19);
             this.labelX17.TabIndex = 24;
             this.labelX17.Text = "  ";
             // 
@@ -699,10 +730,10 @@
             // 
             // 
             this.labelX16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX16.Location = new System.Drawing.Point(123, 49);
-            this.labelX16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX16.Location = new System.Drawing.Point(92, 40);
+            this.labelX16.Margin = new System.Windows.Forms.Padding(2);
             this.labelX16.Name = "labelX16";
-            this.labelX16.Size = new System.Drawing.Size(41, 23);
+            this.labelX16.Size = new System.Drawing.Size(31, 19);
             this.labelX16.TabIndex = 23;
             this.labelX16.Text = "  ";
             // 
@@ -713,10 +744,10 @@
             // 
             // 
             this.labelX15.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX15.Location = new System.Drawing.Point(16, 110);
-            this.labelX15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX15.Location = new System.Drawing.Point(12, 116);
+            this.labelX15.Margin = new System.Windows.Forms.Padding(2);
             this.labelX15.Name = "labelX15";
-            this.labelX15.Size = new System.Drawing.Size(95, 23);
+            this.labelX15.Size = new System.Drawing.Size(71, 19);
             this.labelX15.TabIndex = 22;
             this.labelX15.Text = "Error";
             // 
@@ -727,12 +758,12 @@
             // 
             // 
             this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX14.Location = new System.Drawing.Point(16, 79);
-            this.labelX14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX14.Location = new System.Drawing.Point(12, 91);
+            this.labelX14.Margin = new System.Windows.Forms.Padding(2);
             this.labelX14.Name = "labelX14";
-            this.labelX14.Size = new System.Drawing.Size(95, 23);
+            this.labelX14.Size = new System.Drawing.Size(71, 19);
             this.labelX14.TabIndex = 21;
-            this.labelX14.Text = "Completed";
+            this.labelX14.Text = "Extracted";
             // 
             // labelX13
             // 
@@ -741,10 +772,10 @@
             // 
             // 
             this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX13.Location = new System.Drawing.Point(16, 49);
-            this.labelX13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX13.Location = new System.Drawing.Point(12, 40);
+            this.labelX13.Margin = new System.Windows.Forms.Padding(2);
             this.labelX13.Name = "labelX13";
-            this.labelX13.Size = new System.Drawing.Size(95, 23);
+            this.labelX13.Size = new System.Drawing.Size(71, 19);
             this.labelX13.TabIndex = 20;
             this.labelX13.Text = "Processing";
             // 
@@ -813,10 +844,10 @@
             this.comboItem166,
             this.comboItem167,
             this.comboItem168});
-            this.cmbTSpeciality.Location = new System.Drawing.Point(221, 124);
-            this.cmbTSpeciality.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbTSpeciality.Location = new System.Drawing.Point(184, 101);
+            this.cmbTSpeciality.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTSpeciality.Name = "cmbTSpeciality";
-            this.cmbTSpeciality.Size = new System.Drawing.Size(241, 20);
+            this.cmbTSpeciality.Size = new System.Drawing.Size(182, 20);
             this.cmbTSpeciality.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbTSpeciality.TabIndex = 7;
             // 
@@ -1115,8 +1146,8 @@
             this.dtTIMREnd.ButtonDropDown.Visible = true;
             this.dtTIMREnd.ButtonFreeText.Tooltip = "";
             this.dtTIMREnd.IsPopupCalendarOpen = false;
-            this.dtTIMREnd.Location = new System.Drawing.Point(359, 65);
-            this.dtTIMREnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtTIMREnd.Location = new System.Drawing.Point(287, 53);
+            this.dtTIMREnd.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -1150,7 +1181,7 @@
             this.dtTIMREnd.MonthCalendar.TodayButtonVisible = true;
             this.dtTIMREnd.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtTIMREnd.Name = "dtTIMREnd";
-            this.dtTIMREnd.Size = new System.Drawing.Size(104, 22);
+            this.dtTIMREnd.Size = new System.Drawing.Size(78, 20);
             this.dtTIMREnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtTIMREnd.TabIndex = 4;
             // 
@@ -1165,10 +1196,10 @@
             this.comboItem58,
             this.ciUphold1,
             this.ciOverturn1});
-            this.cmbTOut.Location = new System.Drawing.Point(221, 150);
-            this.cmbTOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbTOut.Location = new System.Drawing.Point(184, 122);
+            this.cmbTOut.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTOut.Name = "cmbTOut";
-            this.cmbTOut.Size = new System.Drawing.Size(241, 20);
+            this.cmbTOut.Size = new System.Drawing.Size(182, 20);
             this.cmbTOut.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbTOut.TabIndex = 8;
             // 
@@ -1278,10 +1309,10 @@
             this.comboItem199,
             this.comboItem200,
             this.comboItem201});
-            this.cmbTSubCategory.Location = new System.Drawing.Point(221, 177);
-            this.cmbTSubCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbTSubCategory.Location = new System.Drawing.Point(184, 144);
+            this.cmbTSubCategory.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTSubCategory.Name = "cmbTSubCategory";
-            this.cmbTSubCategory.Size = new System.Drawing.Size(241, 20);
+            this.cmbTSubCategory.Size = new System.Drawing.Size(182, 20);
             this.cmbTSubCategory.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbTSubCategory.TabIndex = 9;
             // 
@@ -1727,10 +1758,10 @@
             // 
             // 
             this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX12.Location = new System.Drawing.Point(19, 178);
-            this.labelX12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX12.Location = new System.Drawing.Point(14, 145);
+            this.labelX12.Margin = new System.Windows.Forms.Padding(2);
             this.labelX12.Name = "labelX12";
-            this.labelX12.Size = new System.Drawing.Size(189, 23);
+            this.labelX12.Size = new System.Drawing.Size(142, 19);
             this.labelX12.TabIndex = 33;
             this.labelX12.Text = "Treatment Request Category";
             // 
@@ -1738,10 +1769,10 @@
             // 
             this.btnTClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnTClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnTClear.Location = new System.Drawing.Point(388, 210);
-            this.btnTClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTClear.Location = new System.Drawing.Point(309, 171);
+            this.btnTClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnTClear.Name = "btnTClear";
-            this.btnTClear.Size = new System.Drawing.Size(75, 23);
+            this.btnTClear.Size = new System.Drawing.Size(56, 19);
             this.btnTClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnTClear.TabIndex = 11;
             this.btnTClear.Text = "Clear";
@@ -1751,10 +1782,10 @@
             // 
             this.btnTSubmit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnTSubmit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnTSubmit.Location = new System.Drawing.Point(221, 210);
-            this.btnTSubmit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTSubmit.Location = new System.Drawing.Point(184, 171);
+            this.btnTSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnTSubmit.Name = "btnTSubmit";
-            this.btnTSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btnTSubmit.Size = new System.Drawing.Size(56, 19);
             this.btnTSubmit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnTSubmit.TabIndex = 10;
             this.btnTSubmit.Text = "Submit";
@@ -1775,8 +1806,8 @@
             this.dtTDecisionEnd.ButtonDropDown.Visible = true;
             this.dtTDecisionEnd.ButtonFreeText.Tooltip = "";
             this.dtTDecisionEnd.IsPopupCalendarOpen = false;
-            this.dtTDecisionEnd.Location = new System.Drawing.Point(359, 95);
-            this.dtTDecisionEnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtTDecisionEnd.Location = new System.Drawing.Point(287, 77);
+            this.dtTDecisionEnd.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -1810,7 +1841,7 @@
             this.dtTDecisionEnd.MonthCalendar.TodayButtonVisible = true;
             this.dtTDecisionEnd.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtTDecisionEnd.Name = "dtTDecisionEnd";
-            this.dtTDecisionEnd.Size = new System.Drawing.Size(104, 22);
+            this.dtTDecisionEnd.Size = new System.Drawing.Size(78, 20);
             this.dtTDecisionEnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtTDecisionEnd.TabIndex = 6;
             // 
@@ -1829,8 +1860,8 @@
             this.dtTDecisionStart.ButtonDropDown.Visible = true;
             this.dtTDecisionStart.ButtonFreeText.Tooltip = "";
             this.dtTDecisionStart.IsPopupCalendarOpen = false;
-            this.dtTDecisionStart.Location = new System.Drawing.Point(221, 94);
-            this.dtTDecisionStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtTDecisionStart.Location = new System.Drawing.Point(184, 76);
+            this.dtTDecisionStart.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -1864,7 +1895,7 @@
             this.dtTDecisionStart.MonthCalendar.TodayButtonVisible = true;
             this.dtTDecisionStart.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtTDecisionStart.Name = "dtTDecisionStart";
-            this.dtTDecisionStart.Size = new System.Drawing.Size(104, 22);
+            this.dtTDecisionStart.Size = new System.Drawing.Size(78, 20);
             this.dtTDecisionStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtTDecisionStart.TabIndex = 5;
             // 
@@ -1883,8 +1914,8 @@
             this.dtTIMRStart.ButtonDropDown.Visible = true;
             this.dtTIMRStart.ButtonFreeText.Tooltip = "";
             this.dtTIMRStart.IsPopupCalendarOpen = false;
-            this.dtTIMRStart.Location = new System.Drawing.Point(221, 64);
-            this.dtTIMRStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtTIMRStart.Location = new System.Drawing.Point(184, 52);
+            this.dtTIMRStart.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -1918,7 +1949,7 @@
             this.dtTIMRStart.MonthCalendar.TodayButtonVisible = true;
             this.dtTIMRStart.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtTIMRStart.Name = "dtTIMRStart";
-            this.dtTIMRStart.Size = new System.Drawing.Size(104, 22);
+            this.dtTIMRStart.Size = new System.Drawing.Size(78, 20);
             this.dtTIMRStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtTIMRStart.TabIndex = 3;
             // 
@@ -1937,8 +1968,8 @@
             this.dtTInjuryEnd.ButtonDropDown.Visible = true;
             this.dtTInjuryEnd.ButtonFreeText.Tooltip = "";
             this.dtTInjuryEnd.IsPopupCalendarOpen = false;
-            this.dtTInjuryEnd.Location = new System.Drawing.Point(359, 34);
-            this.dtTInjuryEnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtTInjuryEnd.Location = new System.Drawing.Point(287, 28);
+            this.dtTInjuryEnd.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -1972,7 +2003,7 @@
             this.dtTInjuryEnd.MonthCalendar.TodayButtonVisible = true;
             this.dtTInjuryEnd.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtTInjuryEnd.Name = "dtTInjuryEnd";
-            this.dtTInjuryEnd.Size = new System.Drawing.Size(104, 22);
+            this.dtTInjuryEnd.Size = new System.Drawing.Size(78, 20);
             this.dtTInjuryEnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtTInjuryEnd.TabIndex = 2;
             // 
@@ -1991,8 +2022,8 @@
             this.dtTInjuryStart.ButtonDropDown.Visible = true;
             this.dtTInjuryStart.ButtonFreeText.Tooltip = "";
             this.dtTInjuryStart.IsPopupCalendarOpen = false;
-            this.dtTInjuryStart.Location = new System.Drawing.Point(221, 33);
-            this.dtTInjuryStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtTInjuryStart.Location = new System.Drawing.Point(184, 27);
+            this.dtTInjuryStart.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -2026,7 +2057,7 @@
             this.dtTInjuryStart.MonthCalendar.TodayButtonVisible = true;
             this.dtTInjuryStart.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtTInjuryStart.Name = "dtTInjuryStart";
-            this.dtTInjuryStart.Size = new System.Drawing.Size(104, 22);
+            this.dtTInjuryStart.Size = new System.Drawing.Size(78, 20);
             this.dtTInjuryStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtTInjuryStart.TabIndex = 1;
             // 
@@ -2037,10 +2068,10 @@
             // 
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(19, 150);
-            this.labelX6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX6.Location = new System.Drawing.Point(14, 122);
+            this.labelX6.Margin = new System.Windows.Forms.Padding(2);
             this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(189, 23);
+            this.labelX6.Size = new System.Drawing.Size(142, 19);
             this.labelX6.TabIndex = 23;
             this.labelX6.Text = "Treatment Request Outcome";
             // 
@@ -2051,10 +2082,10 @@
             // 
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(19, 121);
-            this.labelX7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX7.Location = new System.Drawing.Point(14, 98);
+            this.labelX7.Margin = new System.Windows.Forms.Padding(2);
             this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(189, 23);
+            this.labelX7.Size = new System.Drawing.Size(161, 19);
             this.labelX7.TabIndex = 22;
             this.labelX7.Text = "IMRO Reviewer Board Specialty";
             // 
@@ -2065,10 +2096,10 @@
             // 
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Location = new System.Drawing.Point(19, 92);
-            this.labelX8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX8.Location = new System.Drawing.Point(14, 75);
+            this.labelX8.Margin = new System.Windows.Forms.Padding(2);
             this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(133, 23);
+            this.labelX8.Size = new System.Drawing.Size(100, 19);
             this.labelX8.TabIndex = 21;
             this.labelX8.Text = "Date of IMR Decision";
             // 
@@ -2079,10 +2110,10 @@
             // 
             // 
             this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX9.Location = new System.Drawing.Point(19, 63);
-            this.labelX9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX9.Location = new System.Drawing.Point(14, 51);
+            this.labelX9.Margin = new System.Windows.Forms.Padding(2);
             this.labelX9.Name = "labelX9";
-            this.labelX9.Size = new System.Drawing.Size(189, 23);
+            this.labelX9.Size = new System.Drawing.Size(161, 19);
             this.labelX9.TabIndex = 20;
             this.labelX9.Text = "Date IMR Application Received";
             // 
@@ -2093,10 +2124,10 @@
             // 
             // 
             this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX10.Location = new System.Drawing.Point(19, 34);
-            this.labelX10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX10.Location = new System.Drawing.Point(14, 28);
+            this.labelX10.Margin = new System.Windows.Forms.Padding(2);
             this.labelX10.Name = "labelX10";
-            this.labelX10.Size = new System.Drawing.Size(95, 23);
+            this.labelX10.Size = new System.Drawing.Size(71, 19);
             this.labelX10.TabIndex = 19;
             this.labelX10.Text = "Date Of Injury";
             // 
@@ -2109,11 +2140,12 @@
             this.txtTCaseNo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtTCaseNo.ButtonCustom.Tooltip = "";
             this.txtTCaseNo.ButtonCustom2.Tooltip = "";
-            this.txtTCaseNo.Location = new System.Drawing.Point(221, 4);
-            this.txtTCaseNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTCaseNo.Location = new System.Drawing.Point(184, 3);
+            this.txtTCaseNo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTCaseNo.MaxLength = 40;
             this.txtTCaseNo.Name = "txtTCaseNo";
             this.txtTCaseNo.PreventEnterBeep = true;
-            this.txtTCaseNo.Size = new System.Drawing.Size(243, 22);
+            this.txtTCaseNo.Size = new System.Drawing.Size(182, 20);
             this.txtTCaseNo.TabIndex = 0;
             // 
             // labelX11
@@ -2123,10 +2155,10 @@
             // 
             // 
             this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX11.Location = new System.Drawing.Point(19, 5);
-            this.labelX11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX11.Location = new System.Drawing.Point(14, 4);
+            this.labelX11.Margin = new System.Windows.Forms.Padding(2);
             this.labelX11.Name = "labelX11";
-            this.labelX11.Size = new System.Drawing.Size(176, 23);
+            this.labelX11.Size = new System.Drawing.Size(132, 19);
             this.labelX11.TabIndex = 17;
             this.labelX11.Text = "IMRO Case No";
             // 
@@ -2155,10 +2187,10 @@
             this.spltSearch.HotGripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
             this.spltSearch.HotGripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.spltSearch.HotGripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.spltSearch.Location = new System.Drawing.Point(705, 0);
-            this.spltSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.spltSearch.Location = new System.Drawing.Point(529, 0);
+            this.spltSearch.Margin = new System.Windows.Forms.Padding(2);
             this.spltSearch.Name = "spltSearch";
-            this.spltSearch.Size = new System.Drawing.Size(5, 291);
+            this.spltSearch.Size = new System.Drawing.Size(4, 235);
             this.spltSearch.Style = DevComponents.DotNetBar.eSplitterStyle.Office2007;
             this.spltSearch.TabIndex = 1;
             this.spltSearch.TabStop = false;
@@ -2187,9 +2219,9 @@
             this.gpCaseSearch.DisabledBackColor = System.Drawing.Color.Empty;
             this.gpCaseSearch.Dock = System.Windows.Forms.DockStyle.Left;
             this.gpCaseSearch.Location = new System.Drawing.Point(0, 0);
-            this.gpCaseSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gpCaseSearch.Margin = new System.Windows.Forms.Padding(2);
             this.gpCaseSearch.Name = "gpCaseSearch";
-            this.gpCaseSearch.Size = new System.Drawing.Size(705, 291);
+            this.gpCaseSearch.Size = new System.Drawing.Size(529, 235);
             // 
             // 
             // 
@@ -2225,10 +2257,10 @@
             // 
             this.btnClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnClear.Location = new System.Drawing.Point(388, 190);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClear.Location = new System.Drawing.Point(308, 154);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.Size = new System.Drawing.Size(56, 19);
             this.btnClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnClear.TabIndex = 10;
             this.btnClear.Text = "Clear";
@@ -2238,10 +2270,10 @@
             // 
             this.btnSubmit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSubmit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSubmit.Location = new System.Drawing.Point(221, 190);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSubmit.Location = new System.Drawing.Point(183, 154);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btnSubmit.Size = new System.Drawing.Size(56, 19);
             this.btnSubmit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnSubmit.TabIndex = 9;
             this.btnSubmit.Text = "Submit";
@@ -2259,10 +2291,10 @@
             this.ciUphold,
             this.ciOverturn,
             this.ciPartialOverturn});
-            this.cmbIMROut.Location = new System.Drawing.Point(221, 148);
-            this.cmbIMROut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbIMROut.Location = new System.Drawing.Point(183, 120);
+            this.cmbIMROut.Margin = new System.Windows.Forms.Padding(2);
             this.cmbIMROut.Name = "cmbIMROut";
-            this.cmbIMROut.Size = new System.Drawing.Size(241, 20);
+            this.cmbIMROut.Size = new System.Drawing.Size(182, 20);
             this.cmbIMROut.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbIMROut.TabIndex = 8;
             // 
@@ -2346,10 +2378,10 @@
             this.comboItem54,
             this.comboItem55,
             this.comboItem56});
-            this.cmbSpeciality.Location = new System.Drawing.Point(221, 121);
-            this.cmbSpeciality.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbSpeciality.Location = new System.Drawing.Point(183, 98);
+            this.cmbSpeciality.Margin = new System.Windows.Forms.Padding(2);
             this.cmbSpeciality.Name = "cmbSpeciality";
-            this.cmbSpeciality.Size = new System.Drawing.Size(241, 20);
+            this.cmbSpeciality.Size = new System.Drawing.Size(182, 20);
             this.cmbSpeciality.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbSpeciality.TabIndex = 7;
             // 
@@ -2648,8 +2680,8 @@
             this.dtDecisionEnd.ButtonDropDown.Visible = true;
             this.dtDecisionEnd.ButtonFreeText.Tooltip = "";
             this.dtDecisionEnd.IsPopupCalendarOpen = false;
-            this.dtDecisionEnd.Location = new System.Drawing.Point(359, 94);
-            this.dtDecisionEnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtDecisionEnd.Location = new System.Drawing.Point(286, 76);
+            this.dtDecisionEnd.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -2683,7 +2715,7 @@
             this.dtDecisionEnd.MonthCalendar.TodayButtonVisible = true;
             this.dtDecisionEnd.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtDecisionEnd.Name = "dtDecisionEnd";
-            this.dtDecisionEnd.Size = new System.Drawing.Size(104, 22);
+            this.dtDecisionEnd.Size = new System.Drawing.Size(78, 20);
             this.dtDecisionEnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtDecisionEnd.TabIndex = 6;
             // 
@@ -2702,8 +2734,8 @@
             this.dtDecisionStart.ButtonDropDown.Visible = true;
             this.dtDecisionStart.ButtonFreeText.Tooltip = "";
             this.dtDecisionStart.IsPopupCalendarOpen = false;
-            this.dtDecisionStart.Location = new System.Drawing.Point(221, 92);
-            this.dtDecisionStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtDecisionStart.Location = new System.Drawing.Point(183, 75);
+            this.dtDecisionStart.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -2737,7 +2769,7 @@
             this.dtDecisionStart.MonthCalendar.TodayButtonVisible = true;
             this.dtDecisionStart.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtDecisionStart.Name = "dtDecisionStart";
-            this.dtDecisionStart.Size = new System.Drawing.Size(104, 22);
+            this.dtDecisionStart.Size = new System.Drawing.Size(78, 20);
             this.dtDecisionStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtDecisionStart.TabIndex = 5;
             // 
@@ -2756,8 +2788,8 @@
             this.dtIMREnd.ButtonDropDown.Visible = true;
             this.dtIMREnd.ButtonFreeText.Tooltip = "";
             this.dtIMREnd.IsPopupCalendarOpen = false;
-            this.dtIMREnd.Location = new System.Drawing.Point(359, 65);
-            this.dtIMREnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtIMREnd.Location = new System.Drawing.Point(286, 53);
+            this.dtIMREnd.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -2791,7 +2823,7 @@
             this.dtIMREnd.MonthCalendar.TodayButtonVisible = true;
             this.dtIMREnd.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtIMREnd.Name = "dtIMREnd";
-            this.dtIMREnd.Size = new System.Drawing.Size(104, 22);
+            this.dtIMREnd.Size = new System.Drawing.Size(78, 20);
             this.dtIMREnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtIMREnd.TabIndex = 4;
             // 
@@ -2810,8 +2842,8 @@
             this.dtIMRStart.ButtonDropDown.Visible = true;
             this.dtIMRStart.ButtonFreeText.Tooltip = "";
             this.dtIMRStart.IsPopupCalendarOpen = false;
-            this.dtIMRStart.Location = new System.Drawing.Point(221, 63);
-            this.dtIMRStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtIMRStart.Location = new System.Drawing.Point(183, 51);
+            this.dtIMRStart.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -2845,7 +2877,7 @@
             this.dtIMRStart.MonthCalendar.TodayButtonVisible = true;
             this.dtIMRStart.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtIMRStart.Name = "dtIMRStart";
-            this.dtIMRStart.Size = new System.Drawing.Size(104, 22);
+            this.dtIMRStart.Size = new System.Drawing.Size(78, 20);
             this.dtIMRStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtIMRStart.TabIndex = 3;
             // 
@@ -2864,8 +2896,8 @@
             this.dtInjuryEnd.ButtonDropDown.Visible = true;
             this.dtInjuryEnd.ButtonFreeText.Tooltip = "";
             this.dtInjuryEnd.IsPopupCalendarOpen = false;
-            this.dtInjuryEnd.Location = new System.Drawing.Point(359, 34);
-            this.dtInjuryEnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtInjuryEnd.Location = new System.Drawing.Point(286, 28);
+            this.dtInjuryEnd.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -2899,7 +2931,7 @@
             this.dtInjuryEnd.MonthCalendar.TodayButtonVisible = true;
             this.dtInjuryEnd.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtInjuryEnd.Name = "dtInjuryEnd";
-            this.dtInjuryEnd.Size = new System.Drawing.Size(104, 22);
+            this.dtInjuryEnd.Size = new System.Drawing.Size(78, 20);
             this.dtInjuryEnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtInjuryEnd.TabIndex = 2;
             // 
@@ -2918,8 +2950,8 @@
             this.dtInjuryStart.ButtonDropDown.Visible = true;
             this.dtInjuryStart.ButtonFreeText.Tooltip = "";
             this.dtInjuryStart.IsPopupCalendarOpen = false;
-            this.dtInjuryStart.Location = new System.Drawing.Point(221, 32);
-            this.dtInjuryStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtInjuryStart.Location = new System.Drawing.Point(183, 26);
+            this.dtInjuryStart.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -2953,7 +2985,7 @@
             this.dtInjuryStart.MonthCalendar.TodayButtonVisible = true;
             this.dtInjuryStart.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtInjuryStart.Name = "dtInjuryStart";
-            this.dtInjuryStart.Size = new System.Drawing.Size(104, 22);
+            this.dtInjuryStart.Size = new System.Drawing.Size(78, 20);
             this.dtInjuryStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtInjuryStart.TabIndex = 1;
             // 
@@ -2964,10 +2996,10 @@
             // 
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(19, 149);
-            this.labelX5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX5.Location = new System.Drawing.Point(14, 121);
+            this.labelX5.Margin = new System.Windows.Forms.Padding(2);
             this.labelX5.Name = "labelX5";
-            this.labelX5.Size = new System.Drawing.Size(133, 23);
+            this.labelX5.Size = new System.Drawing.Size(100, 19);
             this.labelX5.TabIndex = 6;
             this.labelX5.Text = "IMR Case Outcome";
             // 
@@ -2978,10 +3010,10 @@
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(19, 121);
-            this.labelX4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX4.Location = new System.Drawing.Point(14, 98);
+            this.labelX4.Margin = new System.Windows.Forms.Padding(2);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(189, 23);
+            this.labelX4.Size = new System.Drawing.Size(173, 19);
             this.labelX4.TabIndex = 5;
             this.labelX4.Text = "IMRO Reviewer Board Specialty";
             // 
@@ -2992,10 +3024,10 @@
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(19, 91);
-            this.labelX3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX3.Location = new System.Drawing.Point(14, 74);
+            this.labelX3.Margin = new System.Windows.Forms.Padding(2);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(133, 23);
+            this.labelX3.Size = new System.Drawing.Size(100, 19);
             this.labelX3.TabIndex = 4;
             this.labelX3.Text = "Date of IMR Decision";
             // 
@@ -3006,10 +3038,10 @@
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(19, 62);
-            this.labelX2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX2.Location = new System.Drawing.Point(14, 50);
+            this.labelX2.Margin = new System.Windows.Forms.Padding(2);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(189, 23);
+            this.labelX2.Size = new System.Drawing.Size(173, 19);
             this.labelX2.TabIndex = 3;
             this.labelX2.Text = "Date IMR Application Received";
             // 
@@ -3020,10 +3052,10 @@
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(19, 33);
-            this.labelX1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX1.Location = new System.Drawing.Point(14, 27);
+            this.labelX1.Margin = new System.Windows.Forms.Padding(2);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(95, 23);
+            this.labelX1.Size = new System.Drawing.Size(71, 19);
             this.labelX1.TabIndex = 2;
             this.labelX1.Text = "Date Of Injury";
             // 
@@ -3036,11 +3068,12 @@
             this.txtCaseNo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtCaseNo.ButtonCustom.Tooltip = "";
             this.txtCaseNo.ButtonCustom2.Tooltip = "";
-            this.txtCaseNo.Location = new System.Drawing.Point(221, 2);
-            this.txtCaseNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCaseNo.Location = new System.Drawing.Point(183, 2);
+            this.txtCaseNo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCaseNo.MaxLength = 40;
             this.txtCaseNo.Name = "txtCaseNo";
             this.txtCaseNo.PreventEnterBeep = true;
-            this.txtCaseNo.Size = new System.Drawing.Size(243, 22);
+            this.txtCaseNo.Size = new System.Drawing.Size(182, 20);
             this.txtCaseNo.TabIndex = 0;
             // 
             // lblCaseNo
@@ -3050,10 +3083,10 @@
             // 
             // 
             this.lblCaseNo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblCaseNo.Location = new System.Drawing.Point(19, 4);
-            this.lblCaseNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblCaseNo.Location = new System.Drawing.Point(14, 3);
+            this.lblCaseNo.Margin = new System.Windows.Forms.Padding(2);
             this.lblCaseNo.Name = "lblCaseNo";
-            this.lblCaseNo.Size = new System.Drawing.Size(189, 23);
+            this.lblCaseNo.Size = new System.Drawing.Size(142, 19);
             this.lblCaseNo.TabIndex = 0;
             this.lblCaseNo.Text = "IMRO Case No";
             // 
@@ -3083,10 +3116,10 @@
             this.spltResults.HotGripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
             this.spltResults.HotGripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.spltResults.HotGripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.spltResults.Location = new System.Drawing.Point(0, 407);
-            this.spltResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.spltResults.Location = new System.Drawing.Point(0, 330);
+            this.spltResults.Margin = new System.Windows.Forms.Padding(2);
             this.spltResults.Name = "spltResults";
-            this.spltResults.Size = new System.Drawing.Size(1488, 6);
+            this.spltResults.Size = new System.Drawing.Size(1116, 5);
             this.spltResults.Style = DevComponents.DotNetBar.eSplitterStyle.Office2007;
             this.spltResults.TabIndex = 4;
             this.spltResults.TabStop = false;
@@ -3115,25 +3148,23 @@
             this.grdResults.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdResults.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.grdResults.Location = new System.Drawing.Point(0, 413);
-            this.grdResults.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdResults.Location = new System.Drawing.Point(0, 335);
             this.grdResults.Name = "grdResults";
-            this.grdResults.Size = new System.Drawing.Size(1488, 50);
+            this.grdResults.Size = new System.Drawing.Size(1116, 41);
             this.grdResults.TabIndex = 2;
             this.grdResults.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdResults_CellContentClick);
             this.grdResults.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.grdResults_CellPainting);
             // 
             // WebSearch
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grdResults);
             this.Controls.Add(this.spltResults);
             this.Controls.Add(this.gpSearch);
             this.Controls.Add(this.ribbonBar1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "WebSearch";
-            this.Size = new System.Drawing.Size(1488, 463);
+            this.Size = new System.Drawing.Size(1116, 376);
             this.gpSearch.ResumeLayout(false);
             this.gpCaseAndTreatment.ResumeLayout(false);
             this.gpLegends.ResumeLayout(false);
@@ -3432,5 +3463,7 @@
         private DevComponents.DotNetBar.LabelX labelX13;
         private DevComponents.DotNetBar.TextBoxItem txtPageNumber;
         private DevComponents.DotNetBar.ButtonItem btnGo;
+        private DevComponents.DotNetBar.LabelX labelX19;
+        private DevComponents.DotNetBar.LabelX labelX20;
     }
 }

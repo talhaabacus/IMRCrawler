@@ -134,9 +134,27 @@ namespace IMR.Crawler.Helper
 
                 diagnosisPart = diagnosisPart.Substring(diagnosisPart.IndexOf(".") + 1).Trim();
 
-                if (diagnosisPart.ToLower().IndexOf("the diagnosis") != -1)
+                if (diagnosisPart.ToLower().IndexOf("diagnosis") != -1)
                 {
-                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("the diagnosis"));
+                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("diagnosis"));
+                    f.Diagnosis = diagnosisPart.Substring(0, diagnosisPart.IndexOf("."));
+
+                }
+                else if (diagnosisPart.ToLower().IndexOf("diagnosed") != -1)
+                {
+                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("diagnosed"));
+                    f.Diagnosis = diagnosisPart.Substring(0, diagnosisPart.IndexOf("."));
+
+                }
+                else if (diagnosisPart.ToLower().IndexOf("diagnoses") != -1)
+                {
+                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("diagnoses"));
+                    f.Diagnosis = diagnosisPart.Substring(0, diagnosisPart.IndexOf("."));
+
+                }
+               else if (diagnosisPart.ToLower().IndexOf("diagnosistic") != -1)
+                {
+                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("diagnosistic"));
                     f.Diagnosis = diagnosisPart.Substring(0, diagnosisPart.IndexOf("."));
 
                 }
@@ -284,10 +302,28 @@ namespace IMR.Crawler.Helper
 
                 diagnosisPart = diagnosisPart.Substring(diagnosisPart.IndexOf(".") + 1).Trim();
 
-                if (diagnosisPart.ToLower().IndexOf("the diagnosis") != -1)
+                if (diagnosisPart.ToLower().IndexOf("diagnosis") != -1)
                 {
-                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("the diagnosis"));
+                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("diagnosis"));
                     f.Diagnosis = diagnosisPart.Substring(0, diagnosisPart.IndexOf(".")).Trim();
+
+                }
+                else if (diagnosisPart.ToLower().IndexOf("diagnosed") != -1)
+                {
+                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("diagnosed"));
+                    f.Diagnosis = diagnosisPart.Substring(0, diagnosisPart.IndexOf("."));
+
+                }
+                else if (diagnosisPart.ToLower().IndexOf("diagnoses") != -1)
+                {
+                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("diagnoses"));
+                    f.Diagnosis = diagnosisPart.Substring(0, diagnosisPart.IndexOf("."));
+
+                }
+                else if (diagnosisPart.ToLower().IndexOf("diagnosistic") != -1)
+                {
+                    diagnosisPart = diagnosisPart.Substring(diagnosisPart.ToLower().IndexOf("diagnosistic"));
+                    f.Diagnosis = diagnosisPart.Substring(0, diagnosisPart.IndexOf("."));
 
                 }
                 else

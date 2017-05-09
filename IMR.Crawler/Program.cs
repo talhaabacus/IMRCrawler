@@ -48,7 +48,7 @@ namespace IMR.Crawler
                     CreateDirs = true,
                     EnableFileDelete = true,
                     Header =
-                        "\n${date:format=HH\\:mm\\:ss}\nLog file for Season Tickets Application\n===============================\n",
+                        "\n${date:format=HH\\:mm\\:ss}\nLog file for IMR Crawler Application\n===============================\n",
                     Footer = "===============================\nEnd Log - ${date:format=HH\\:mm\\:ss}",
                     FileName = AppConfig.LogFileLocation + "\\${shortdate}.log",
                     Layout =
@@ -57,6 +57,8 @@ namespace IMR.Crawler
             }
             else
             {
+                if (!Directory.Exists("C:\\Logs"))
+                    Directory.CreateDirectory("C:\\Logs");
                 fileTarget = new FileTarget
                 {
                     ArchiveAboveSize = 1048576,
@@ -65,9 +67,9 @@ namespace IMR.Crawler
                     CreateDirs = true,
                     EnableFileDelete = true,
                     Header =
-                        "\n${date:format=HH\\:mm\\:ss}\nLog file for Season Tickets Application\n===============================\n",
+                        "\n${date:format=HH\\:mm\\:ss}\nLog file for IMR Crawler Application\n===============================\n",
                     Footer = "===============================\nEnd Log - ${date:format=HH\\:mm\\:ss}",
-                    FileName = Path.GetDirectoryName(AppConfig.IMRAppSettingsPath) + "\\Logs\\${shortdate}.log",
+                    FileName = "C:\\Logs\\${shortdate}.log",
                     Layout =
                         "${date:format=HH\\:mm\\:ss} ${logger} : ${level:uppercase=true} : ${message} ${exception:format=message}"
                 };

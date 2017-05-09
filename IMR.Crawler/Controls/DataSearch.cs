@@ -73,7 +73,7 @@ namespace IMR.Crawler
             }
             catch (Exception ex)
             {
-                DevComponents.DotNetBar.MessageBoxEx.Show(this, "Could not perform search" + "\n" + ex.ToString(), "Exception");
+                DevComponents.DotNetBar.MessageBoxEx.Show(this, "Could not perform search" + "\n" + ex.Message, "Exception");
                 Log("Could not perform search" + "\n" + ex.ToString(), MessageType.Exception);
 
             }

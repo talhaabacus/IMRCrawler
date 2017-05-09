@@ -713,6 +713,7 @@ namespace IMR.Crawler
                 foreach (DataGridViewRow r in grdResults.Rows)
                 {
                     r.DefaultCellStyle.BackColor = Color.White;
+                    r.ErrorText = "";
                     DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)r.Cells[0];
                     if ((bool)chk.Value == true)
                     {
@@ -794,7 +795,7 @@ namespace IMR.Crawler
                     {
                         if (_errorMessage.Length > 0)
                         {
-                            DevComponents.DotNetBar.MessageBoxEx.Show(this, _errorMessage, "Exception");
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this, "There were some issues in downloading the PDF, Please hover on rows to see the details.", "Exception");
                         }
                         else
                         {
@@ -863,7 +864,7 @@ namespace IMR.Crawler
                 Log(string.Concat("PDF Saving exception " + ex.ToString()), MessageType.Error);
                 _errorMessage += "\n" + ex.Message;
                 grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Red;
-                grdResults.Rows[t.RowIndex].ErrorText = ex.ToString();
+                grdResults.Rows[t.RowIndex].ErrorText = ex.Message;
                 _failed++;
             }
 
@@ -883,6 +884,7 @@ namespace IMR.Crawler
                 foreach (DataGridViewRow r in grdResults.Rows)
                 {
                     r.DefaultCellStyle.BackColor = Color.White;
+                    r.ErrorText = "";
                     DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)r.Cells[0];
                     if ((bool)chk.Value == true)
                     {
@@ -964,7 +966,7 @@ namespace IMR.Crawler
                     {
                         if (_errorMessage.Length > 0)
                         {
-                            DevComponents.DotNetBar.MessageBoxEx.Show(this, _errorMessage, "Exception");
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this,"There were some errors in downloading and extracting files, please hover on rows for details." , "Exception");
                         }
                         else
                         {
@@ -1075,7 +1077,8 @@ namespace IMR.Crawler
             catch (Exception ex)
             {
                 Log(string.Concat("PDF Extracting exception " + ex.ToString()), MessageType.Error);
-
+                grdResults.Rows[t.RowIndex].ErrorText = ex.Message;
+                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Red;
                 _errorMessage += "\n" + ex.Message;
                 _failed++;
             }

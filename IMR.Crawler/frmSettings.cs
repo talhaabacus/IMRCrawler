@@ -116,6 +116,8 @@ namespace IMR.Crawler
                 Configuration.AppConfig.LogFileLocation = txtLog.Text;
                 this.Close();
             }
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("Any changes in settings will be applicable after restart.", "Message");
         }
     }
 }

@@ -99,7 +99,7 @@ namespace IMR.Crawler
                     if (System.IO.File.Exists(pdfLoc))
                         Process.Start(pdfLoc);
                     else
-                        DevComponents.DotNetBar.MessageBoxEx.Show("PDF does not exist.");
+                        DevComponents.DotNetBar.MessageBoxEx.Show("PDF does not exist.", "Message");
                 }
                 else if ((e.RowIndex >= 0) && (e.ColumnIndex == 13))
                 {
@@ -122,7 +122,7 @@ namespace IMR.Crawler
                     if (System.IO.File.Exists(pdfLoc))
                         Process.Start(pdfLoc);
                     else
-                        DevComponents.DotNetBar.MessageBoxEx.Show("PDF does not exist.");
+                        DevComponents.DotNetBar.MessageBoxEx.Show("PDF does not exist.", "Message");
                 
                 }
                 else if ((e.RowIndex >= 0) && (e.ColumnIndex == 13))

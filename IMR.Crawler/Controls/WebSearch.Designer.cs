@@ -386,7 +386,7 @@
             this.btnExtract.Name = "btnExtract";
             this.btnExtract.SubItemsExpandWidth = 14;
             this.btnExtract.Text = "Extract";
-            this.btnExtract.Click += new System.EventHandler(this.btnDownloadExtract_Click);
+            this.btnExtract.Click += new System.EventHandler(this.btnExtract_Click);
             // 
             // btnDownloadExtract
             // 

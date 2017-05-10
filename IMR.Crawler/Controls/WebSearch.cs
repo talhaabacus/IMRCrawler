@@ -799,7 +799,7 @@ namespace IMR.Crawler
                         }
                         else
                         {
-                            DevComponents.DotNetBar.MessageBoxEx.Show(this, _success.ToString() + " records processed successfully", "Message");
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this, _success.ToString() + " files downloaded successfully", "Message");
                         }
                     }
 
@@ -1000,7 +1000,7 @@ namespace IMR.Crawler
                 catch (Exception ex)
                 {
 
-                    Log(string.Concat("PDF Downloading Exception " + ex.ToString()), MessageType.Error);
+                    Log(string.Concat("PDF Extraction Exception " + ex.ToString()), MessageType.Error);
                     DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("PDF Extraction Exception " + ex.Message, "Message"));
                 }
 
@@ -1074,6 +1074,217 @@ namespace IMR.Crawler
                 grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
                 _success++;
                 Log(string.Concat("Successfully Downloaded and Extracted " + t.CaseNumber + ".pdf"), MessageType.Info);
+            }
+            catch (Exception ex)
+            {
+                Log(string.Concat("PDF Extracting exception " + ex.ToString()), MessageType.Error);
+                grdResults.Rows[t.RowIndex].ErrorText = ex.Message;
+                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                _errorMessage += "\n" + ex.Message;
+                _failed++;
+            }
+
+
+        }
+
+        private void btnExtract_Click(object sender, EventArgs e)
+        {
+            grdResults.EndEdit();
+            if ((AppConfig.PDFSaveLocation != null) && (AppConfig.PDFSaveLocation != ""))
+            {
+                if (!Directory.Exists(AppConfig.PDFSaveLocation))
+                    Directory.CreateDirectory(AppConfig.PDFSaveLocation);
+
+                _errorMessage = "";
+                List<SearchResult> treatments = new List<SearchResult>();
+                foreach (DataGridViewRow r in grdResults.Rows)
+                {
+                    r.DefaultCellStyle.BackColor = Color.White;
+                    r.ErrorText = "";
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)r.Cells[0];
+                    if ((bool)chk.Value == true)
+                    {
+                        SearchResult t = (SearchResult)r.DataBoundItem;
+                        if (t.ParentCaseNumber == null)
+                        {
+                            t.RowIndex = r.Index;
+                            treatments.Add(t);
+                            bool hasChild = true;
+                            int index = t.RowIndex + 1;
+
+                            while (hasChild)
+                            {
+                                if (index < grdResults.RowCount)
+                                {
+                                    SearchResult childTreat = (SearchResult)grdResults.Rows[index].DataBoundItem;
+                                    if (childTreat.ParentCaseNumber == t.CaseNumber)
+                                    {
+                                        childTreat.RowIndex = index;
+                                        treatments.Add(childTreat);
+                                        index++;
+                                    }
+                                    else
+                                        hasChild = false;
+                                }
+                                else
+                                    hasChild = false;
+                            }
+                        }
+                    }
+                }
+                _toDownload = treatments.Count;
+                pb1.Visible = true;
+                pb1.Text = "Extracting files....";
+
+                _isNext = btnNext.Enabled;
+                _isPrevious = btnPrevious.Enabled;
+
+                btnDownload.Enabled = false;
+                btnExtract.Enabled = false;
+                btnDownloadExtract.Enabled = false;
+                btnSelectAll.Enabled = false;
+                btnDeselectAll.Enabled = false;
+                btnNext.Enabled = false;
+                btnPrevious.Enabled = false;
+                btnSubmit.Enabled = false;
+                btnTClear.Enabled = false;
+                btnClear.Enabled = false;
+                btnTSubmit.Enabled = false;
+                ribbonBar1.Refresh();
+                _downloaded = 0;
+                _success = 0;
+                _failed = 0;
+                worker1 = new BackgroundWorker { WorkerReportsProgress = true };
+
+                DoWorkEventHandler doWork = (sender1, e1) =>
+                {
+
+                    try
+                    {
+                        Parallel.ForEach(treatments, new ParallelOptions { MaxDegreeOfParallelism = 5 }, ExtractPDF);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                };
+                worker1.DoWork += doWork;
+                RunWorkerCompletedEventHandler runcomplete = (sender4, e4) =>
+                {
+
+                    if (e4.Error != null)
+                    {
+                        Log(e4.Error.ToString(), MessageType.Error);
+
+                        DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.Message, "Exception");
+                    }
+                    else
+                    {
+                        if (_errorMessage.Length > 0)
+                        {
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this, "There were some errors in extracting files, please hover on rows for details.", "Exception");
+                        }
+                        else
+                        {
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this, _success.ToString() + " files extracted successfully", "Message");
+                        }
+                    }
+
+                    pb1.Visible = false;
+
+                    btnDownload.Enabled = true;
+                    btnExtract.Enabled = true;
+                    btnDownloadExtract.Enabled = true;
+                    btnSelectAll.Enabled = true;
+                    btnDeselectAll.Enabled = true;
+                    btnNext.Enabled = _isNext;
+                    btnPrevious.Enabled = _isPrevious;
+                    btnSubmit.Enabled = true;
+                    btnTClear.Enabled = true;
+                    btnClear.Enabled = true;
+                    btnTSubmit.Enabled = true;
+
+                    ribbonBar1.Refresh();
+                };
+
+                worker1.RunWorkerCompleted += runcomplete;
+
+                try
+                {
+                    worker1.RunWorkerAsync();
+                }
+                catch (Exception ex)
+                {
+
+                    Log(string.Concat("PDF Extraction Exception " + ex.ToString()), MessageType.Error);
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("PDF Extraction Exception " + ex.Message, "Message"));
+                }
+
+
+            }
+            else
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show(this, "Please select PDF Save Location in Settings first.", "Message");
+            }
+        }
+
+        private void ExtractPDF(SearchResult t)
+        {
+            try
+            {
+                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Moccasin;
+                if (t.PDFUrl != null)
+                {
+                    string dest = AppConfig.PDFSaveLocation + "\\" + t.CaseNumber + ".pdf";
+                    Log(string.Concat("Extracting " + t.CaseNumber + ".pdf"), MessageType.Info);
+                    string PDFText = "";
+                 
+
+                    if (!File.Exists(dest))
+                    {
+                        throw new Exception("PDF File " + t.CaseNumber + ".pdf not found.");
+                    }
+                    DBHelper db = new DBHelper();
+                    PDDocument doc = null;
+
+
+                    try
+                    {
+                        doc = PDDocument.load(dest);
+                        doc.openProtection(new StandardDecryptionMaterial(""));
+                        PDFTextStripper stripper = new PDFTextStripper();
+                        PDFText = stripper.getText(doc);
+
+                    }
+                    finally
+                    {
+                        if (doc != null)
+                        {
+                            doc.close();
+                        }
+                    }
+
+                    PDFParser parser = new PDFParser(PDFText);
+
+                    int treatmentID = db.AddUpdateSearchResult(t, PDFText, parser.Format);
+
+                    if (treatmentID > 0)
+                    {
+                        parser.TreatmentID = treatmentID;
+                        parser.ParseText();
+
+                    }
+
+                }
+
+                else
+                {
+                    DBHelper db = new DBHelper();
+                    db.AddUpdateSearchResult(t, "", Helper.PDFFormatEnum.Other);
+                }
+                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                _success++;
+                Log(string.Concat("Successfully Extracted " + t.CaseNumber + ".pdf"), MessageType.Info);
             }
             catch (Exception ex)
             {

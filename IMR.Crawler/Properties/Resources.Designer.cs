@@ -63,6 +63,16 @@ namespace IMR.Crawler.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cancel {
+            get {
+                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cross_icon {
             get {
                 object obj = ResourceManager.GetObject("cross_icon", resourceCulture);
@@ -103,9 +113,39 @@ namespace IMR.Crawler.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DownloadAll {
+            get {
+                object obj = ResourceManager.GetObject("DownloadAll", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DownloadExtractAll {
+            get {
+                object obj = ResourceManager.GetObject("DownloadExtractAll", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Extract {
             get {
                 object obj = ResourceManager.GetObject("Extract", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ExtractAll {
+            get {
+                object obj = ResourceManager.GetObject("ExtractAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

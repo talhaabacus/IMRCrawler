@@ -1505,22 +1505,43 @@ namespace IMR.Crawler.Helper
             return retStr;
         }
 
-        public void DownloadFileAsync(string url, string dest, System.ComponentModel.AsyncCompletedEventHandler downloadCompleted)
-        {
-
-            WebClient wc = new WebClient();
-            wc.DownloadFileCompleted += downloadCompleted;
-            wc.DownloadFileAsync(new Uri(url), dest);
-            
-        }
-
+       
         public void DownloadFile(string url, string dest)
         {
 
-            WebClient wc = new WebClient();
-            
-            wc.DownloadFile(new Uri(url), dest);
+            if (proxyHelper.TotalProxies > 0)
+            {
 
+                int total = 10;
+                if (proxyHelper.TotalProxies < 10)
+                    total = proxyHelper.TotalProxies;
+                bool success = true;
+                for (int i = 0; i < total; i++)
+                {
+
+                    WebClient wc = new WebClient();
+                    wc.Proxy = proxyHelper.Proxy;
+                    try
+                    {
+                        wc.DownloadFile(new Uri(url), dest);
+                    }
+                    catch (WebException ex)
+                    {
+                        if((ex.Status == WebExceptionStatus.ProxyNameResolutionFailure) || (ex.Status == WebExceptionStatus.Timeout) || (ex.Status == WebExceptionStatus.NameResolutionFailure) || (ex.Status == WebExceptionStatus.NameResolutionFailure))
+                            proxyHelper.ChangeProxy();
+                        if (i == total)
+                            throw new Exception("Invalid proxy");
+                        success = false;
+                    }
+                    if (success)
+                        break;
+                }
+            }
+            else
+            {
+                WebClient wc = new WebClient();
+                wc.DownloadFile(new Uri(url), dest);
+            }
         }
 
         public void ClearCookies()

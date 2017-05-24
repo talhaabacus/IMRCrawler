@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
             this.btnDownload = new DevComponents.DotNetBar.ButtonItem();
             this.btnExtract = new DevComponents.DotNetBar.ButtonItem();
             this.btnDownloadExtract = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDownloadAll = new DevComponents.DotNetBar.ButtonItem();
+            this.btnExtractAll = new DevComponents.DotNetBar.ButtonItem();
+            this.btnDownloadExtractAll = new DevComponents.DotNetBar.ButtonItem();
+            this.btnCancel = new DevComponents.DotNetBar.ButtonItem();
             this.btnSelectAll = new DevComponents.DotNetBar.ButtonItem();
             this.btnDeselectAll = new DevComponents.DotNetBar.ButtonItem();
             this.btnPrevious = new DevComponents.DotNetBar.ButtonItem();
@@ -344,6 +348,10 @@
             this.btnDownload,
             this.btnExtract,
             this.btnDownloadExtract,
+            this.btnDownloadAll,
+            this.btnExtractAll,
+            this.btnDownloadExtractAll,
+            this.btnCancel,
             this.btnSelectAll,
             this.btnDeselectAll,
             this.btnPrevious,
@@ -398,6 +406,48 @@
             this.btnDownloadExtract.SubItemsExpandWidth = 14;
             this.btnDownloadExtract.Text = "Download && Extract";
             this.btnDownloadExtract.Click += new System.EventHandler(this.btnDownloadExtract_Click);
+            // 
+            // btnDownloadAll
+            // 
+            this.btnDownloadAll.Enabled = false;
+            this.btnDownloadAll.Image = global::IMR.Crawler.Properties.Resources.DownloadAll;
+            this.btnDownloadAll.ImagePaddingHorizontal = 18;
+            this.btnDownloadAll.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnDownloadAll.Name = "btnDownloadAll";
+            this.btnDownloadAll.SubItemsExpandWidth = 14;
+            this.btnDownloadAll.Text = "Download All";
+            this.btnDownloadAll.Click += new System.EventHandler(this.btnDownloadAll_Click);
+            // 
+            // btnExtractAll
+            // 
+            this.btnExtractAll.Enabled = false;
+            this.btnExtractAll.Image = global::IMR.Crawler.Properties.Resources.ExtractAll;
+            this.btnExtractAll.ImagePaddingHorizontal = 18;
+            this.btnExtractAll.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnExtractAll.Name = "btnExtractAll";
+            this.btnExtractAll.SubItemsExpandWidth = 14;
+            this.btnExtractAll.Text = "Extract All";
+            // 
+            // btnDownloadExtractAll
+            // 
+            this.btnDownloadExtractAll.Enabled = false;
+            this.btnDownloadExtractAll.Image = global::IMR.Crawler.Properties.Resources.DownloadExtractAll;
+            this.btnDownloadExtractAll.ImagePaddingHorizontal = 18;
+            this.btnDownloadExtractAll.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnDownloadExtractAll.Name = "btnDownloadExtractAll";
+            this.btnDownloadExtractAll.SubItemsExpandWidth = 14;
+            this.btnDownloadExtractAll.Text = "Download and Extract All";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Image = global::IMR.Crawler.Properties.Resources.cancel;
+            this.btnCancel.ImagePaddingHorizontal = 18;
+            this.btnCancel.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.SubItemsExpandWidth = 14;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSelectAll
             // 
@@ -462,7 +512,6 @@
             // 
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Text = "                                          ";
-            this.lblTotal.Click += new System.EventHandler(this.lblTotal_Click);
             // 
             // itemContainer1
             // 
@@ -471,6 +520,7 @@
             // 
             this.itemContainer1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.itemContainer1.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.itemContainer1.MultiLine = true;
             this.itemContainer1.Name = "itemContainer1";
             this.itemContainer1.ResizeItemsToFit = false;
             this.itemContainer1.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -508,6 +558,7 @@
             this.pb1.ProgressType = DevComponents.DotNetBar.eProgressItemType.Marquee;
             this.pb1.RecentlyUsed = false;
             this.pb1.Step = 20;
+            this.pb1.TextVisible = true;
             this.pb1.Visible = false;
             this.pb1.Width = 180;
             // 
@@ -3129,23 +3180,23 @@
             this.grdResults.AllowUserToAddRows = false;
             this.grdResults.AllowUserToDeleteRows = false;
             this.grdResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grdResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdResults.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdResults.DefaultCellStyle = dataGridViewCellStyle4;
             this.grdResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdResults.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.grdResults.Location = new System.Drawing.Point(0, 335);
@@ -3465,5 +3516,9 @@
         private DevComponents.DotNetBar.ButtonItem btnGo;
         private DevComponents.DotNetBar.LabelX labelX19;
         private DevComponents.DotNetBar.LabelX labelX20;
+        private DevComponents.DotNetBar.ButtonItem btnDownloadAll;
+        private DevComponents.DotNetBar.ButtonItem btnExtractAll;
+        private DevComponents.DotNetBar.ButtonItem btnCancel;
+        private DevComponents.DotNetBar.ButtonItem btnDownloadExtractAll;
     }
 }

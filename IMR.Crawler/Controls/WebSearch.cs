@@ -33,6 +33,7 @@ namespace IMR.Crawler
         private string _origin = "https://www.dir.ca.gov";
         private int _currentPage = 1;
         BackgroundWorker worker1 = null;
+        CancellationTokenSource cts;
 
         private SearchType _type;
         private bool _isNext;
@@ -186,15 +187,7 @@ namespace IMR.Crawler
             data += "&OutcomeV=" + _treatmentSearchCriteria.OutcomeV;
             data += "&SubCategoryV=" + _treatmentSearchCriteria.SubCategoryV;
 
-            if (_currentPage > 1)
-            {
-                data += "&newpageno=" + _currentPage + "&Submit=Next";
-            }
-            else
-            {
-                data += "&Submit=Submit";
-            }
-
+            
             if (_currentPage > 1)
             {
                 data += "&newpageno=" + _currentPage + "&Submit=Next";
@@ -263,6 +256,7 @@ namespace IMR.Crawler
                         {
                             SearchResult treat = new Model.SearchResult();
                             treat.IsSelected = true;
+                            treat.RowIndex = -1;
                             var tdNodes = hnd.SelectNodes(".//td");
 
                             if ((tdNodes[0].Attributes["colspan"] != null) && (tdNodes[0].Attributes["colspan"].Value == "5"))
@@ -948,7 +942,7 @@ namespace IMR.Crawler
 
                 if (worker1.CancellationPending)
                     return;
-                Log(string.Concat("Downloading " + t.CaseNumber + ".pdf"), MessageType.Info);
+                
                 if (t.RowIndex != -1)
                 {
                     grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Moccasin;
@@ -1141,7 +1135,7 @@ namespace IMR.Crawler
                 if (t.PDFUrl != null)
                 {
                     string dest = AppConfig.PDFSaveLocation + "\\" + t.CaseNumber + ".pdf";
-                    Log(string.Concat("Downloading and Extracting " + t.CaseNumber + ".pdf"), MessageType.Info);
+                    
                     string PDFText = "";
                     if (!File.Exists(dest))
                     {
@@ -1361,11 +1355,13 @@ namespace IMR.Crawler
         {
             try
             {
-                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Moccasin;
+                if(t.RowIndex != -1)
+                     grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Moccasin;
+
                 if (t.PDFUrl != null)
                 {
                     string dest = AppConfig.PDFSaveLocation + "\\" + t.CaseNumber + ".pdf";
-                    Log(string.Concat("Extracting " + t.CaseNumber + ".pdf"), MessageType.Info);
+                    
                     string PDFText = "";
 
 
@@ -1411,15 +1407,19 @@ namespace IMR.Crawler
                     DBHelper db = new DBHelper();
                     db.AddUpdateSearchResult(t, "", Helper.PDFFormatEnum.Other);
                 }
-                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                if (t.RowIndex != -1)
+                    grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
                 _success++;
                 Log(string.Concat("Successfully Extracted " + t.CaseNumber + ".pdf"), MessageType.Info);
             }
             catch (Exception ex)
             {
                 Log(string.Concat("PDF Extracting exception " + ex.ToString()), MessageType.Error);
-                grdResults.Rows[t.RowIndex].ErrorText = ex.Message;
-                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                if (t.RowIndex != -1)
+                {
+                    grdResults.Rows[t.RowIndex].ErrorText = ex.Message;
+                    grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                }
                 _errorMessage += "\n" + ex.Message;
                 _failed++;
             }
@@ -1521,7 +1521,7 @@ namespace IMR.Crawler
                 DoWorkEventHandler doWork = (sender1, e1) =>
                 {
 
-                    CancellationTokenSource cts = new CancellationTokenSource();
+                  cts = new CancellationTokenSource();
                     try
                     {
                         while (true)
@@ -1624,6 +1624,277 @@ namespace IMR.Crawler
         private void btnCancel_Click(object sender, EventArgs e)
         {
             worker1.CancelAsync();
+            cts.Cancel();
+        }
+
+        private void btnExtractAll_Click(object sender, EventArgs e)
+        {
+            grdResults.EndEdit();
+            if (AppConfig.PDFSaveLocation != "")
+            {
+                _isNext = btnNext.Enabled;
+                _isPrevious = btnPrevious.Enabled;
+                btnDownload.Enabled = false;
+                btnExtract.Enabled = false;
+                btnDownloadExtract.Enabled = false;
+                btnSelectAll.Enabled = false;
+                btnDeselectAll.Enabled = false;
+                btnNext.Enabled = false;
+                btnPrevious.Enabled = false;
+                btnSubmit.Enabled = false;
+                btnTClear.Enabled = false;
+                btnClear.Enabled = false;
+                btnTSubmit.Enabled = false;
+                btnDownloadAll.Enabled = false;
+                btnExtractAll.Enabled = false;
+                btnDownloadExtractAll.Enabled = false;
+                btnCancel.Enabled = true;
+                pb1.Visible = true;
+                ribbonBar1.Refresh();
+                _downloaded = 0;
+                _success = 0;
+                _failed = 0;
+                _errorMessage = "";
+                _allCurrentPage = _currentPage;
+                _currentPage = 1;
+                worker1 = new BackgroundWorker { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
+                Log("Begin Extracting PDF files Total: " + _totresults + " pages " + _totalpages, MessageType.Info);
+                DoWorkEventHandler doWork = (sender1, e1) =>
+                {
+
+                     cts = new CancellationTokenSource();
+                    try
+                    {
+                        while (true)
+                        {
+                            pb1.Text = "Extracting page " + _currentPage + " of " + _totalpages;
+                            Log("Begin Extracting page " + _currentPage + " of " + _totalpages, MessageType.Info);
+                            if (worker1.CancellationPending)
+                            {
+                                e1.Cancel = true;
+                                cts.Cancel();
+                            }
+                            List<SearchResult> treatments = new List<SearchResult>();
+
+                            if (_type == SearchType.Case)
+                            {
+                                treatments = GetCaseData();
+                            }
+                            else
+                            {
+                                treatments = GetTreatmentData();
+                            }
+
+
+                            Parallel.ForEach(treatments, new ParallelOptions { MaxDegreeOfParallelism = 10, CancellationToken = cts.Token }, ExtractPDF);
+                            _currentPage++;
+                            if (!_hasNext)
+                                break;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                };
+                worker1.DoWork += doWork;
+                RunWorkerCompletedEventHandler runcomplete = (sender4, e4) =>
+                {
+
+                    if (e4.Error != null)
+                    {
+                        Log(e4.Error.ToString(), MessageType.Error);
+
+                        DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.Message, "Exception");
+                    }
+                    else
+                    {
+                        if (_errorMessage.Length > 0)
+                        {
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this, "There were some issues in extracting the PDF, Please view log files to see the details.", "Exception");
+                        }
+                        else
+                        {
+                            Log(_success.ToString() + " files extracted " + _failed + " failed  of " + _totresults, MessageType.Info);
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this, _success.ToString() + " files extracted successfully", "Message");
+                        }
+                    }
+
+                    pb1.Visible = false;
+
+                    btnDownload.Enabled = true;
+                    btnExtract.Enabled = true;
+                    btnDownloadExtract.Enabled = true;
+                    btnSelectAll.Enabled = true;
+                    btnDeselectAll.Enabled = true;
+                    btnNext.Enabled = _isNext;
+                    btnPrevious.Enabled = _isPrevious;
+                    btnSubmit.Enabled = true;
+                    btnTClear.Enabled = true;
+                    btnClear.Enabled = true;
+                    btnTSubmit.Enabled = true;
+                    btnDownloadAll.Enabled = true;
+                    btnExtractAll.Enabled = true;
+                    btnDownloadExtractAll.Enabled = true;
+                    btnCancel.Enabled = false;
+                    ribbonBar1.Refresh();
+                    worker1.Dispose();
+                };
+
+                worker1.RunWorkerCompleted += runcomplete;
+
+                try
+                {
+                    worker1.RunWorkerAsync();
+                }
+                catch (Exception ex)
+                {
+
+                    Log(string.Concat("PDF Extracting Exception " + ex.ToString()), MessageType.Error);
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("PDF Extracting Exception " + ex.Message), "Message");
+                }
+
+            }
+            else
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show(this, "Please select PDF Save Location in Settings first.", "Message");
+            }
+        }
+
+        private void btnDownloadExtractAll_Click(object sender, EventArgs e)
+        {
+            grdResults.EndEdit();
+            if (AppConfig.PDFSaveLocation != "")
+            {
+                _isNext = btnNext.Enabled;
+                _isPrevious = btnPrevious.Enabled;
+                btnDownload.Enabled = false;
+                btnExtract.Enabled = false;
+                btnDownloadExtract.Enabled = false;
+                btnSelectAll.Enabled = false;
+                btnDeselectAll.Enabled = false;
+                btnNext.Enabled = false;
+                btnPrevious.Enabled = false;
+                btnSubmit.Enabled = false;
+                btnTClear.Enabled = false;
+                btnClear.Enabled = false;
+                btnTSubmit.Enabled = false;
+                btnDownloadAll.Enabled = false;
+                btnExtractAll.Enabled = false;
+                btnDownloadExtractAll.Enabled = false;
+                btnCancel.Enabled = true;
+                pb1.Visible = true;
+                ribbonBar1.Refresh();
+                _downloaded = 0;
+                _success = 0;
+                _failed = 0;
+                _errorMessage = "";
+                _allCurrentPage = _currentPage;
+                _currentPage = 1;
+                worker1 = new BackgroundWorker { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
+                Log("Begin Downloading and Extracting PDF files Total: " + _totresults + " pages " + _totalpages, MessageType.Info);
+                DoWorkEventHandler doWork = (sender1, e1) =>
+                {
+
+                    cts = new CancellationTokenSource();
+                    try
+                    {
+                        while (true)
+                        {
+                            pb1.Text = "Dowloading and Extracting page " + _currentPage + " of " + _totalpages;
+                            Log("Begin Downloading and Extracting page " + _currentPage + " of " + _totalpages, MessageType.Info);
+                            if (worker1.CancellationPending)
+                            {
+                                e1.Cancel = true;
+                                cts.Cancel();
+                            }
+                            List<SearchResult> treatments = new List<SearchResult>();
+
+                            if (_type == SearchType.Case)
+                            {
+                                treatments = GetCaseData();
+                            }
+                            else
+                            {
+                                treatments = GetTreatmentData();
+                            }
+
+
+                            Parallel.ForEach(treatments, new ParallelOptions { MaxDegreeOfParallelism = 10, CancellationToken = cts.Token }, DownloadandExtractPDF);
+                            _currentPage++;
+                            if (!_hasNext)
+                                break;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                };
+                worker1.DoWork += doWork;
+                RunWorkerCompletedEventHandler runcomplete = (sender4, e4) =>
+                {
+
+                    if (e4.Error != null)
+                    {
+                        Log(e4.Error.ToString(), MessageType.Error);
+
+                        DevComponents.DotNetBar.MessageBoxEx.Show(this, e4.Error.Message, "Exception");
+                    }
+                    else
+                    {
+                        if (_errorMessage.Length > 0)
+                        {
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this, "There were some issues in downloading and extracting the PDF, Please view log files to see the details.", "Exception");
+                        }
+                        else
+                        {
+                            Log(_success.ToString() + " files downloaded and extracted " + _failed + " failed  of " + _totresults, MessageType.Info);
+                            DevComponents.DotNetBar.MessageBoxEx.Show(this, _success.ToString() + " files downloaded and extracted successfully", "Message");
+                        }
+                    }
+
+                    pb1.Visible = false;
+
+                    btnDownload.Enabled = true;
+                    btnExtract.Enabled = true;
+                    btnDownloadExtract.Enabled = true;
+                    btnSelectAll.Enabled = true;
+                    btnDeselectAll.Enabled = true;
+                    btnNext.Enabled = _isNext;
+                    btnPrevious.Enabled = _isPrevious;
+                    btnSubmit.Enabled = true;
+                    btnTClear.Enabled = true;
+                    btnClear.Enabled = true;
+                    btnTSubmit.Enabled = true;
+                    btnDownloadAll.Enabled = true;
+                    btnExtractAll.Enabled = true;
+                    btnDownloadExtractAll.Enabled = true;
+                    btnCancel.Enabled = false;
+                    ribbonBar1.Refresh();
+                    worker1.Dispose();
+                };
+
+                worker1.RunWorkerCompleted += runcomplete;
+
+                try
+                {
+                    worker1.RunWorkerAsync();
+                }
+                catch (Exception ex)
+                {
+
+                    Log(string.Concat("PDF Downloading and Extracting Exception " + ex.ToString()), MessageType.Error);
+                    DevComponents.DotNetBar.MessageBoxEx.Show(this, string.Concat("PDF Downloading and Extracting Exception " + ex.Message), "Message");
+                }
+
+            }
+            else
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show(this, "Please select PDF Save Location in Settings first.", "Message");
+            }
         }
     }
 }

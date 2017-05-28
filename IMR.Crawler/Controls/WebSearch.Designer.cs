@@ -427,6 +427,7 @@
             this.btnExtractAll.Name = "btnExtractAll";
             this.btnExtractAll.SubItemsExpandWidth = 14;
             this.btnExtractAll.Text = "Extract All";
+            this.btnExtractAll.Click += new System.EventHandler(this.btnExtractAll_Click);
             // 
             // btnDownloadExtractAll
             // 
@@ -437,6 +438,7 @@
             this.btnDownloadExtractAll.Name = "btnDownloadExtractAll";
             this.btnDownloadExtractAll.SubItemsExpandWidth = 14;
             this.btnDownloadExtractAll.Text = "Download and Extract All";
+            this.btnDownloadExtractAll.Click += new System.EventHandler(this.btnDownloadExtractAll_Click);
             // 
             // btnCancel
             // 

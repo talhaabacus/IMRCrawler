@@ -111,12 +111,13 @@ namespace IMR.Crawler.Helper
                 return context.SearchCaseDetail(age, gender, state, certifications, diagnosis).ToList();
         }
 
-        public Format1Detail GetFormat1Detail(int tID)
+
+        public PDFDetail GetPDFDetail(int tID)
         {
             IMRDataContext context = new IMRDataContext();
-            if (context.Format1Details.Where(det => det.TreatmentID == tID).Any())
+            if (context.PDFDetails.Where(det => det.TreatmentID == tID).Any())
             {
-                return context.Format1Details.Single(det => det.TreatmentID == tID);
+                return context.PDFDetails.Single(det => det.TreatmentID == tID);
             }
             else
             {
@@ -125,52 +126,20 @@ namespace IMR.Crawler.Helper
 
 
         }
-
-        public Format2Detail GetFormat2Detail(int tID)
-        {
-            using (IMRDataContext context = new IMRDataContext())
-            {
-                if (context.Format2Details.Where(det => det.TreatmentID == tID).Any())
-                {
-                    return context.Format2Details.Single(det => det.TreatmentID == tID);
-                }
-                else
-                {
-                    return null;
-                }
-            }
-
-        }
-
-        public Format3Detail GetFormat3Detail(int tID)
-        {
-            using (IMRDataContext context = new IMRDataContext())
-            {
-                if (context.Format3Details.Where(det => det.TreatmentID == tID).Any())
-                {
-                    return context.Format3Details.Single(det => det.TreatmentID == tID);
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-        }
         public int AddUpdateFormat1Detail(int tID, Format1 det )
         {
             IMRDataContext context = new IMRDataContext();
-            Format1Detail pdfDetails = null;
+            PDFDetail pdfDetails = null;
             bool addNew = false;
-            if (context.Format1Details.Where(fdet => fdet.TreatmentID == tID).Any())
+            if (context.PDFDetails.Where(fdet => fdet.TreatmentID == tID).Any())
             {
-                pdfDetails =  context.Format1Details.Single(fdet => fdet.TreatmentID == tID);
+                pdfDetails =  context.PDFDetails.Single(fdet => fdet.TreatmentID == tID);
             }
 
             if(pdfDetails == null)
             {
                 addNew = true;
-                pdfDetails = new Format1Detail();
+                pdfDetails = new PDFDetail();
             }
 
             pdfDetails.Age = det.Age;
@@ -185,7 +154,7 @@ namespace IMR.Crawler.Helper
             pdfDetails.URDenialDate = det.URDenialDate;
             pdfDetails.TreatmentID = tID;
             if (addNew)
-                context.Format1Details.InsertOnSubmit(pdfDetails);
+                context.PDFDetails.InsertOnSubmit(pdfDetails);
             context.SubmitChanges();
             context.Connection.Close();
             context.Dispose();
@@ -196,17 +165,17 @@ namespace IMR.Crawler.Helper
         public int AddUpdateFormat2Detail(int tID, Format2 det)
         {
             IMRDataContext context = new IMRDataContext();
-            Format2Detail pdfDetails = null;
+            PDFDetail pdfDetails = null;
             bool addNew = false;
-            if (context.Format2Details.Where(fdet => fdet.TreatmentID == tID).Any())
+            if (context.PDFDetails.Where(fdet => fdet.TreatmentID == tID).Any())
             {
-                pdfDetails = context.Format2Details.Single(fdet => fdet.TreatmentID == tID);
+                pdfDetails = context.PDFDetails.Single(fdet => fdet.TreatmentID == tID);
             }
 
             if (pdfDetails == null)
             {
                 addNew = true;
-                pdfDetails = new Format2Detail();
+                pdfDetails = new PDFDetail();
             }
 
           
@@ -218,7 +187,7 @@ namespace IMR.Crawler.Helper
             pdfDetails.URDenialDate = det.URDenialDate;
             pdfDetails.TreatmentID = tID;
             if (addNew)
-                context.Format2Details.InsertOnSubmit(pdfDetails);
+                context.PDFDetails.InsertOnSubmit(pdfDetails);
             context.SubmitChanges();
             context.Connection.Close();
             context.Dispose();
@@ -229,31 +198,31 @@ namespace IMR.Crawler.Helper
         public int AddUpdateFormat3Detail(int tID, Format3 det)
         {
             IMRDataContext context = new IMRDataContext();
-            Format3Detail pdfDetails = null;
+            PDFDetail pdfDetails = null;
             bool addNew = false;
-            if (context.Format3Details.Where(fdet => fdet.TreatmentID == tID).Any())
+            if (context.PDFDetails.Where(fdet => fdet.TreatmentID == tID).Any())
             {
-                pdfDetails = context.Format3Details.Single(fdet => fdet.TreatmentID == tID);
+                pdfDetails = context.PDFDetails.Single(fdet => fdet.TreatmentID == tID);
             }
 
             if (pdfDetails == null)
             {
                 addNew = true;
-                pdfDetails = new Format3Detail();
+                pdfDetails = new PDFDetail();
             }
 
-            pdfDetails.CaseSummary = det.CaseSummary;
+            pdfDetails.ClinicalCaseSummary = det.CaseSummary;
             pdfDetails.Age = det.Age;
             pdfDetails.DocumentsReviewed = det.DocumentsReviewed;
             pdfDetails.Diagnosis = det.Diagnosis;
             pdfDetails.Gender = det.Gender;
             pdfDetails.IssueAtDispute = det.IssueAtDispute;
-            pdfDetails.Rationales = det.Rationales;
+            pdfDetails.IMRIssuesRationales = det.Rationales;
             pdfDetails.ReviewerQualifications = det.ReviewerQualifications;
             pdfDetails.TreatmentGuidelines = det.TreatmentGuidelines;
             pdfDetails.TreatmentID = tID;
             if (addNew)
-                context.Format3Details.InsertOnSubmit(pdfDetails);
+                context.PDFDetails.InsertOnSubmit(pdfDetails);
             context.SubmitChanges();
             context.Connection.Close();
             context.Dispose();

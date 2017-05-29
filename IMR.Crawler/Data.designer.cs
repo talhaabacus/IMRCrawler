@@ -36,15 +36,9 @@ namespace IMR.Crawler
     partial void InsertTreatment(Treatment instance);
     partial void UpdateTreatment(Treatment instance);
     partial void DeleteTreatment(Treatment instance);
-    partial void InsertFormat1Detail(Format1Detail instance);
-    partial void UpdateFormat1Detail(Format1Detail instance);
-    partial void DeleteFormat1Detail(Format1Detail instance);
-    partial void InsertFormat2Detail(Format2Detail instance);
-    partial void UpdateFormat2Detail(Format2Detail instance);
-    partial void DeleteFormat2Detail(Format2Detail instance);
-    partial void InsertFormat3Detail(Format3Detail instance);
-    partial void UpdateFormat3Detail(Format3Detail instance);
-    partial void DeleteFormat3Detail(Format3Detail instance);
+    partial void InsertPDFDetail(PDFDetail instance);
+    partial void UpdatePDFDetail(PDFDetail instance);
+    partial void DeletePDFDetail(PDFDetail instance);
     #endregion
 		
 		public IMRDataContext() : 
@@ -93,27 +87,11 @@ namespace IMR.Crawler
 			}
 		}
 		
-		public System.Data.Linq.Table<Format1Detail> Format1Details
+		public System.Data.Linq.Table<PDFDetail> PDFDetails
 		{
 			get
 			{
-				return this.GetTable<Format1Detail>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Format2Detail> Format2Details
-		{
-			get
-			{
-				return this.GetTable<Format2Detail>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Format3Detail> Format3Details
-		{
-			get
-			{
-				return this.GetTable<Format3Detail>();
+				return this.GetTable<PDFDetail>();
 			}
 		}
 		
@@ -282,11 +260,7 @@ namespace IMR.Crawler
 		
 		private System.Nullable<int> _PDFFormatID;
 		
-		private EntityRef<Format1Detail> _Format1Detail;
-		
-		private EntityRef<Format2Detail> _Format2Detail;
-		
-		private EntityRef<Format3Detail> _Format3Detail;
+		private EntityRef<PDFDetail> _PDFDetail;
 		
 		private EntityRef<PDFFormat> _PDFFormat;
 		
@@ -328,9 +302,7 @@ namespace IMR.Crawler
 		
 		public Treatment()
 		{
-			this._Format1Detail = default(EntityRef<Format1Detail>);
-			this._Format2Detail = default(EntityRef<Format2Detail>);
-			this._Format3Detail = default(EntityRef<Format3Detail>);
+			this._PDFDetail = default(EntityRef<PDFDetail>);
 			this._PDFFormat = default(EntityRef<PDFFormat>);
 			OnCreated();
 		}
@@ -639,89 +611,31 @@ namespace IMR.Crawler
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Treatment_Format1Detail", Storage="_Format1Detail", ThisKey="TreatmentID", OtherKey="TreatmentID", IsUnique=true, IsForeignKey=false)]
-		public Format1Detail Format1Detail
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Treatment_PDFDetail", Storage="_PDFDetail", ThisKey="TreatmentID", OtherKey="TreatmentID", IsUnique=true, IsForeignKey=false)]
+		public PDFDetail PDFDetail
 		{
 			get
 			{
-				return this._Format1Detail.Entity;
+				return this._PDFDetail.Entity;
 			}
 			set
 			{
-				Format1Detail previousValue = this._Format1Detail.Entity;
+				PDFDetail previousValue = this._PDFDetail.Entity;
 				if (((previousValue != value) 
-							|| (this._Format1Detail.HasLoadedOrAssignedValue == false)))
+							|| (this._PDFDetail.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Format1Detail.Entity = null;
+						this._PDFDetail.Entity = null;
 						previousValue.Treatment = null;
 					}
-					this._Format1Detail.Entity = value;
+					this._PDFDetail.Entity = value;
 					if ((value != null))
 					{
 						value.Treatment = this;
 					}
-					this.SendPropertyChanged("Format1Detail");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Treatment_Format2Detail", Storage="_Format2Detail", ThisKey="TreatmentID", OtherKey="TreatmentID", IsUnique=true, IsForeignKey=false)]
-		public Format2Detail Format2Detail
-		{
-			get
-			{
-				return this._Format2Detail.Entity;
-			}
-			set
-			{
-				Format2Detail previousValue = this._Format2Detail.Entity;
-				if (((previousValue != value) 
-							|| (this._Format2Detail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Format2Detail.Entity = null;
-						previousValue.Treatment = null;
-					}
-					this._Format2Detail.Entity = value;
-					if ((value != null))
-					{
-						value.Treatment = this;
-					}
-					this.SendPropertyChanged("Format2Detail");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Treatment_Format3Detail", Storage="_Format3Detail", ThisKey="TreatmentID", OtherKey="TreatmentID", IsUnique=true, IsForeignKey=false)]
-		public Format3Detail Format3Detail
-		{
-			get
-			{
-				return this._Format3Detail.Entity;
-			}
-			set
-			{
-				Format3Detail previousValue = this._Format3Detail.Entity;
-				if (((previousValue != value) 
-							|| (this._Format3Detail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Format3Detail.Entity = null;
-						previousValue.Treatment = null;
-					}
-					this._Format3Detail.Entity = value;
-					if ((value != null))
-					{
-						value.Treatment = this;
-					}
-					this.SendPropertyChanged("Format3Detail");
+					this.SendPropertyChanged("PDFDetail");
 				}
 			}
 		}
@@ -781,8 +695,8 @@ namespace IMR.Crawler
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Format1Details")]
-	public partial class Format1Detail : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PDFDetails")]
+	public partial class PDFDetail : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -808,6 +722,14 @@ namespace IMR.Crawler
 		private string _StateofLicensure;
 		
 		private string _Certifications;
+		
+		private string _DocumentsReviewed;
+		
+		private string _IssueAtDispute;
+		
+		private string _TreatmentGuidelines;
+		
+		private string _ReviewerQualifications;
 		
 		private EntityRef<Treatment> _Treatment;
 		
@@ -837,9 +759,17 @@ namespace IMR.Crawler
     partial void OnStateofLicensureChanged();
     partial void OnCertificationsChanging(string value);
     partial void OnCertificationsChanged();
+    partial void OnDocumentsReviewedChanging(string value);
+    partial void OnDocumentsReviewedChanged();
+    partial void OnIssueAtDisputeChanging(string value);
+    partial void OnIssueAtDisputeChanged();
+    partial void OnTreatmentGuidelinesChanging(string value);
+    partial void OnTreatmentGuidelinesChanged();
+    partial void OnReviewerQualificationsChanging(string value);
+    partial void OnReviewerQualificationsChanged();
     #endregion
 		
-		public Format1Detail()
+		public PDFDetail()
 		{
 			this._Treatment = default(EntityRef<Treatment>);
 			OnCreated();
@@ -1069,189 +999,6 @@ namespace IMR.Crawler
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Treatment_Format1Detail", Storage="_Treatment", ThisKey="TreatmentID", OtherKey="TreatmentID", IsForeignKey=true)]
-		public Treatment Treatment
-		{
-			get
-			{
-				return this._Treatment.Entity;
-			}
-			set
-			{
-				Treatment previousValue = this._Treatment.Entity;
-				if (((previousValue != value) 
-							|| (this._Treatment.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Treatment.Entity = null;
-						previousValue.Format1Detail = null;
-					}
-					this._Treatment.Entity = value;
-					if ((value != null))
-					{
-						value.Format1Detail = this;
-						this._TreatmentID = value.TreatmentID;
-					}
-					else
-					{
-						this._TreatmentID = default(int);
-					}
-					this.SendPropertyChanged("Treatment");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Format2Details")]
-	public partial class Format2Detail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TreatmentID;
-		
-		private System.Nullable<System.DateTime> _URDenialDate;
-		
-		private string _HowIMRDetermination;
-		
-		private string _ClinicalCaseSummary;
-		
-		private string _DocumentsReviewed;
-		
-		private string _IMRIssuesRationales;
-		
-		private EntityRef<Treatment> _Treatment;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTreatmentIDChanging(int value);
-    partial void OnTreatmentIDChanged();
-    partial void OnURDenialDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnURDenialDateChanged();
-    partial void OnHowIMRDeterminationChanging(string value);
-    partial void OnHowIMRDeterminationChanged();
-    partial void OnClinicalCaseSummaryChanging(string value);
-    partial void OnClinicalCaseSummaryChanged();
-    partial void OnDocumentsReviewedChanging(string value);
-    partial void OnDocumentsReviewedChanged();
-    partial void OnIMRIssuesRationalesChanging(string value);
-    partial void OnIMRIssuesRationalesChanged();
-    #endregion
-		
-		public Format2Detail()
-		{
-			this._Treatment = default(EntityRef<Treatment>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int TreatmentID
-		{
-			get
-			{
-				return this._TreatmentID;
-			}
-			set
-			{
-				if ((this._TreatmentID != value))
-				{
-					if (this._Treatment.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTreatmentIDChanging(value);
-					this.SendPropertyChanging();
-					this._TreatmentID = value;
-					this.SendPropertyChanged("TreatmentID");
-					this.OnTreatmentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URDenialDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> URDenialDate
-		{
-			get
-			{
-				return this._URDenialDate;
-			}
-			set
-			{
-				if ((this._URDenialDate != value))
-				{
-					this.OnURDenialDateChanging(value);
-					this.SendPropertyChanging();
-					this._URDenialDate = value;
-					this.SendPropertyChanged("URDenialDate");
-					this.OnURDenialDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HowIMRDetermination", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string HowIMRDetermination
-		{
-			get
-			{
-				return this._HowIMRDetermination;
-			}
-			set
-			{
-				if ((this._HowIMRDetermination != value))
-				{
-					this.OnHowIMRDeterminationChanging(value);
-					this.SendPropertyChanging();
-					this._HowIMRDetermination = value;
-					this.SendPropertyChanged("HowIMRDetermination");
-					this.OnHowIMRDeterminationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClinicalCaseSummary", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string ClinicalCaseSummary
-		{
-			get
-			{
-				return this._ClinicalCaseSummary;
-			}
-			set
-			{
-				if ((this._ClinicalCaseSummary != value))
-				{
-					this.OnClinicalCaseSummaryChanging(value);
-					this.SendPropertyChanging();
-					this._ClinicalCaseSummary = value;
-					this.SendPropertyChanged("ClinicalCaseSummary");
-					this.OnClinicalCaseSummaryChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentsReviewed", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string DocumentsReviewed
 		{
@@ -1268,165 +1015,6 @@ namespace IMR.Crawler
 					this._DocumentsReviewed = value;
 					this.SendPropertyChanged("DocumentsReviewed");
 					this.OnDocumentsReviewedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IMRIssuesRationales", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string IMRIssuesRationales
-		{
-			get
-			{
-				return this._IMRIssuesRationales;
-			}
-			set
-			{
-				if ((this._IMRIssuesRationales != value))
-				{
-					this.OnIMRIssuesRationalesChanging(value);
-					this.SendPropertyChanging();
-					this._IMRIssuesRationales = value;
-					this.SendPropertyChanged("IMRIssuesRationales");
-					this.OnIMRIssuesRationalesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Treatment_Format2Detail", Storage="_Treatment", ThisKey="TreatmentID", OtherKey="TreatmentID", IsForeignKey=true)]
-		public Treatment Treatment
-		{
-			get
-			{
-				return this._Treatment.Entity;
-			}
-			set
-			{
-				Treatment previousValue = this._Treatment.Entity;
-				if (((previousValue != value) 
-							|| (this._Treatment.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Treatment.Entity = null;
-						previousValue.Format2Detail = null;
-					}
-					this._Treatment.Entity = value;
-					if ((value != null))
-					{
-						value.Format2Detail = this;
-						this._TreatmentID = value.TreatmentID;
-					}
-					else
-					{
-						this._TreatmentID = default(int);
-					}
-					this.SendPropertyChanged("Treatment");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Format3Details")]
-	public partial class Format3Detail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TreatmentID;
-		
-		private string _IssueAtDispute;
-		
-		private string _CaseSummary;
-		
-		private string _DocumentsReviewed;
-		
-		private string _TreatmentGuidelines;
-		
-		private string _Rationales;
-		
-		private string _ReviewerQualifications;
-		
-		private System.Nullable<int> _Age;
-		
-		private string _Gender;
-		
-		private string _Diagnosis;
-		
-		private EntityRef<Treatment> _Treatment;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTreatmentIDChanging(int value);
-    partial void OnTreatmentIDChanged();
-    partial void OnIssueAtDisputeChanging(string value);
-    partial void OnIssueAtDisputeChanged();
-    partial void OnCaseSummaryChanging(string value);
-    partial void OnCaseSummaryChanged();
-    partial void OnDocumentsReviewedChanging(string value);
-    partial void OnDocumentsReviewedChanged();
-    partial void OnTreatmentGuidelinesChanging(string value);
-    partial void OnTreatmentGuidelinesChanged();
-    partial void OnRationalesChanging(string value);
-    partial void OnRationalesChanged();
-    partial void OnReviewerQualificationsChanging(string value);
-    partial void OnReviewerQualificationsChanged();
-    partial void OnAgeChanging(System.Nullable<int> value);
-    partial void OnAgeChanged();
-    partial void OnGenderChanging(string value);
-    partial void OnGenderChanged();
-    partial void OnDiagnosisChanging(string value);
-    partial void OnDiagnosisChanged();
-    #endregion
-		
-		public Format3Detail()
-		{
-			this._Treatment = default(EntityRef<Treatment>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int TreatmentID
-		{
-			get
-			{
-				return this._TreatmentID;
-			}
-			set
-			{
-				if ((this._TreatmentID != value))
-				{
-					if (this._Treatment.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTreatmentIDChanging(value);
-					this.SendPropertyChanging();
-					this._TreatmentID = value;
-					this.SendPropertyChanged("TreatmentID");
-					this.OnTreatmentIDChanged();
 				}
 			}
 		}
@@ -1451,46 +1039,6 @@ namespace IMR.Crawler
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CaseSummary", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string CaseSummary
-		{
-			get
-			{
-				return this._CaseSummary;
-			}
-			set
-			{
-				if ((this._CaseSummary != value))
-				{
-					this.OnCaseSummaryChanging(value);
-					this.SendPropertyChanging();
-					this._CaseSummary = value;
-					this.SendPropertyChanged("CaseSummary");
-					this.OnCaseSummaryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentsReviewed", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string DocumentsReviewed
-		{
-			get
-			{
-				return this._DocumentsReviewed;
-			}
-			set
-			{
-				if ((this._DocumentsReviewed != value))
-				{
-					this.OnDocumentsReviewedChanging(value);
-					this.SendPropertyChanging();
-					this._DocumentsReviewed = value;
-					this.SendPropertyChanged("DocumentsReviewed");
-					this.OnDocumentsReviewedChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatmentGuidelines", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		public string TreatmentGuidelines
 		{
@@ -1507,26 +1055,6 @@ namespace IMR.Crawler
 					this._TreatmentGuidelines = value;
 					this.SendPropertyChanged("TreatmentGuidelines");
 					this.OnTreatmentGuidelinesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rationales", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Rationales
-		{
-			get
-			{
-				return this._Rationales;
-			}
-			set
-			{
-				if ((this._Rationales != value))
-				{
-					this.OnRationalesChanging(value);
-					this.SendPropertyChanging();
-					this._Rationales = value;
-					this.SendPropertyChanged("Rationales");
-					this.OnRationalesChanged();
 				}
 			}
 		}
@@ -1551,67 +1079,7 @@ namespace IMR.Crawler
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="Int")]
-		public System.Nullable<int> Age
-		{
-			get
-			{
-				return this._Age;
-			}
-			set
-			{
-				if ((this._Age != value))
-				{
-					this.OnAgeChanging(value);
-					this.SendPropertyChanging();
-					this._Age = value;
-					this.SendPropertyChanged("Age");
-					this.OnAgeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(50)")]
-		public string Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this.OnGenderChanging(value);
-					this.SendPropertyChanging();
-					this._Gender = value;
-					this.SendPropertyChanged("Gender");
-					this.OnGenderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diagnosis", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Diagnosis
-		{
-			get
-			{
-				return this._Diagnosis;
-			}
-			set
-			{
-				if ((this._Diagnosis != value))
-				{
-					this.OnDiagnosisChanging(value);
-					this.SendPropertyChanging();
-					this._Diagnosis = value;
-					this.SendPropertyChanged("Diagnosis");
-					this.OnDiagnosisChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Treatment_Format3Detail", Storage="_Treatment", ThisKey="TreatmentID", OtherKey="TreatmentID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Treatment_PDFDetail", Storage="_Treatment", ThisKey="TreatmentID", OtherKey="TreatmentID", IsForeignKey=true)]
 		public Treatment Treatment
 		{
 			get
@@ -1628,12 +1096,12 @@ namespace IMR.Crawler
 					if ((previousValue != null))
 					{
 						this._Treatment.Entity = null;
-						previousValue.Format3Detail = null;
+						previousValue.PDFDetail = null;
 					}
 					this._Treatment.Entity = value;
 					if ((value != null))
 					{
-						value.Format3Detail = this;
+						value.PDFDetail = this;
 						this._TreatmentID = value.TreatmentID;
 					}
 					else

@@ -27,7 +27,7 @@ namespace IMR.Crawler.Controls
             _treatmentID = tID;
             DBHelper helper = new DBHelper();
             Treatment treat = helper.GetTreatment(_treatmentID);
-            Format2Detail det = helper.GetFormat2Detail(_treatmentID);
+            PDFDetail det = helper.GetPDFDetail(_treatmentID);
             if ((treat != null) && (det != null))
             {
                 txtCaseNumber.Text = treat.CaseNumber;

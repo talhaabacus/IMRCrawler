@@ -24,13 +24,13 @@ namespace IMR.Crawler.Controls
             _treatmentID = tID;
             DBHelper helper = new DBHelper();
             Treatment treat = helper.GetTreatment(_treatmentID);
-            Format3Detail det = helper.GetFormat3Detail(_treatmentID);
+            PDFDetail det = helper.GetPDFDetail(_treatmentID);
             if ((treat != null) && (det != null))
             {
                 txtCaseNumber.Text = treat.CaseNumber;
-                txtIMRIssues.Text = det.Rationales;
+                txtIMRIssues.Text = det.IMRIssuesRationales;
                 txtIssueAtDispute.Text = det.IssueAtDispute;
-                txtCaseSummary.Text = det.CaseSummary;
+                txtCaseSummary.Text = det.ClinicalCaseSummary;
                 txtDiagnosis.Text = det.Diagnosis;
                 txtDocumentsReviewed.Text = det.DocumentsReviewed;
                 txtGuidelines.Text = det.TreatmentGuidelines;

@@ -20,8 +20,18 @@ namespace IMR.Crawler.Helper
             {
                 if (context.Treatments.Where(t => t.RequestCategory == res.RequestCategory && t.SubCategory == res.SubCategory && t.RequestDecision == res.RequestDecision && t.ParentCaseNumber == res.ParentCaseNumber).Any())
                 {
+                    try
+                    {
+                        treat = context.Treatments.Single(t => t.RequestCategory == res.RequestCategory && t.SubCategory == res.SubCategory && t.RequestDecision == res.RequestDecision && t.ParentCaseNumber == res.ParentCaseNumber);
+                    }
+                    catch(Exception ex)
+                    {
 
-                    treat = context.Treatments.Single(t => t.RequestCategory == res.RequestCategory && t.SubCategory == res.SubCategory && t.RequestDecision == res.RequestDecision && t.ParentCaseNumber == res.ParentCaseNumber);
+                    }
+                    if(treat == null)
+                    {
+                        treat = context.Treatments.First(t => t.RequestCategory == res.RequestCategory && t.SubCategory == res.SubCategory && t.RequestDecision == res.RequestDecision && t.ParentCaseNumber == res.ParentCaseNumber);
+                    }
                 }
             }
             else

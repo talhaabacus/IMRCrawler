@@ -104,5 +104,18 @@ namespace IMR.Crawler
         {
            
         }
+
+        private void webSearch1_ProcessStarted(object sender, EventArgs e)
+        {
+            dataSearch1.Enabled = false;
+            btSettings.Enabled = false;
+        }
+
+        private void webSearch1_ProcessCompleted(object sender, EventArgs e)
+        {
+            dataSearch1.Enabled = true;
+            btSettings.Enabled = true;
+        }
+   
     }
 }

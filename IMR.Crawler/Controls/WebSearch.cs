@@ -51,7 +51,8 @@ namespace IMR.Crawler
         private TreatmentSearchCriteria _treatmentSearchCriteria;
 
         public static event LoggingHandler LogHandler;
-
+        public event EventHandler ProcessStarted;
+        public event EventHandler ProcessCompleted;
         public WebSearch()
         {
             InitializeComponent();
@@ -853,6 +854,7 @@ namespace IMR.Crawler
                 btnExtractAll.Enabled = false;
                 btnDownloadExtractAll.Enabled = false;
                 btnCancel.Enabled = false;
+                btnGo.Enabled = false;
                 ribbonBar1.Refresh();
                 _downloaded = 0;
                 _success = 0;
@@ -909,7 +911,8 @@ namespace IMR.Crawler
                     btnDownloadAll.Enabled = true;
                     btnExtractAll.Enabled = true;
                     btnDownloadExtractAll.Enabled = true;
-
+                    btnGo.Enabled = true;
+                    pb1.Text = "";
                     ribbonBar1.Refresh();
                     worker1.Dispose();
                 };
@@ -964,7 +967,7 @@ namespace IMR.Crawler
             }
             catch (Exception ex)
             {
-                Log(string.Concat("PDF Saving exception " + ex.ToString()), MessageType.Error);
+                Log(string.Concat("PDF Saving exception " + t.CaseNumber + ".pdf " + ex.ToString()), MessageType.Error);
                 _errorMessage += "\n" + ex.Message;
                 if (t.RowIndex != -1)
                 {
@@ -1102,6 +1105,7 @@ namespace IMR.Crawler
                     btnDownloadExtractAll.Enabled = true;
                     btnDownloadAll.Enabled = true;
                     btnExtractAll.Enabled = true;
+                    pb1.Text = "";
                     worker1.Dispose();
                     ribbonBar1.Refresh();
                 };
@@ -1131,7 +1135,11 @@ namespace IMR.Crawler
         {
             try
             {
-                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Moccasin;
+                if (t.RowIndex != -1)
+                {
+
+                    grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Moccasin;
+                }
                 if (t.PDFUrl != null)
                 {
                     string dest = AppConfig.PDFSaveLocation + "\\" + t.CaseNumber + ".pdf";
@@ -1151,7 +1159,10 @@ namespace IMR.Crawler
                         throw new Exception("Error Downloading file. PDF File " + t.CaseNumber + ".pdf not found.");
                     }
 
-                    grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.CornflowerBlue;
+                    if (t.RowIndex != -1)
+                    {
+                        grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.CornflowerBlue;
+                    }
                     try
                     {
                         doc = PDDocument.load(dest);
@@ -1186,15 +1197,22 @@ namespace IMR.Crawler
                     DBHelper db = new DBHelper();
                     db.AddUpdateSearchResult(t, "", Helper.PDFFormatEnum.Other);
                 }
-                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                if (t.RowIndex != -1)
+                {
+
+                    grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                }
                 _success++;
                 Log(string.Concat("Successfully Downloaded and Extracted " + t.CaseNumber + ".pdf"), MessageType.Info);
             }
             catch (Exception ex)
             {
                 Log(string.Concat("PDF Extracting exception " + ex.ToString()), MessageType.Error);
-                grdResults.Rows[t.RowIndex].ErrorText = ex.Message;
-                grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                if (t.RowIndex != -1)
+                {
+                    grdResults.Rows[t.RowIndex].ErrorText = ex.Message;
+                    grdResults.Rows[t.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                }
                 _errorMessage += "\n" + ex.Message;
                 _failed++;
             }
@@ -1280,7 +1298,7 @@ namespace IMR.Crawler
 
                     try
                     {
-                        Parallel.ForEach(treatments, new ParallelOptions { MaxDegreeOfParallelism = 5 }, ExtractPDF);
+                        Parallel.ForEach(treatments, new ParallelOptions { MaxDegreeOfParallelism = 1 }, ExtractPDF);
                     }
                     catch (Exception ex)
                     {
@@ -1326,6 +1344,7 @@ namespace IMR.Crawler
                     btnDownloadAll.Enabled = true;
                     btnDownloadExtractAll.Enabled = true;
                     btnExtractAll.Enabled = true;
+                    pb1.Text = "";
                     ribbonBar1.Refresh();
                     worker1.Dispose();
                 };
@@ -1414,7 +1433,7 @@ namespace IMR.Crawler
             }
             catch (Exception ex)
             {
-                Log(string.Concat("PDF Extracting exception " + ex.ToString()), MessageType.Error);
+                Log(string.Concat("PDF Extracting exception " + t.CaseNumber + ".pdf " + ex.ToString()), MessageType.Error);
                 if (t.RowIndex != -1)
                 {
                     grdResults.Rows[t.RowIndex].ErrorText = ex.Message;
@@ -1491,6 +1510,8 @@ namespace IMR.Crawler
             grdResults.EndEdit();
             if (AppConfig.PDFSaveLocation != "")
             {
+                if (ProcessStarted != null)
+                    ProcessStarted(this, EventArgs.Empty);
                 _isNext = btnNext.Enabled;
                 _isPrevious = btnPrevious.Enabled;
                 btnDownload.Enabled = false;
@@ -1508,6 +1529,7 @@ namespace IMR.Crawler
                 btnExtractAll.Enabled = false;
                 btnDownloadExtractAll.Enabled = false;
                 btnCancel.Enabled = true;
+                btnGo.Enabled = false;
                 pb1.Visible = true;
                 ribbonBar1.Refresh();
                 _downloaded = 0;
@@ -1597,6 +1619,11 @@ namespace IMR.Crawler
                     btnExtractAll.Enabled = true;
                     btnDownloadExtractAll.Enabled = true;
                     btnCancel.Enabled = false;
+                    btnGo.Enabled = true;
+                    _currentPage = _allCurrentPage;
+                    pb1.Text = "";
+                    if (ProcessCompleted != null)
+                        ProcessCompleted(this, EventArgs.Empty);
                     ribbonBar1.Refresh();
                     worker1.Dispose();
                 };
@@ -1625,6 +1652,8 @@ namespace IMR.Crawler
         {
             worker1.CancelAsync();
             cts.Cancel();
+            pb1.Text = "Cancelling Operation";
+            btnCancel.Enabled = false;
         }
 
         private void btnExtractAll_Click(object sender, EventArgs e)
@@ -1632,6 +1661,8 @@ namespace IMR.Crawler
             grdResults.EndEdit();
             if (AppConfig.PDFSaveLocation != "")
             {
+                if (ProcessStarted != null)
+                    ProcessStarted(this, EventArgs.Empty);
                 _isNext = btnNext.Enabled;
                 _isPrevious = btnPrevious.Enabled;
                 btnDownload.Enabled = false;
@@ -1649,6 +1680,7 @@ namespace IMR.Crawler
                 btnExtractAll.Enabled = false;
                 btnDownloadExtractAll.Enabled = false;
                 btnCancel.Enabled = true;
+                btnGo.Enabled = false;
                 pb1.Visible = true;
                 ribbonBar1.Refresh();
                 _downloaded = 0;
@@ -1738,6 +1770,11 @@ namespace IMR.Crawler
                     btnExtractAll.Enabled = true;
                     btnDownloadExtractAll.Enabled = true;
                     btnCancel.Enabled = false;
+                    btnGo.Enabled = true;
+                    _currentPage = _allCurrentPage;
+                    pb1.Text = "";
+                    if (ProcessCompleted != null)
+                        ProcessCompleted(this, EventArgs.Empty);
                     ribbonBar1.Refresh();
                     worker1.Dispose();
                 };
@@ -1767,6 +1804,8 @@ namespace IMR.Crawler
             grdResults.EndEdit();
             if (AppConfig.PDFSaveLocation != "")
             {
+                if (ProcessStarted != null)
+                    ProcessStarted(this, EventArgs.Empty);
                 _isNext = btnNext.Enabled;
                 _isPrevious = btnPrevious.Enabled;
                 btnDownload.Enabled = false;
@@ -1784,6 +1823,7 @@ namespace IMR.Crawler
                 btnExtractAll.Enabled = false;
                 btnDownloadExtractAll.Enabled = false;
                 btnCancel.Enabled = true;
+                btnGo.Enabled = false;
                 pb1.Visible = true;
                 ribbonBar1.Refresh();
                 _downloaded = 0;
@@ -1873,6 +1913,11 @@ namespace IMR.Crawler
                     btnExtractAll.Enabled = true;
                     btnDownloadExtractAll.Enabled = true;
                     btnCancel.Enabled = false;
+                    btnGo.Enabled = true;
+                    if (ProcessCompleted != null)
+                        ProcessCompleted(this, EventArgs.Empty);
+                    _currentPage = _allCurrentPage;
+                    pb1.Text = "";
                     ribbonBar1.Refresh();
                     worker1.Dispose();
                 };

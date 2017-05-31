@@ -131,7 +131,8 @@ namespace IMR.Crawler.Helper
 
                     }
                 }
-
+                if (diagnosisPart.Length == 0)
+                    diagnosisPart = f.ClinicalCaseSummary;
                 diagnosisPart = diagnosisPart.Substring(diagnosisPart.IndexOf(".") + 1).Trim();
 
                 if (diagnosisPart.ToLower().IndexOf("diagnosis") != -1)

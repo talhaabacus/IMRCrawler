@@ -39,8 +39,8 @@
             this.btSettings = new DevComponents.DotNetBar.ButtonItem();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
-            this.webSearch1 = new IMR.Crawler.WebSearch();
             this.dataSearch1 = new IMR.Crawler.DataSearch();
+            this.webSearch1 = new IMR.Crawler.WebSearch();
             ((System.ComponentModel.ISupportInitialize)(this.tbMain)).BeginInit();
             this.tbMain.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -57,11 +57,11 @@
             this.tbMain.Controls.Add(this.tabControlPanel2);
             this.tbMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbMain.Location = new System.Drawing.Point(0, 0);
-            this.tbMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbMain.Name = "tbMain";
             this.tbMain.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.tbMain.SelectedTabIndex = 0;
-            this.tbMain.Size = new System.Drawing.Size(1363, 717);
+            this.tbMain.Size = new System.Drawing.Size(1022, 578);
             this.tbMain.TabIndex = 0;
             this.tbMain.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
             this.tbMain.Tabs.Add(this.tbWebSearch);
@@ -73,10 +73,10 @@
             this.tabControlPanel1.DisabledBackColor = System.Drawing.Color.Empty;
             this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 26);
-            this.tabControlPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabControlPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1363, 691);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1022, 552);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -99,10 +99,10 @@
             this.tabControlPanel2.DisabledBackColor = System.Drawing.Color.Empty;
             this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 26);
-            this.tabControlPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabControlPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControlPanel2.Name = "tabControlPanel2";
             this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(1363, 691);
+            this.tabControlPanel2.Size = new System.Drawing.Size(1022, 552);
             this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
             this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -131,10 +131,9 @@
             this.menuBar.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btSettings});
             this.menuBar.Location = new System.Drawing.Point(0, 0);
-            this.menuBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.menuBar.MenuBar = true;
             this.menuBar.Name = "menuBar";
-            this.menuBar.Size = new System.Drawing.Size(1363, 24);
+            this.menuBar.Size = new System.Drawing.Size(1022, 24);
             this.menuBar.Stretch = true;
             this.menuBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.menuBar.TabIndex = 1;
@@ -154,9 +153,8 @@
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx1.Location = new System.Drawing.Point(0, 24);
-            this.panelEx1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(1363, 717);
+            this.panelEx1.Size = new System.Drawing.Size(1022, 578);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -173,35 +171,37 @@
             this.buttonItem1.Text = "buttonItem1";
             this.buttonItem1.Click += new System.EventHandler(this.buttonItem1_Click);
             // 
-            // webSearch1
-            // 
-            this.webSearch1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webSearch1.Location = new System.Drawing.Point(1, 1);
-            this.webSearch1.Margin = new System.Windows.Forms.Padding(5);
-            this.webSearch1.Name = "webSearch1";
-            this.webSearch1.Size = new System.Drawing.Size(1361, 689);
-            this.webSearch1.TabIndex = 0;
-            // 
             // dataSearch1
             // 
             this.dataSearch1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataSearch1.Location = new System.Drawing.Point(1, 1);
-            this.dataSearch1.Margin = new System.Windows.Forms.Padding(5);
+            this.dataSearch1.Margin = new System.Windows.Forms.Padding(4);
             this.dataSearch1.Name = "dataSearch1";
-            this.dataSearch1.Size = new System.Drawing.Size(1361, 689);
+            this.dataSearch1.Size = new System.Drawing.Size(1020, 550);
             this.dataSearch1.TabIndex = 0;
+            // 
+            // webSearch1
+            // 
+            this.webSearch1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webSearch1.Location = new System.Drawing.Point(1, 1);
+            this.webSearch1.Margin = new System.Windows.Forms.Padding(4);
+            this.webSearch1.Name = "webSearch1";
+            this.webSearch1.Size = new System.Drawing.Size(1020, 550);
+            this.webSearch1.TabIndex = 0;
+            this.webSearch1.ProcessStarted += new System.EventHandler(this.webSearch1_ProcessStarted);
+            this.webSearch1.ProcessCompleted += new System.EventHandler(this.webSearch1_ProcessCompleted);
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1363, 741);
+            this.ClientSize = new System.Drawing.Size(1022, 602);
             this.Controls.Add(this.panelEx1);
             this.Controls.Add(this.menuBar);
             this.DoubleBuffered = true;
             this.EnableGlass = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IMR Crawler";

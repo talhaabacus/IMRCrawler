@@ -1,0 +1,8 @@
+﻿.login-loader-hide
+{
+    display:none;
+}
+.login-loader-show
+{
+    display:inline-block;
+}

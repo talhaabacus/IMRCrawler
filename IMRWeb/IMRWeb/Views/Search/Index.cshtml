@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Simple Search";
+
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Simple Search
+        
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> IMR Web Search</a></li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div id="nosearchstring" class="callout callout-warning hidden">
+        <h4>Error!</h4>
+
+        <p>Please enter a search string.</p>
+    </div>
+    <div id="noresults" class="callout callout-info hidden">
+        <h4>Info!</h4>
+        <p>Search returned no results</p>
+    </div>
+    <form    id="login-form" name="login-form">
+        <div class="box box-default">
+            <div class="box-header with-border">
+            </div>
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="txtSearch" class="control-label">Search String</label>
+                    <input type="text" class="form-control" id="txtSearch" placeholder="Enter Search String" >
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary"  onclick="return search()" >Search</button>
+                    <button class="btn btn-default" onclick="return clearSearch();">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div class="box box-default">
+            <div class="box-body">
+                <div class="form-group">
+                    <div id="tablediv">
+
+                    </div>
+                    <div id="page-selection"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.box -->
+    </form>
+</section>
+
+<div role="dialog" tabindex="-1" class="modal fade" id="loader-dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Loader</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please wait until all data processed...</p>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

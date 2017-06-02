@@ -20,6 +20,7 @@ namespace IMR.Crawler
 
         public void LoadData()
         {
+            
             txtPDFLocation.Text = Configuration.AppConfig.PDFSaveLocation;
             txtLog.Text = Configuration.AppConfig.LogFileLocation;
             txtProxyFileLocation.Text = Configuration.AppConfig.ProxyFilePath;
@@ -109,15 +110,22 @@ namespace IMR.Crawler
 
         private void btSave_Click(object sender, EventArgs e)
         {
-            if (ValidateData())
+            try
             {
-                Configuration.AppConfig.PDFSaveLocation = txtPDFLocation.Text;
-                Configuration.AppConfig.ProxyFilePath = txtProxyFileLocation.Text;
-                Configuration.AppConfig.LogFileLocation = txtLog.Text;
-                this.Close();
-            }
+                if (ValidateData())
+                {
+                    Configuration.AppConfig.PDFSaveLocation = txtPDFLocation.Text;
+                    Configuration.AppConfig.ProxyFilePath = txtProxyFileLocation.Text;
+                    Configuration.AppConfig.LogFileLocation = txtLog.Text;
+                    this.Close();
+                }
 
-            DevComponents.DotNetBar.MessageBoxEx.Show("Any changes in settings will be applicable after restart.", "Message");
+                DevComponents.DotNetBar.MessageBoxEx.Show("Any changes in settings will be applicable after restart.", "Message");
+            }
+            catch(Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Exception");
+            }
         }
     }
 }

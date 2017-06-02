@@ -20,7 +20,7 @@ namespace IMR.Crawler.Configuration
 
         public static string MainPath = Application.StartupPath;
 
-        public static string IMRAppSettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"IMR.Crawler\Settings");
+        public static string IMRAppSettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"IMR.Crawler\Settings");
         public static string IMRAppAppFileName = "IMR.Crawler.config";
 
 

@@ -8,17 +8,25 @@ using System.IO;
 using NLog.Config;
 using NLog.Targets;
 using NLog;
-
+using System.Security.Principal;
+using System.Diagnostics;
 namespace IMR.Crawler
 {
     static class Program
     {
+        static bool IsRunAsAdmin()
+        {
+            WindowsIdentity id = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(id);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -87,8 +95,39 @@ namespace IMR.Crawler
 
             #endregion
 
+            if (Environment.OSVersion.Version.Major >= 6)
+            {
+                if (!IsRunAsAdmin())
+                {
+                    ProcessStartInfo proc = new ProcessStartInfo();
+                    proc.UseShellExecute = true;
+                    proc.WorkingDirectory = Environment.CurrentDirectory;
+                    proc.FileName = Application.ExecutablePath;
+                    proc.Verb = "runas";
 
-            Application.Run(new frmMain());
+                    try
+                    {
+                        Process.Start(proc);
+                    }
+                    catch
+                    {
+                        // The user refused the elevation.
+                        // Do nothing and return directly ...
+                        return;
+                    }
+
+                    Application.Exit();  // Quit itself
+                }
+                else
+                {
+                    Application.Run(new frmMain());
+                }
+            }
+            else
+            {
+                Application.Run(new frmMain());
+            }
+            
         }
 
         private static void SetupConfig()

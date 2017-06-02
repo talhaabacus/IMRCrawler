@@ -3830,8 +3830,8 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
-		<row><td>_Built1_AEF8A0FE3F5D46138BF9700ACB7FD0A0.exe</td><td/><td>C:\D\Projects\IMRSpider\1493943093_spider_web.ico</td><td>0</td></row>
-		<row><td>_Built_1195A9E9E8EF45A3A02FF6300804B2E0.exe</td><td/><td>C:\D\Projects\IMRSpider\1493943093_spider_web.ico</td><td>0</td></row>
+		<row><td>_Built1_DC23764B42154A8DB7506DA9F4EA89BD.exe</td><td/><td>C:\D\Projects\IMRCrawler\1496231865_spider_web.ico</td><td>0</td></row>
+		<row><td>_Built_53ADDC8F64414FD4B6DA6F4525349CA7.exe</td><td/><td>C:\D\Projects\IMRCrawler\1496231865_spider_web.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -3964,7 +3964,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{64764765-CFB4-4AD3-9C68-6E183E6B8DFF}</td></row>
 		<row><td>ISUSSignature</td><td>{4D6EF4A2-5604-4457-9197-976688288DDB}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewUpgradePaths</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4504,8 +4504,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>_Built</td><td>crawle_1_crawler_setup</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>IMR.Crawler.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_1195A9E9E8EF45A3A02FF6300804B2E0.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>IMR.Crawler.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built1_AEF8A0FE3F5D46138BF9700ACB7FD0A0.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built</td><td>crawle_1_crawler_setup</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>IMR.Crawler.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_53ADDC8F64414FD4B6DA6F4525349CA7.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>IMR.Crawler.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built1_DC23764B42154A8DB7506DA9F4EA89BD.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

@@ -2,12 +2,7 @@
     return this.getMonth()+1 + "/" + this.getDate() + "/" + this.getFullYear()
 };
 
-function viewPDF(pdfName)
-{
-    var url = "claims/" + pdfName;
-    window.open(url, '_blank');
-    return false;
-}
+
 function clearSearch() {
     document.getElementById('txtSearch').value = "";
     return false;
@@ -17,14 +12,7 @@ var _pagesize = 50;
 var _totalResults = 0;
 var _currentPage = 0;
 var _totalPages = 0;
-function showLoader() {
 
-    $('#loader-dialog').modal({ backdrop: 'static', keyboard: false })
-
-}
-function hideLoader() {
-    $('#loader-dialog').modal('hide');
-}
 function search()
 {  
 

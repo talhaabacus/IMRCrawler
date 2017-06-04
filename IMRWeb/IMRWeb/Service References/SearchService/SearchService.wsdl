@@ -34,6 +34,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetSmartSearchResultCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteria" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSmartSearchResultCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSmartSearchResultCountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSmartSearchResults">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteria" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="current" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSmartSearchResultsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSmartSearchResultsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetSimpleSearchResultCountSoapIn">
@@ -48,6 +78,18 @@
   <wsdl:message name="GetSimpleSearchResultsSoapOut">
     <wsdl:part name="parameters" element="tns:GetSimpleSearchResultsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetSmartSearchResultCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSmartSearchResultCount" />
+  </wsdl:message>
+  <wsdl:message name="GetSmartSearchResultCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSmartSearchResultCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSmartSearchResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSmartSearchResults" />
+  </wsdl:message>
+  <wsdl:message name="GetSmartSearchResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSmartSearchResultsResponse" />
+  </wsdl:message>
   <wsdl:portType name="SearchServiceSoap">
     <wsdl:operation name="GetSimpleSearchResultCount">
       <wsdl:input message="tns:GetSimpleSearchResultCountSoapIn" />
@@ -56,6 +98,14 @@
     <wsdl:operation name="GetSimpleSearchResults">
       <wsdl:input message="tns:GetSimpleSearchResultsSoapIn" />
       <wsdl:output message="tns:GetSimpleSearchResultsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSmartSearchResultCount">
+      <wsdl:input message="tns:GetSmartSearchResultCountSoapIn" />
+      <wsdl:output message="tns:GetSmartSearchResultCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSmartSearchResults">
+      <wsdl:input message="tns:GetSmartSearchResultsSoapIn" />
+      <wsdl:output message="tns:GetSmartSearchResultsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SearchServiceSoap" type="tns:SearchServiceSoap">
@@ -78,6 +128,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetSmartSearchResultCount">
+      <soap:operation soapAction="http://tempuri.org/GetSmartSearchResultCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSmartSearchResults">
+      <soap:operation soapAction="http://tempuri.org/GetSmartSearchResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="SearchServiceSoap12" type="tns:SearchServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -92,6 +160,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetSimpleSearchResults">
       <soap12:operation soapAction="http://tempuri.org/GetSimpleSearchResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSmartSearchResultCount">
+      <soap12:operation soapAction="http://tempuri.org/GetSmartSearchResultCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSmartSearchResults">
+      <soap12:operation soapAction="http://tempuri.org/GetSmartSearchResults" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

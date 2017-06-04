@@ -48,7 +48,12 @@ namespace IMRWeb
                      "~/Scripts/CustomScript/login.js"));
 
             bundles.Add(new ScriptBundle("~/CustomScript/simplesearch").Include(
-                          "~/Scripts/CustomScript/simplesearch.js"));
+                          "~/Scripts/CustomScript/simplesearch.js",
+                          "~/Scripts/CustomScript/searchcommon.js"));
+
+            bundles.Add(new ScriptBundle("~/CustomScript/smartsearch").Include(
+              "~/Scripts/CustomScript/smartsearch.js",
+              "~/Scripts/CustomScript/searchcommon.js"));
 
             //Style Bundles
 

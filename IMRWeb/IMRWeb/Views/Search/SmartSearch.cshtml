@@ -6,7 +6,7 @@
 <section class="content-header">
     <h1>
         Smart Search
-        
+
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> IMR Web Search</a></li>
@@ -15,10 +15,68 @@
 </section>
 <!-- Main content -->
 <section class="content">
-    <!-- Main row -->
-    <div class="row">
+    <div id="invalidsearchstring" class="callout callout-warning hidden">
+        <h4>Error!</h4>
 
+        <p>Please enter a proper search  string, special characters are not allowed.</p>
     </div>
-    <!-- /.row (main row) -->
+    <div id="noresults" class="callout callout-info hidden">
+        <h4>Info!</h4>
+        <p>Search returned no results</p>
+    </div>
+    <form id="search-form" name="search-form">
+        <div class="box box-default">
+            <input type="hidden" id="hdTotalSearch" value="1" />
+            <div class="box-body">
+                <div class="form-group">
+                    <span>Where:</span>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                            <table class="table no-border">
+                                <tbody id="tbSearchCriteria"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary" onclick="return search()">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="box box-default">
+            <div class="box-body">
+                <div class="form-group">
+                    <div id="tablediv">
+                        <table class="table"></table>
+                    </div>
+                    <div id="page-selection"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.box -->
+    </form>
+
 </section>
 <!-- /.content -->
+
+<div role="dialog" tabindex="-1" class="modal fade" id="loader-dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Loader</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please wait until all data processed...</p>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+

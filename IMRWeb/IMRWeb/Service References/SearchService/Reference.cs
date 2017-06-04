@@ -28,6 +28,20 @@ namespace IMRWeb.SearchService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSimpleSearchResults", ReplyAction="*")]
         System.Threading.Tasks.Task<IMRWeb.SearchService.GetSimpleSearchResultsResponse> GetSimpleSearchResultsAsync(IMRWeb.SearchService.GetSimpleSearchResultsRequest request);
+        
+        // CODEGEN: Generating message contract since element name searchCriteria from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSmartSearchResultCount", ReplyAction="*")]
+        IMRWeb.SearchService.GetSmartSearchResultCountResponse GetSmartSearchResultCount(IMRWeb.SearchService.GetSmartSearchResultCountRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSmartSearchResultCount", ReplyAction="*")]
+        System.Threading.Tasks.Task<IMRWeb.SearchService.GetSmartSearchResultCountResponse> GetSmartSearchResultCountAsync(IMRWeb.SearchService.GetSmartSearchResultCountRequest request);
+        
+        // CODEGEN: Generating message contract since element name searchCriteria from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSmartSearchResults", ReplyAction="*")]
+        IMRWeb.SearchService.GetSmartSearchResultsResponse GetSmartSearchResults(IMRWeb.SearchService.GetSmartSearchResultsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSmartSearchResults", ReplyAction="*")]
+        System.Threading.Tasks.Task<IMRWeb.SearchService.GetSmartSearchResultsResponse> GetSmartSearchResultsAsync(IMRWeb.SearchService.GetSmartSearchResultsRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -182,6 +196,150 @@ namespace IMRWeb.SearchService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSmartSearchResultCountRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSmartSearchResultCount", Namespace="http://tempuri.org/", Order=0)]
+        public IMRWeb.SearchService.GetSmartSearchResultCountRequestBody Body;
+        
+        public GetSmartSearchResultCountRequest() {
+        }
+        
+        public GetSmartSearchResultCountRequest(IMRWeb.SearchService.GetSmartSearchResultCountRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSmartSearchResultCountRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string searchCriteria;
+        
+        public GetSmartSearchResultCountRequestBody() {
+        }
+        
+        public GetSmartSearchResultCountRequestBody(string searchCriteria) {
+            this.searchCriteria = searchCriteria;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSmartSearchResultCountResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSmartSearchResultCountResponse", Namespace="http://tempuri.org/", Order=0)]
+        public IMRWeb.SearchService.GetSmartSearchResultCountResponseBody Body;
+        
+        public GetSmartSearchResultCountResponse() {
+        }
+        
+        public GetSmartSearchResultCountResponse(IMRWeb.SearchService.GetSmartSearchResultCountResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSmartSearchResultCountResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int GetSmartSearchResultCountResult;
+        
+        public GetSmartSearchResultCountResponseBody() {
+        }
+        
+        public GetSmartSearchResultCountResponseBody(int GetSmartSearchResultCountResult) {
+            this.GetSmartSearchResultCountResult = GetSmartSearchResultCountResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSmartSearchResultsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSmartSearchResults", Namespace="http://tempuri.org/", Order=0)]
+        public IMRWeb.SearchService.GetSmartSearchResultsRequestBody Body;
+        
+        public GetSmartSearchResultsRequest() {
+        }
+        
+        public GetSmartSearchResultsRequest(IMRWeb.SearchService.GetSmartSearchResultsRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSmartSearchResultsRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string searchCriteria;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public int current;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public int pageSize;
+        
+        public GetSmartSearchResultsRequestBody() {
+        }
+        
+        public GetSmartSearchResultsRequestBody(string searchCriteria, int current, int pageSize) {
+            this.searchCriteria = searchCriteria;
+            this.current = current;
+            this.pageSize = pageSize;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSmartSearchResultsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSmartSearchResultsResponse", Namespace="http://tempuri.org/", Order=0)]
+        public IMRWeb.SearchService.GetSmartSearchResultsResponseBody Body;
+        
+        public GetSmartSearchResultsResponse() {
+        }
+        
+        public GetSmartSearchResultsResponse(IMRWeb.SearchService.GetSmartSearchResultsResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSmartSearchResultsResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetSmartSearchResultsResult;
+        
+        public GetSmartSearchResultsResponseBody() {
+        }
+        
+        public GetSmartSearchResultsResponseBody(string GetSmartSearchResultsResult) {
+            this.GetSmartSearchResultsResult = GetSmartSearchResultsResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface SearchServiceSoapChannel : IMRWeb.SearchService.SearchServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -265,6 +423,60 @@ namespace IMRWeb.SearchService {
             inValue.Body.current = current;
             inValue.Body.pageSize = pageSize;
             return ((IMRWeb.SearchService.SearchServiceSoap)(this)).GetSimpleSearchResultsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        IMRWeb.SearchService.GetSmartSearchResultCountResponse IMRWeb.SearchService.SearchServiceSoap.GetSmartSearchResultCount(IMRWeb.SearchService.GetSmartSearchResultCountRequest request) {
+            return base.Channel.GetSmartSearchResultCount(request);
+        }
+        
+        public int GetSmartSearchResultCount(string searchCriteria) {
+            IMRWeb.SearchService.GetSmartSearchResultCountRequest inValue = new IMRWeb.SearchService.GetSmartSearchResultCountRequest();
+            inValue.Body = new IMRWeb.SearchService.GetSmartSearchResultCountRequestBody();
+            inValue.Body.searchCriteria = searchCriteria;
+            IMRWeb.SearchService.GetSmartSearchResultCountResponse retVal = ((IMRWeb.SearchService.SearchServiceSoap)(this)).GetSmartSearchResultCount(inValue);
+            return retVal.Body.GetSmartSearchResultCountResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<IMRWeb.SearchService.GetSmartSearchResultCountResponse> IMRWeb.SearchService.SearchServiceSoap.GetSmartSearchResultCountAsync(IMRWeb.SearchService.GetSmartSearchResultCountRequest request) {
+            return base.Channel.GetSmartSearchResultCountAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<IMRWeb.SearchService.GetSmartSearchResultCountResponse> GetSmartSearchResultCountAsync(string searchCriteria) {
+            IMRWeb.SearchService.GetSmartSearchResultCountRequest inValue = new IMRWeb.SearchService.GetSmartSearchResultCountRequest();
+            inValue.Body = new IMRWeb.SearchService.GetSmartSearchResultCountRequestBody();
+            inValue.Body.searchCriteria = searchCriteria;
+            return ((IMRWeb.SearchService.SearchServiceSoap)(this)).GetSmartSearchResultCountAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        IMRWeb.SearchService.GetSmartSearchResultsResponse IMRWeb.SearchService.SearchServiceSoap.GetSmartSearchResults(IMRWeb.SearchService.GetSmartSearchResultsRequest request) {
+            return base.Channel.GetSmartSearchResults(request);
+        }
+        
+        public string GetSmartSearchResults(string searchCriteria, int current, int pageSize) {
+            IMRWeb.SearchService.GetSmartSearchResultsRequest inValue = new IMRWeb.SearchService.GetSmartSearchResultsRequest();
+            inValue.Body = new IMRWeb.SearchService.GetSmartSearchResultsRequestBody();
+            inValue.Body.searchCriteria = searchCriteria;
+            inValue.Body.current = current;
+            inValue.Body.pageSize = pageSize;
+            IMRWeb.SearchService.GetSmartSearchResultsResponse retVal = ((IMRWeb.SearchService.SearchServiceSoap)(this)).GetSmartSearchResults(inValue);
+            return retVal.Body.GetSmartSearchResultsResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<IMRWeb.SearchService.GetSmartSearchResultsResponse> IMRWeb.SearchService.SearchServiceSoap.GetSmartSearchResultsAsync(IMRWeb.SearchService.GetSmartSearchResultsRequest request) {
+            return base.Channel.GetSmartSearchResultsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<IMRWeb.SearchService.GetSmartSearchResultsResponse> GetSmartSearchResultsAsync(string searchCriteria, int current, int pageSize) {
+            IMRWeb.SearchService.GetSmartSearchResultsRequest inValue = new IMRWeb.SearchService.GetSmartSearchResultsRequest();
+            inValue.Body = new IMRWeb.SearchService.GetSmartSearchResultsRequestBody();
+            inValue.Body.searchCriteria = searchCriteria;
+            inValue.Body.current = current;
+            inValue.Body.pageSize = pageSize;
+            return ((IMRWeb.SearchService.SearchServiceSoap)(this)).GetSmartSearchResultsAsync(inValue);
         }
     }
 }

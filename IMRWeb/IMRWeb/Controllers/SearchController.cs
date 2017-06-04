@@ -36,7 +36,9 @@ namespace IMRWeb.Controllers
         public ActionResult SmartSearchQuery(string criteria, int current, int pagesize)
         {
 
-            return View();
+            SearchService.SearchServiceSoapClient searchService = new SearchService.SearchServiceSoapClient();
+
+            return Json(searchService.GetSmartSearchResults(criteria, current, pagesize));
         }
 
       
@@ -50,9 +52,12 @@ namespace IMRWeb.Controllers
         }
 
       
-        public ActionResult SmartSearchCount(string searchtext)
+        public string SmartSearchCount(string criteria)
         {
-            return View();
+            SearchService.SearchServiceSoapClient searchService = new SearchService.SearchServiceSoapClient();
+            int count = searchService.GetSmartSearchResultCount(criteria);
+            return "{\"count\":" + count.ToString() + "}";
+
         }
 
 

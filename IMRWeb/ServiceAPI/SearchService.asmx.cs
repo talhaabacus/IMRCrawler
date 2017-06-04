@@ -121,7 +121,86 @@ public SearchService()
 
         }
 
-       
+
+        [WebMethod]
+        public int GetSmartSearchResultCount( string searchCriteria)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(GetConnectionString());
+
+            try
+            {
+                connection.Open();
+                string sqlStatement = "SMARTSearchCount";
+                SqlCommand sqlCmd = new SqlCommand(sqlStatement, connection);
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.Parameters.Add(new SqlParameter("@Criteria", searchCriteria));
+                SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCmd);
+                sqlDa.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return Convert.ToInt16(dt.Rows[0][0].ToString());
+                }
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string msg = "Fetch Error:";
+                msg += ex.Message;
+                throw new Exception(msg);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return 0;
+        }
+        [WebMethod]
+
+        public string GetSmartSearchResults(string searchCriteria, int current, int pageSize)
+        {
+
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(GetConnectionString());
+
+            try
+            {
+                int startIndex = ((current - 1) * pageSize);
+                connection.Open();
+                string sqlStatement = "SMARTSearch";
+                SqlCommand sqlCmd = new SqlCommand(sqlStatement, connection);
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.Parameters.Add(new SqlParameter("@Criteria", searchCriteria));
+                sqlCmd.Parameters.Add(new SqlParameter("@MaxRows", pageSize));
+                sqlCmd.Parameters.Add(new SqlParameter("@StartIndex", startIndex));
+
+                SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCmd);
+                sqlDa.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+
+                    return JsonConvert.SerializeObject(dt);
+                }
+                else
+                {
+                    return "[{}]";
+                }
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string msg = "Fetch Error:";
+                msg += ex.Message;
+                throw new Exception(msg);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
+
+
     }
 }
 /*****************************************************************************************************************/

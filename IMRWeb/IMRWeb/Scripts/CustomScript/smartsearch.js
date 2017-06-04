@@ -11,6 +11,10 @@ $(document).ready(function () {
     addFirstRow();
 });
 
+Date.prototype.toMMDDYYYY = function () {
+    return this.getMonth() + 1 + "/" + this.getDate() + "/" + this.getFullYear()
+};
+
 function getSearchColumnOptions() {
     var opts = [];
     for (var i = 0; i < options.length; i++) {
@@ -51,7 +55,7 @@ function addFirstRow()
     var row = [];
     var rowid = 1;
     row.push("<tr id='tr_" + rowid + "'>");
-    row.push("<td><select id='col_" + rowid + "'>" + getSearchColumnOptions() + "</select></td><td><select id='op_" + rowid + "'>" + getSearchOperators() + "</select></td><td><input type='text' id='txt_" + rowid + "'/></td><td><select id='logic_" + rowid + "'>" + getLogicOperator() + "</select></td><td><i class='glyphicon glyphicon-plus-sign' onclick='addrow();'></i></td>");
+    row.push("<td><select id='col_" + rowid + "' class='form-control'>" + getSearchColumnOptions() + "</select></td><td><select id='op_" + rowid + "' class='form-control'>" + getSearchOperators() + "</select></td><td><input type='text' id='txt_" + rowid + "' class='form-control'/></td><td><select id='logic_" + rowid + "' class='form-control'>" + getLogicOperator() + "</select></td><td><i class='glyphicon glyphicon-plus-sign' onclick='addrow();'></i></td>");
     row.push("</tr>");
     $("#hdTotalSearch").val(1);
     $("#tbSearchCriteria").html(row.join(''));
@@ -72,7 +76,7 @@ function addrow() {
     var i = $('#tr_' + totalSearch);
     totalSearch += 1;
     $("#hdTotalSearch").val(totalSearch);
-    $('<tr id="tr_' + totalSearch + '"><td><select id="col_' + totalSearch + '">' + getSearchColumnOptions() + '</select></td><td><select id="op_' + totalSearch + '">' + getSearchOperators() + '</select></td><td><input type="text" id="txt_' + totalSearch + '"/></td><td><select id="logic_' + totalSearch + '">' + getLogicOperator() + '</select></td><td> <i class="glyphicon glyphicon-trash" onclick="removeRow(this);"></td></tr>').insertAfter(i);
+    $('<tr id="tr_' + totalSearch + '"><td><select class="form-control" id="col_' + totalSearch + '">' + getSearchColumnOptions() + '</select></td><td><select class="form-control" id="op_' + totalSearch + '">' + getSearchOperators() + '</select></td><td><input type="text" class="form-control" id="txt_' + totalSearch + '"/></td><td><select class="form-control" id="logic_' + totalSearch + '">' + getLogicOperator() + '</select></td><td> <i class="glyphicon glyphicon-trash" onclick="removeRow(this);"></td></tr>').insertAfter(i);
 
 }
 
@@ -94,24 +98,33 @@ function buildSearchCriteria()
 {
     var totalSearch = parseInt($("#hdTotalSearch").val());
     var searchCriteria = "";
-    var lastLogical;
+    var lastLogical = "";
     for(i =1; i<=totalSearch; i++)
     {
         if((searchCriteria.length > 0) && (lastLogical.length > 0))
         {
             searchCriteria = searchCriteria + " " + lastLogical;
         }
-
         var col = $('#col_' + i ).val();
         var op = $('#op_' + i ).val();
         var txtval = $('#txt_' + i).val();
-        lastLogical = $('#logical_' + i + ':selected').val();
-
-        if((op == 'LIKE') || (op =='NOT LIKE'))
-            txtval = "%"  + txtval + "%";
-        searchCriteria = searchCriteria + " " + col + " " + op + " (" + txtval + ") ";
-
+        lastLogical = $('#logic_' + i ).val();
+        txtval = txtval +","
+        var values = "";
+        var arr = txtval.split(",");
+        for (j = 0; j < arr.length; j++) {
+            if (arr[j].length > 0) {
+                if (values.length > 0)
+                    values = values + ",";
+                if ((op == 'LIKE') || (op == 'NOT LIKE'))
+                    values = values + "'%" + arr[j] + "%'";
+                else
+                    values = values + "'" + arr[j] + "'";
+            }
+        }
+        searchCriteria = searchCriteria + " " + col + " " + op + " (" + values + ") ";
     }
+
     alert(searchCriteria);
     return searchCriteria;
 }
@@ -120,7 +133,7 @@ function search() {
 
     if (validateSearchCriteria()) {
      
-        var _searchcriteria = buildSearchCriteria();
+         _searchcriteria = buildSearchCriteria();
         if (_searchcriteria == "") {
             $("#invalidsearchstring").removeClass('hidden');
             $("#noresults").addClass('hidden');
@@ -130,14 +143,20 @@ function search() {
             showLoader();
             _currentPage = 1;
             $("#invalidsearchstring").addClass('hidden');
+            alert(_searchcriteria);
             getSearchResultCount();
             getSearchResults(1);
             return false;
         }
     }
+    else
+    {
+        return false;
+    }
 }
 
 function getSearchResults(pageIndex) {
+    alert(_searchcriteria);
     $.ajax({
         type: "POST",
         url: "/Search/SmartSearchQuery",

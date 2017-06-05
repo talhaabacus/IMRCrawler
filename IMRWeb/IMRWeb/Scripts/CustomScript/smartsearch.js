@@ -1,5 +1,5 @@
 ﻿var options = ["Age","Gender","Diagnosis", "Case Number", "Case Outcome","Sub Category", "IMRO Specialty", "Request Decision",  "How IMR Determination works", "Case Summary", "IMR Issues and Rationales", "State Of Licensure", "Certifications", "Documents Reviewed", "Issue At Dispute", "Treatment Guidelines", "Reviewer Qualifications"];
-var values = ["Age", "Gender", "Diagnosis", "CaseNumber", "CaseOutcome", "SubCategory", "IMROSpecialty", "RequestDecision", "HowIMRDetermination", "ClinicalCaseSummary",  "IMRIssuesRationales", "StateOfLicensure", "Certifications", "DocumentsReviewed", "IssueAtDispute", "TreatmentGuidelines", "ReviewerQualifications"];
+var values = ["Age", "Gender", "Diagnosis", "CaseNumber", "CaseOutcome", "SubCategory", "IMROSpeciality", "RequestDecision", "HowIMRDetermination", "ClinicalCaseSummary",  "IMRIssuesRationales", "StateOfLicensure", "Certifications", "DocumentsReviewed", "IssueAtDispute", "TreatmentGuidelines", "ReviewerQualifications"];
 
 var _searchcriteria = "";
 var _pagesize = 50;

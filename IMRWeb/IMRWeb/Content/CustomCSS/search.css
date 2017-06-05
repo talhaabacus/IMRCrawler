@@ -1,0 +1,13 @@
+﻿.modal-body {
+    position:relative; /* This avoids whatever it's absolute inside of it to go off the container */
+}
+
+.img-responsive {
+    width:50px; /* This value will depend on what size you want for your loading image, let's say it's 50px */
+    height: 50px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-top:-25px; /* This needs to be half of the height */
+    margin-left:-25px; /* This needs to be half of the width */
+}

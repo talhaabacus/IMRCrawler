@@ -79,7 +79,8 @@ namespace IMRWeb
                       "~/TemplateContent/plugins/datepicker/datepicker3.css",
                       "~/TemplateContent/plugins/daterangepicker/daterangepicker.css",
                       "~/TemplateContent/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css",
-                      "~/TemplateContent/plugins/bs_pagination/jquery.bs_pagination.min.css"
+                      "~/TemplateContent/plugins/bs_pagination/jquery.bs_pagination.min.css",
+                      "~/Content/CustomCSS/search.css"
                  ));
         }
     }

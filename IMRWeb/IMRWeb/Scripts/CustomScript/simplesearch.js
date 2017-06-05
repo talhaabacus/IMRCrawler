@@ -20,12 +20,20 @@ function search()
     if(_searchtext == "")
     {
         $("#nosearchstring").removeClass('hidden');
+        $("#invalidsearchstring").addClass('hidden');
         $("#noresults").addClass('hidden');
         return false;
     }
     else
     {
+        var z1 = /^[\w\-\s]+$/;
+        if (!z1.test(_searchtext)) {
+            $("#invalidsearchstring").removeClass('hidden');
+            return false;
+        }
+
         showLoader();
+        $("#invalidsearchstring").addClass('hidden');
         _currentPage = 1;
         $("#nosearchstring").addClass('hidden');
         getSearchResultCount();

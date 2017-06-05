@@ -1,6 +1,7 @@
 ﻿var options = ["Age","Gender","Diagnosis", "Case Number", "Case Outcome","Sub Category", "IMRO Specialty", "Request Decision",  "How IMR Determination works", "Case Summary", "IMR Issues and Rationales", "State Of Licensure", "Certifications", "Documents Reviewed", "Issue At Dispute", "Treatment Guidelines", "Reviewer Qualifications"];
 var values = ["Age", "Gender", "Diagnosis", "CaseNumber", "CaseOutcome", "SubCategory", "IMROSpeciality", "RequestDecision", "HowIMRDetermination", "ClinicalCaseSummary",  "IMRIssuesRationales", "StateOfLicensure", "Certifications", "DocumentsReviewed", "IssueAtDispute", "TreatmentGuidelines", "ReviewerQualifications"];
-
+var textfields = ["Diagnosis", "HowIMRDetermination", "ClinicalCaseSummary", "IMRIssuesRationales", "DocumentsReviewed", "IssueAtDispute", "TreatmentGuidelines", "ReviewerQualifications"];
+var notTextOps = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];//["IN", "NOT IN", "=", "<>", ">", ">=", "!<", "<", "<=", "!<"];
 var _searchcriteria = "";
 var _pagesize = 50;
 var _totalResults = 0;
@@ -38,9 +39,40 @@ function getSearchOperators() {
     opts.push('<option value="<=">LESS THAN OR EQUAL TO</option>')
     opts.push('<option value="!<">NOT LESS THAN</option>')
     opts.push('<option value="LIKE">LIKE</option>');
-    opts.push('<option value="FULL LIKE">FULL LIKE</option>');
     opts.push('<option value="NOT LIKE">NOT LIKE</option>');
     return opts.join('');
+}
+
+function checkCol(sel, rowid)
+{
+    var selCol = $(sel).val();
+    var found = false;
+    for (var i = 0; i < textfields.length; i++) {
+        if (selCol == textfields[i])
+        {
+            found = true;
+            hideOperators(rowid);
+            break;
+        }
+
+    }
+    if(found == false)
+    {
+        showOperators(rowid);
+    }
+}
+function hideOperators(rowid)
+{
+    for (var i = 0; i < notTextOps.length; i++) {
+        $('#op_' + rowid).val($('#op_' + rowid + ' option:eq(' + notTextOps[i] + ')').hide());
+      
+    }
+}
+function showOperators(rowid) {
+    for (var i = 0; i < notTextOps.length; i++) {
+        $('#op_' + rowid).val($('#op_' + rowid + ' option:eq(' + notTextOps[i] + ')').show());
+
+    }
 }
 
 function getLogicOperator() {
@@ -55,7 +87,7 @@ function addFirstRow()
     var row = [];
     var rowid = 1;
     row.push("<tr id='tr_" + rowid + "'>");
-    row.push("<td><select id='col_" + rowid + "' class='form-control'>" + getSearchColumnOptions() + "</select></td><td><select id='op_" + rowid + "' class='form-control'>" + getSearchOperators() + "</select></td><td><input type='text' id='txt_" + rowid + "' class='form-control'/></td><td><select id='logic_" + rowid + "' class='form-control'>" + getLogicOperator() + "</select></td><td><i class='glyphicon glyphicon-plus-sign' onclick='addrow();'></i></td>");
+    row.push("<td><select id='col_" + rowid + "' onchange='checkCol(this," + rowid + ");' class='form-control'>" + getSearchColumnOptions() + "</select></td><td><select id='op_" + rowid + "' class='form-control'>" + getSearchOperators() + "</select></td><td><input type='text' id='txt_" + rowid + "' class='form-control'/></td><td><select id='logic_" + rowid + "' class='form-control'>" + getLogicOperator() + "</select></td><td><i class='glyphicon glyphicon-plus-sign' onclick='addrow();'></i></td>");
     row.push("</tr>");
     $("#hdTotalSearch").val(1);
     $("#tbSearchCriteria").html(row.join(''));
@@ -76,7 +108,7 @@ function addrow() {
     var i = $('#tr_' + totalSearch);
     totalSearch += 1;
     $("#hdTotalSearch").val(totalSearch);
-    $('<tr id="tr_' + totalSearch + '"><td><select class="form-control" id="col_' + totalSearch + '">' + getSearchColumnOptions() + '</select></td><td><select class="form-control" id="op_' + totalSearch + '">' + getSearchOperators() + '</select></td><td><input type="text" class="form-control" id="txt_' + totalSearch + '"/></td><td><select class="form-control" id="logic_' + totalSearch + '">' + getLogicOperator() + '</select></td><td> <i class="glyphicon glyphicon-trash" onclick="removeRow(this);"></td></tr>').insertAfter(i);
+    $('<tr id="tr_' + totalSearch + '"><td><select class="form-control" onchange="checkCol(this,' + totalSearch + ');" id="col_' + totalSearch + '">' + getSearchColumnOptions() + '</select></td><td><select class="form-control" id="op_' + totalSearch + '">' + getSearchOperators() + '</select></td><td><input type="text" class="form-control" id="txt_' + totalSearch + '"/></td><td><select class="form-control" id="logic_' + totalSearch + '">' + getLogicOperator() + '</select></td><td> <i class="glyphicon glyphicon-trash" onclick="removeRow(this);"></td></tr>').insertAfter(i);
 
 }
 
@@ -88,6 +120,18 @@ function validateSearchCriteria() {
         {
             $("#invalidsearchstring").removeClass('hidden');
             return false;
+        }
+        else
+        {
+            if($('#txt_' + i).val().indexOf(",") != -1)
+            {
+                var op = $('#op_' + i).val();
+                if (!((op == 'IN') || (op == 'NOT IN'))) {
+                    $("#invalidsearchstring").removeClass('hidden');
+                    return false;
+                }
+
+            }
         }
     }
     return true;
@@ -199,6 +243,7 @@ function onSmartCountSuccess(data, status, jqXHR) {
     _totalPages = Math.ceil(_totalResults / _pagesize);
 
     if (_totalResults > 0) {
+        $("#page-selection").show();
         $("#page-selection").bs_pagination({
             currentPage: _currentPage,
             rowsPerPage: _pagesize,
@@ -213,6 +258,11 @@ function onSmartCountSuccess(data, status, jqXHR) {
             }
         });
     }
+    else
+    {
+        $("#page-selection").hide();
+    }
+
 };
 function onSmartSuccess(data, status, jqXHR) {
 

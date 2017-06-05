@@ -18,7 +18,7 @@
     <div id="invalidsearchstring" class="callout callout-warning hidden">
         <h4>Error!</h4>
 
-        <p>Please enter a proper search  string, special characters are not allowed.</p>
+        <p>Please enter a proper search  string, special characters are not allowed. "," only allowed with IN and NOT IN operators.</p>
     </div>
     <div id="noresults" class="callout callout-info hidden">
         <h4>Info!</h4>
@@ -77,14 +77,14 @@
 <div role="dialog" tabindex="-1" class="modal fade" id="loader-dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header no-border">
 
                 <h4 class="modal-title">Please Wait.....</h4>
             </div>
             <div class="modal-body">
                 <img src="~/images/loader.gif"  class="img-responsive"/>
              </div>
-            <div class="modal-footer">
+            <div class="modal-footer no-border">
 
             </div>
         </div>

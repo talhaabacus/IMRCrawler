@@ -43,12 +43,10 @@ function getSearchResults(pageIndex) {
         dataType: "json",
         success: onSuccess,
         failure: function (response) {
-            alert("failed");
-            alert(response);
+            alert("error loading data");
         },
         error: function (response) {
-            alert("error");
-            alert(response);
+            alert("error loading data");
         }
     });
 }
@@ -62,13 +60,11 @@ function getSearchResultCount() {
         dataType: "json",
         success: onCountSuccess,
         failure: function (response) {
-            alert(response);
+            alert("error loading data");
         },
         error:  function(jqxhr,textStatus,errorThrown)
         {
-            console.log(jqxhr);
-            console.log(textStatus);
-            console.log(errorThrown);                               
+            alert("error loading data");
 
          
             //<--- All those logs/alerts, don't say anything helpful, how can I understand what error is going on? ---->
@@ -81,20 +77,21 @@ function onCountSuccess(data, status, jqXHR) {
     _totalResults = data.count;
     _totalPages = Math.ceil(_totalResults / _pagesize);
   
-
-    $("#page-selection").bs_pagination({
-        currentPage: _currentPage,
-        rowsPerPage: _pagesize,
-        maxRowsPerPage: _pagesize,
-        totalPages: _totalPages,
-        totalRows: _totalResults,
-        showGoToPage: false,
-        showRowsPerPage: false,
-        onChangePage: function (event, data) {
-            showLoader();
-           getSearchResults(data.currentPage);
-       }
-    });
+    if (_totalPages > 0) {
+        $("#page-selection").bs_pagination({
+            currentPage: _currentPage,
+            rowsPerPage: _pagesize,
+            maxRowsPerPage: _pagesize,
+            totalPages: _totalPages,
+            totalRows: _totalResults,
+            showGoToPage: false,
+            showRowsPerPage: false,
+            onChangePage: function (event, data) {
+                showLoader();
+                getSearchResults(data.currentPage);
+            }
+        });
+    }
   };
 function onSuccess(data, status, jqXHR) {
    
@@ -145,7 +142,7 @@ function onSuccess(data, status, jqXHR) {
             else
                 results.push("<td></td>");
             if (x[i].ParentCaseNumber == null)
-                results.push("<td><button class=\"btn btn-primary\"  onclick=\"return viewDetails(" + x[i].TreatmentID + "," + x[i].PDFFormatID + ")\">Details</button</td>")
+                results.push("<td><button class=\"btn btn-primary\"  onclick=\"return viewDetails(" + x[i].TreatmentID + "," + x[i].PDFFormatID + ",'" + x[i].CaseNumber + "')\">Details</button</td>")
             else
                 results.push("<td></td>");
             results.push("</tr>");

@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IMRCrawlerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PDFDetails">
+          <Key>
+            <PropertyRef Name="TreatmentID" />
+          </Key>
+          <Property Name="TreatmentID" Type="int" Nullable="false" />
+          <Property Name="DateAssigned" Type="datetime" />
+          <Property Name="URDenialDate" Type="datetime" />
+          <Property Name="HowIMRDetermination" Type="text" />
+          <Property Name="ClinicalCaseSummary" Type="text" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="Diagnosis" Type="text" />
+          <Property Name="IMRIssuesRationales" Type="text" />
+          <Property Name="StateofLicensure" Type="varchar" MaxLength="200" />
+          <Property Name="Certifications" Type="varchar" MaxLength="200" />
+          <Property Name="DocumentsReviewed" Type="text" />
+          <Property Name="IssueAtDispute" Type="text" />
+          <Property Name="TreatmentGuidelines" Type="text" />
+          <Property Name="ReviewerQualifications" Type="text" />
+        </EntityType>
+        <EntityType Name="PDFFormats">
+          <Key>
+            <PropertyRef Name="PDFFormatID" />
+          </Key>
+          <Property Name="PDFFormatID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Treatments">
+          <Key>
+            <PropertyRef Name="TreatmentID" />
+          </Key>
+          <Property Name="TreatmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PDFUrl" Type="varchar" MaxLength="200" />
+          <Property Name="CaseNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CaseOutCome" Type="varchar" MaxLength="100" />
+          <Property Name="DecisionDate" Type="datetime" />
+          <Property Name="DateOfInjury" Type="datetime" />
+          <Property Name="RecievedDate" Type="datetime" />
+          <Property Name="IMROSpeciality" Type="varchar" MaxLength="200" />
+          <Property Name="RequestCategory" Type="varchar" MaxLength="100" />
+          <Property Name="SubCategory" Type="varchar" MaxLength="100" />
+          <Property Name="RequestDecision" Type="varchar" MaxLength="50" />
+          <Property Name="ParentCaseNumber" Type="varchar" MaxLength="50" />
+          <Property Name="PDFText" Type="ntext" />
+          <Property Name="LocalPDFLoc" Type="varchar" MaxLength="200" />
+          <Property Name="PDFFormatID" Type="int" />
+        </EntityType>
+        <Association Name="FK_PDFDetails_Treatments">
+          <End Role="Treatments" Type="Self.Treatments" Multiplicity="1" />
+          <End Role="PDFDetails" Type="Self.PDFDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Treatments">
+              <PropertyRef Name="TreatmentID" />
+            </Principal>
+            <Dependent Role="PDFDetails">
+              <PropertyRef Name="TreatmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Treatments_Treatments">
+          <End Role="PDFFormats" Type="Self.PDFFormats" Multiplicity="0..1" />
+          <End Role="Treatments" Type="Self.Treatments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PDFFormats">
+              <PropertyRef Name="PDFFormatID" />
+            </Principal>
+            <Dependent Role="Treatments">
+              <PropertyRef Name="PDFFormatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IMRCrawlerModelStoreContainer">
+          <EntitySet Name="PDFDetails" EntityType="Self.PDFDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PDFFormats" EntityType="Self.PDFFormats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Treatments" EntityType="Self.Treatments" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PDFDetails_Treatments" Association="Self.FK_PDFDetails_Treatments">
+            <End Role="Treatments" EntitySet="Treatments" />
+            <End Role="PDFDetails" EntitySet="PDFDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatments_Treatments" Association="Self.FK_Treatments_Treatments">
+            <End Role="PDFFormats" EntitySet="PDFFormats" />
+            <End Role="Treatments" EntitySet="Treatments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IMRCrawlerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PDFDetail">
+          <Key>
+            <PropertyRef Name="TreatmentID" />
+          </Key>
+          <Property Name="TreatmentID" Type="Int32" Nullable="false" />
+          <Property Name="DateAssigned" Type="DateTime" Precision="3" />
+          <Property Name="URDenialDate" Type="DateTime" Precision="3" />
+          <Property Name="HowIMRDetermination" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ClinicalCaseSummary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Diagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IMRIssuesRationales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StateofLicensure" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Certifications" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentsReviewed" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IssueAtDispute" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TreatmentGuidelines" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReviewerQualifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PDFFormat">
+          <Key>
+            <PropertyRef Name="PDFFormatID" />
+          </Key>
+          <Property Name="PDFFormatID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Treatments" Relationship="Self.FK_Treatments_Treatments" FromRole="PDFFormats" ToRole="Treatments" />
+        </EntityType>
+        <EntityType Name="Treatment">
+          <Key>
+            <PropertyRef Name="TreatmentID" />
+          </Key>
+          <Property Name="TreatmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PDFUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CaseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CaseOutCome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DecisionDate" Type="DateTime" Precision="3" />
+          <Property Name="DateOfInjury" Type="DateTime" Precision="3" />
+          <Property Name="RecievedDate" Type="DateTime" Precision="3" />
+          <Property Name="IMROSpeciality" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RequestCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SubCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RequestDecision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ParentCaseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PDFText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocalPDFLoc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PDFFormatID" Type="Int32" />
+          <NavigationProperty Name="PDFDetail" Relationship="Self.FK_PDFDetails_Treatments" FromRole="Treatments" ToRole="PDFDetails" />
+          <NavigationProperty Name="PDFFormat" Relationship="Self.FK_Treatments_Treatments" FromRole="Treatments" ToRole="PDFFormats" />
+        </EntityType>
+        <Association Name="FK_PDFDetails_Treatments">
+          <End Role="Treatments" Type="Self.Treatment" Multiplicity="1" />
+          <End Role="PDFDetails" Type="Self.PDFDetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Treatments">
+              <PropertyRef Name="TreatmentID" />
+            </Principal>
+            <Dependent Role="PDFDetails">
+              <PropertyRef Name="TreatmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Treatments_Treatments">
+          <End Role="PDFFormats" Type="Self.PDFFormat" Multiplicity="0..1" />
+          <End Role="Treatments" Type="Self.Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PDFFormats">
+              <PropertyRef Name="PDFFormatID" />
+            </Principal>
+            <Dependent Role="Treatments">
+              <PropertyRef Name="PDFFormatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IMRCrawlerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PDFDetails" EntityType="Self.PDFDetail" />
+          <EntitySet Name="PDFFormats" EntityType="Self.PDFFormat" />
+          <EntitySet Name="Treatments" EntityType="Self.Treatment" />
+          <AssociationSet Name="FK_PDFDetails_Treatments" Association="Self.FK_PDFDetails_Treatments">
+            <End Role="Treatments" EntitySet="Treatments" />
+            <End Role="PDFDetails" EntitySet="PDFDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatments_Treatments" Association="Self.FK_Treatments_Treatments">
+            <End Role="PDFFormats" EntitySet="PDFFormats" />
+            <End Role="Treatments" EntitySet="Treatments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IMRCrawlerModelStoreContainer" CdmEntityContainer="IMRCrawlerEntities">
+          <EntitySetMapping Name="PDFDetails">
+            <EntityTypeMapping TypeName="IMRCrawlerModel.PDFDetail">
+              <MappingFragment StoreEntitySet="PDFDetails">
+                <ScalarProperty Name="TreatmentID" ColumnName="TreatmentID" />
+                <ScalarProperty Name="DateAssigned" ColumnName="DateAssigned" />
+                <ScalarProperty Name="URDenialDate" ColumnName="URDenialDate" />
+                <ScalarProperty Name="HowIMRDetermination" ColumnName="HowIMRDetermination" />
+                <ScalarProperty Name="ClinicalCaseSummary" ColumnName="ClinicalCaseSummary" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Diagnosis" ColumnName="Diagnosis" />
+                <ScalarProperty Name="IMRIssuesRationales" ColumnName="IMRIssuesRationales" />
+                <ScalarProperty Name="StateofLicensure" ColumnName="StateofLicensure" />
+                <ScalarProperty Name="Certifications" ColumnName="Certifications" />
+                <ScalarProperty Name="DocumentsReviewed" ColumnName="DocumentsReviewed" />
+                <ScalarProperty Name="IssueAtDispute" ColumnName="IssueAtDispute" />
+                <ScalarProperty Name="TreatmentGuidelines" ColumnName="TreatmentGuidelines" />
+                <ScalarProperty Name="ReviewerQualifications" ColumnName="ReviewerQualifications" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDFFormats">
+            <EntityTypeMapping TypeName="IMRCrawlerModel.PDFFormat">
+              <MappingFragment StoreEntitySet="PDFFormats">
+                <ScalarProperty Name="PDFFormatID" ColumnName="PDFFormatID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Treatments">
+            <EntityTypeMapping TypeName="IMRCrawlerModel.Treatment">
+              <MappingFragment StoreEntitySet="Treatments">
+                <ScalarProperty Name="TreatmentID" ColumnName="TreatmentID" />
+                <ScalarProperty Name="PDFUrl" ColumnName="PDFUrl" />
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+                <ScalarProperty Name="CaseOutCome" ColumnName="CaseOutCome" />
+                <ScalarProperty Name="DecisionDate" ColumnName="DecisionDate" />
+                <ScalarProperty Name="DateOfInjury" ColumnName="DateOfInjury" />
+                <ScalarProperty Name="RecievedDate" ColumnName="RecievedDate" />
+                <ScalarProperty Name="IMROSpeciality" ColumnName="IMROSpeciality" />
+                <ScalarProperty Name="RequestCategory" ColumnName="RequestCategory" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="RequestDecision" ColumnName="RequestDecision" />
+                <ScalarProperty Name="ParentCaseNumber" ColumnName="ParentCaseNumber" />
+                <ScalarProperty Name="PDFText" ColumnName="PDFText" />
+                <ScalarProperty Name="LocalPDFLoc" ColumnName="LocalPDFLoc" />
+                <ScalarProperty Name="PDFFormatID" ColumnName="PDFFormatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

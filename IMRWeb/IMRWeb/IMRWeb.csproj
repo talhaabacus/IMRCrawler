@@ -201,7 +201,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Models\PDFDetailResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\PDFDetailService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\SearchService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -215,6 +221,19 @@
     <Content Include="Content\CustomCSS\login.css" />
     <Content Include="Scripts\CustomScript\searchcommon.js" />
     <Content Include="Scripts\CustomScript\smartsearch.js" />
+    <Content Include="Service References\PDFDetailService\IMRWeb.PDFDetailService.GetPDFDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\PDFDetailService\IMRWeb.PDFDetailService.PDFDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\PDFDetailService\PDFDetailService.disco" />
+    <None Include="Service References\PDFDetailService\configuration91.svcinfo" />
+    <None Include="Service References\PDFDetailService\configuration.svcinfo" />
+    <None Include="Service References\PDFDetailService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="TemplateContent\plugins\bs_pagination\jquery.bs_pagination.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -237,6 +256,7 @@
     <Content Include="Service References\SearchService\IMRWeb.SearchService.GetSmartSearchResultsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\PDFDetailService\PDFDetailService.wsdl" />
     <None Include="Service References\SearchService\SearchService.disco" />
     <None Include="Service References\SearchService\configuration91.svcinfo" />
     <None Include="Service References\SearchService\configuration.svcinfo" />
@@ -831,7 +851,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -843,6 +862,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\PDFDetailService\" />
     <WCFMetadataStorage Include="Service References\SearchService\" />
   </ItemGroup>
   <PropertyGroup>

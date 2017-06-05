@@ -125,11 +125,10 @@ function buildSearchCriteria()
         searchCriteria = searchCriteria + " " + col + " " + op + " (" + values + ") ";
     }
 
-    alert(searchCriteria);
     return searchCriteria;
 }
 
-function search() {
+function searchsmart() {
 
     if (validateSearchCriteria()) {
      
@@ -143,9 +142,8 @@ function search() {
             showLoader();
             _currentPage = 1;
             $("#invalidsearchstring").addClass('hidden');
-            alert(_searchcriteria);
-            getSearchResultCount();
-            getSearchResults(1);
+                getSmartSearchResultCount();
+            getSmartSearchResults(1);
             return false;
         }
     }
@@ -155,42 +153,37 @@ function search() {
     }
 }
 
-function getSearchResults(pageIndex) {
-    alert(_searchcriteria);
+function getSmartSearchResults(pageIndex) {
+   
     $.ajax({
         type: "POST",
         url: "/Search/SmartSearchQuery",
         data: "{\"criteria\": \"" + _searchcriteria + "\", \"current\":" + pageIndex + ",\"pagesize\":" + _pagesize + "}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: onSuccess,
+        success: onSmartSuccess,
         failure: function (response) {
-            alert("failed");
-            alert(response);
+            alert("error loading data");
         },
         error: function (response) {
-            alert("error");
-            alert(response);
+            alert("error loading data");
         }
     });
 }
 
-function getSearchResultCount() {
+function getSmartSearchResultCount() {
     $.ajax({
         type: "POST",
         url: "/Search/SmartSearchCount",
         data: "{ \"criteria\": \"" + _searchcriteria + "\"}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: onCountSuccess,
+        success: onSmartCountSuccess,
         failure: function (response) {
-            alert(response);
+            alert("error loading data");
         },
         error: function (jqxhr, textStatus, errorThrown) {
-            console.log(jqxhr);
-            console.log(textStatus);
-            console.log(errorThrown);
-
+            alert("error loading data");
 
             //<--- All those logs/alerts, don't say anything helpful, how can I understand what error is going on? ---->
 
@@ -198,26 +191,28 @@ function getSearchResultCount() {
     });
 }
 
-function onCountSuccess(data, status, jqXHR) {
+function onSmartCountSuccess(data, status, jqXHR) {
     _totalResults = data.count;
+    
     _totalPages = Math.ceil(_totalResults / _pagesize);
 
-
-    $("#page-selection").bs_pagination({
-        currentPage: _currentPage,
-        rowsPerPage: _pagesize,
-        maxRowsPerPage: _pagesize,
-        totalPages: _totalPages,
-        totalRows: _totalResults,
-        showGoToPage: false,
-        showRowsPerPage: false,
-        onChangePage: function (event, data) {
-            showLoader();
-            getSearchResults(data.currentPage);
-        }
-    });
+    if (_totalResults > 0) {
+        $("#page-selection").bs_pagination({
+            currentPage: _currentPage,
+            rowsPerPage: _pagesize,
+            maxRowsPerPage: _pagesize,
+            totalPages: _totalPages,
+            totalRows: _totalResults,
+            showGoToPage: false,
+            showRowsPerPage: false,
+            onChangePage: function (event, data) {
+                showLoader();
+                getSmartSearchResults(data.currentPage);
+            }
+        });
+    }
 };
-function onSuccess(data, status, jqXHR) {
+function onSmartSuccess(data, status, jqXHR) {
 
     if (data == "[{}]") {
         $("#noresults").removeClass('hidden');
@@ -264,7 +259,7 @@ function onSuccess(data, status, jqXHR) {
             else
                 results.push("<td></td>");
             if (x[i].ParentCaseNumber == null)
-                results.push("<td><button class=\"btn btn-primary\"  onclick=\"return viewDetails(" + x[i].TreatmentID + "," + x[i].PDFFormatID + ")\">Details</button</td>")
+                results.push("<td><button class=\"btn btn-primary\"  onclick=\"return viewDetails(" + x[i].TreatmentID + "," + x[i].PDFFormatID + ",'" + x[i].CaseNumber + "')\">Details</button</td>")
             else
                 results.push("<td></td>");
             results.push("</tr>");
@@ -278,4 +273,3 @@ function onSuccess(data, status, jqXHR) {
     hideLoader();
 
 };
-

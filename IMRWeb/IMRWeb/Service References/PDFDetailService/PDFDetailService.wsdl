@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetPDFDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="treatmentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPDFDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPDFDetailsResult" type="tns:PDFDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PDFDetail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TreatmentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateAssigned" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="URDenialDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="HowIMRDetermination" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClinicalCaseSummary" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Age" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Diagnosis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IMRIssuesRationales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateofLicensure" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Certifications" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentsReviewed" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IssueAtDispute" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TreatmentGuidelines" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReviewerQualifications" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetPDFDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPDFDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetPDFDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPDFDetailsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PDFDetailServiceSoap">
+    <wsdl:operation name="GetPDFDetails">
+      <wsdl:input message="tns:GetPDFDetailsSoapIn" />
+      <wsdl:output message="tns:GetPDFDetailsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PDFDetailServiceSoap" type="tns:PDFDetailServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPDFDetails">
+      <soap:operation soapAction="http://tempuri.org/GetPDFDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PDFDetailServiceSoap12" type="tns:PDFDetailServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPDFDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetPDFDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PDFDetailService">
+    <wsdl:port name="PDFDetailServiceSoap" binding="tns:PDFDetailServiceSoap">
+      <soap:address location="http://localhost:29784/PDFDetailService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PDFDetailServiceSoap12" binding="tns:PDFDetailServiceSoap12">
+      <soap12:address location="http://localhost:29784/PDFDetailService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

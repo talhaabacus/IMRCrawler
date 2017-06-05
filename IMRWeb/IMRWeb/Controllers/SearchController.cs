@@ -61,5 +61,15 @@ namespace IMRWeb.Controllers
         }
 
 
+        public string GetPDFDetails(string caseNumber, int treatmentID, int formatID)
+        {
+            IMRWeb.Models.PDFDetailResult res = new Models.PDFDetailResult();
+            PDFDetailService.PDFDetailServiceSoapClient pdfService = new PDFDetailService.PDFDetailServiceSoapClient();
+            res.pdfDetail =   pdfService.GetPDFDetails(treatmentID);
+            res.formatID = formatID;
+            res.caseNumber = caseNumber;
+            return Newtonsoft.Json.JsonConvert.SerializeObject(res);
+
+        }
     }
 }

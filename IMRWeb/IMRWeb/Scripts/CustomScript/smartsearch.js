@@ -164,9 +164,11 @@ function getSmartSearchResults(pageIndex) {
         success: onSmartSuccess,
         failure: function (response) {
             alert("error loading data");
+            hideLoader();
         },
         error: function (response) {
             alert("error loading data");
+            hideLoader();
         }
     });
 }
@@ -181,11 +183,11 @@ function getSmartSearchResultCount() {
         success: onSmartCountSuccess,
         failure: function (response) {
             alert("error loading data");
+            hideLoader();
         },
         error: function (jqxhr, textStatus, errorThrown) {
             alert("error loading data");
-
-            //<--- All those logs/alerts, don't say anything helpful, how can I understand what error is going on? ---->
+            hideLoader();
 
         }
     });

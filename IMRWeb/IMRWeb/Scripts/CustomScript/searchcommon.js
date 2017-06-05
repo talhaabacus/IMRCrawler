@@ -37,9 +37,11 @@ function viewDetails(treatmentID, formatID, caseNumber) {
         success: onDetailSuccess,
         failure: function (response) {
             alert("error loading data");
+            hideLoader();
         },
         error: function (jqxhr, textStatus, errorThrown) {
             alert("error loading data");
+            hideLoader();
         }
     });
     return false;

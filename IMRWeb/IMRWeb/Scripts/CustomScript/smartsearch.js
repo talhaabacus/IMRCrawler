@@ -201,7 +201,7 @@ function getSmartSearchResults(pageIndex) {
    
     $.ajax({
         type: "POST",
-        url: "/Search/SmartSearchQuery",
+        url: "Search/SmartSearchQuery",
         data: "{\"criteria\": \"" + _searchcriteria + "\", \"current\":" + pageIndex + ",\"pagesize\":" + _pagesize + "}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -220,7 +220,7 @@ function getSmartSearchResults(pageIndex) {
 function getSmartSearchResultCount() {
     $.ajax({
         type: "POST",
-        url: "/Search/SmartSearchCount",
+        url: "Search/SmartSearchCount",
         data: "{ \"criteria\": \"" + _searchcriteria + "\"}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",

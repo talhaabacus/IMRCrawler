@@ -30,7 +30,7 @@ function viewDetails(treatmentID, formatID, caseNumber) {
     showLoader();
     $.ajax({
         type: "POST",
-        url: "/Search/GetPDFDetails",
+        url: "Search/GetPDFDetails",
         data: "{\"caseNumber\": \"" + caseNumber + "\",\"treatmentID\":" + treatmentID + ",\"formatID\":" + formatID + "}",
         contentType: "application/json;",
         dataType: 'json',

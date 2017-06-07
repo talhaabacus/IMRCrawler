@@ -45,7 +45,7 @@ function search()
 function getSearchResults(pageIndex) {
     $.ajax({
         type: "POST",
-        url: "/Search/SimpleSearchQuery",
+        url: "Search/SimpleSearchQuery",
         data: "{\"any\": 0, \"searchText\": \"" + _searchtext + "\", \"current\":" + pageIndex + ",\"pagesize\":" + _pagesize + "}",
        contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -64,7 +64,7 @@ function getSearchResults(pageIndex) {
 function getSearchResultCount() {
     $.ajax({
         type: "POST",
-        url: "/Search/SimpleSearchCount",
+        url: "Search/SimpleSearchCount",
         data: "{\"any\": 0, \"searchText\": \"" + _searchtext + "\"}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",

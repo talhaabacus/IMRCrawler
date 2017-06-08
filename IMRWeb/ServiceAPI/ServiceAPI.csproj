@@ -16,7 +16,7 @@
     <RootNamespace>ServiceAPI</RootNamespace>
     <AssemblyName>ServiceAPI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -123,6 +123,7 @@
     <Content Include="Modal.edmx.diagram">
       <DependentUpon>Modal.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ServiceAPI.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -188,7 +189,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>29784</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:29784/</IISUrl>
+          <IISUrl>http://localhost/ServiceAPI/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

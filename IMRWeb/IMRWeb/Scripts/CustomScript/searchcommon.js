@@ -12,7 +12,14 @@ function hideDialog(id) {
 
 
 function viewPDF(pdfName) {
-    var url = "claims/" + pdfName;
+    var url = '';
+    if (/SmartSearch/.test(window.location.href)) {
+        ur = "Search/claims/" + pdfName;
+    }
+    else {
+        ur = "claims/" + pdfName;
+    }
+   
     window.open(url, '_blank');
     return false;
 }
@@ -28,9 +35,18 @@ function hideLoader() {
 
 function viewDetails(treatmentID, formatID, caseNumber) {
     showLoader();
+    var ur = '';
+    if (/SmartSearch/.test(window.location.href))
+    {
+        ur = "GetPDFDetails"
+    }
+    else
+    {
+        ur = "Search/GetPDFDetails";
+    }
     $.ajax({
         type: "POST",
-        url: "Search/GetPDFDetails",
+        url: ur,
         data: "{\"caseNumber\": \"" + caseNumber + "\",\"treatmentID\":" + treatmentID + ",\"formatID\":" + formatID + "}",
         contentType: "application/json;",
         dataType: 'json',

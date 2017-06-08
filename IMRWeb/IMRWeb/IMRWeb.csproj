@@ -17,7 +17,7 @@
     <AssemblyName>IMRWeb</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -229,6 +229,7 @@
     <Content Include="Service References\PDFDetailService\IMRWeb.PDFDetailService.PDFDetail.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\IMRWeb.pubxml" />
     <None Include="Service References\PDFDetailService\PDFDetailService.disco" />
     <None Include="Service References\PDFDetailService\configuration91.svcinfo" />
     <None Include="Service References\PDFDetailService\configuration.svcinfo" />
@@ -885,7 +886,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>27159</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:27136/</IISUrl>
+          <IISUrl>http://localhost/IMRWeb/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -14,12 +14,11 @@ function hideDialog(id) {
 function viewPDF(pdfName) {
     var url = '';
     if (/SmartSearch/.test(window.location.href)) {
-        ur = "Search/claims/" + pdfName;
+        url = "../claims/" + pdfName;
     }
     else {
-        ur = "claims/" + pdfName;
+        url = "claims/" + pdfName;
     }
-   
     window.open(url, '_blank');
     return false;
 }

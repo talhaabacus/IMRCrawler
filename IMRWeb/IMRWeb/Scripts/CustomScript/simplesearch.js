@@ -115,7 +115,7 @@ function onSuccess(data, status, jqXHR) {
         var x = JSON.parse(data);
         var results = [];
         results.push(" <table class=\"table table-striped table-hover table-condensed\">");
-        results.push("<thead><tr><th>Case Number</th><th>Outcome</th><th>Dec. Date</th><th>Injury Dt</th><th>Rcvd Date</th><th>IMRO Specialty</th><th>Req. Category</th><th>Sub Category</th><th>Decision</th><th></th><th></th></tr></thead>");
+        results.push("<thead><tr><th>Case #</th><th>Outcome</th><th>Decision Dt.</th><th>Injury Dt.</th><th>Rcvd. Dt.</th><th>IMRO Specialty</th><th>Req. Category</th><th>Sub Category</th><th>Decision</th><th></th><th></th></tr></thead>");
         results.push("<tbody>");
         for (i = 0; i < x.length; i++)
         {

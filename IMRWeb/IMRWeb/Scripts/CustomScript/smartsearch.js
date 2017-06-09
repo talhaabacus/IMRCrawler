@@ -1,5 +1,5 @@
 ﻿var options = ["Age","Gender","Diagnosis", "Case Number", "Case Outcome","Sub Category", "IMRO Specialty", "Request Decision",  "How IMR Determination works", "Case Summary", "IMR Issues and Rationales", "State Of Licensure", "Certifications", "Documents Reviewed", "Issue At Dispute", "Treatment Guidelines", "Reviewer Qualifications"];
-var values = ["Age", "Gender", "Diagnosis", "CaseNumber", "CaseOutcome", "SubCategory", "IMROSpeciality", "RequestDecision", "HowIMRDetermination", "ClinicalCaseSummary",  "IMRIssuesRationales", "StateOfLicensure", "Certifications", "DocumentsReviewed", "IssueAtDispute", "TreatmentGuidelines", "ReviewerQualifications"];
+var values = ["Age", "Gender", "Diagnosis", "CaseNumber", "CaseOutcome", "SubCategory", "IMROSpeciality", "RequestDecision", "HowIMRDetermination", "ClinicalCaseSummary", "IMRIssuesRationales", "StateOfLicensure", "Certifications", "DocumentsReviewed", "IssueAtDispute", "TreatmentGuidelines", "ReviewerQualifications"];
 var textfields = ["Diagnosis", "HowIMRDetermination", "ClinicalCaseSummary", "IMRIssuesRationales", "DocumentsReviewed", "IssueAtDispute", "TreatmentGuidelines", "ReviewerQualifications"];
 var notTextOps = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];//["IN", "NOT IN", "=", "<>", ">", ">=", "!<", "<", "<=", "!<"];
 var _searchcriteria = "";
@@ -112,25 +112,49 @@ function addrow() {
 
 }
 
+function isNormalInteger(n) {
+    return n == "0" || ((n | 0) > 0 && n % 1 == 0);
+}
 function validateSearchCriteria() {
     var z1 = /^[\w\-\s\,]+$/;
     var totalSearch = parseInt($("#hdTotalSearch").val());
     for (i = 1; i <= totalSearch; i++) {
-        if(!z1.test($('#txt_' + i).val()))
-        {
-            $("#invalidsearchstring").removeClass('hidden');
-            return false;
-        }
-        else
-        {
-            if($('#txt_' + i).val().indexOf(",") != -1)
-            {
+        if ($('#col_' + i).val() == "Age") {
+            if ($('#txt_' + i).val().indexOf(",") != -1) {
                 var op = $('#op_' + i).val();
                 if (!((op == 'IN') || (op == 'NOT IN'))) {
                     $("#invalidsearchstring").removeClass('hidden');
                     return false;
                 }
+                
+                var arr = $('#txt_' + i).val().split(",");
+                for (j = 0; j < arr.length; j++) {
+                    if (!isNormalInteger(arr[j])) {
+                        $("#invalidsearchstring").removeClass('hidden');
+                        return false;
+                    }
+                }
+            }
+            else if(!isNormalInteger($('#txt_' + i).val()))
+            {
+                $("#invalidsearchstring").removeClass('hidden');
+                return false;
+            }
+        }
+        else {
+            if (!z1.test($('#txt_' + i).val())) {
+                $("#invalidsearchstring").removeClass('hidden');
+                return false;
+            }
+            else {
+                if ($('#txt_' + i).val().indexOf(",") != -1) {
+                    var op = $('#op_' + i).val();
+                    if (!((op == 'IN') || (op == 'NOT IN'))) {
+                        $("#invalidsearchstring").removeClass('hidden');
+                        return false;
+                    }
 
+                }
             }
         }
     }
@@ -173,7 +197,8 @@ function buildSearchCriteria()
 }
 
 function searchsmart() {
-
+    $("#noresults").addClass('hidden');
+    $("#invalidsearchstring").addClass('hidden');
     if (validateSearchCriteria()) {
      
          _searchcriteria = buildSearchCriteria();

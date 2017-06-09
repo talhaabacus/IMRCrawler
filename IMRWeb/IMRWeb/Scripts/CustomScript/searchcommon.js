@@ -1,6 +1,10 @@
 ﻿
 function showDialog(id, id1, head, id2, body, id3, footer) {
-  
+    $(".modal-wide").on("show.bs.modal", function () {
+        var height = $(window).height() - 100;
+        $(this).find(".modal-body").css("max-height", height);
+    });
+
     $(id1).html(head);
     $(id2).html(body);
     $(id3).html(footer);
@@ -69,7 +73,7 @@ function onDetailSuccess(data, status, jqXHR) {
     var message = [];
 
     message.push('View Detail [ ' + data.caseNumber + ' ]');
-    var boxdiv = '<div class="box"><div class="box-body">';
+    var boxdiv = '<div class="box"><div class="box-body pre-scrollable">';
     if (formatID == 1) {
         boxdiv = boxdiv + '<div class="form-group"><label for="txtCaseNumber" class="control-label">Case Number</label><input type="text" class="form-control" id="txtCompanyName"  readonly value="' + data.caseNumber + '"></div>';
         boxdiv = boxdiv + '<div class="form-group"><label for="txtAge" class="control-label">Age</label><input type="text" class="form-control" id="txtAge"  readonly value="' + data.pdfDetail.Age + '"></div>';

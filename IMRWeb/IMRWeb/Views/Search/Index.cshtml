@@ -7,7 +7,7 @@
 <section class="content-header">
     <h1>
         Simple Search
-        
+
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> IMR Web Search</a></li>
@@ -30,15 +30,15 @@
         <h4>Info!</h4>
         <p>Search returned no results</p>
     </div>
-    <form    id="search-form" name="search-form">
+    <form id="search-form" name="search-form">
         <div class="box box-default">
             <div class="box-body">
                 <div class="form-group">
                     <label for="txtSearch" class="control-label">Search String</label>
-                    <input type="text" class="form-control" id="txtSearch" placeholder="Enter Search String" >
+                    <input type="text" class="form-control" id="txtSearch" placeholder="Enter Search String">
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary"  onclick="return search()" >Search</button>
+                    <button type="submit" class="btn btn-primary" onclick="return search()">Search</button>
                     <button class="btn btn-default" onclick="return clearSearch();">Clear</button>
                 </div>
             </div>
@@ -57,9 +57,12 @@
         <!-- /.box -->
     </form>
 </section>
-<div role="dialog" tabindex="-1" class="modal modal-wide" id="view-dialog" >
-    <div class="modal-dialog" role="document">
+<div role="dialog" tabindex="-1" class="modal" id="view-dialog">
+    <div class="modal-dialog full-screen" role="document">
+
         <div class="modal-content">
+
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 id="head" class="modal-title"></h4>
@@ -72,6 +75,7 @@
 
             </div>
         </div>
+
     </div>
 </div>
 <div role="dialog" tabindex="-1" class="modal" id="loader-dialog">

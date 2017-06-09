@@ -11,12 +11,49 @@
     margin-top:-25px; /* This needs to be half of the height */
     margin-left:-25px; /* This needs to be half of the width */
 }
-
-.modal.modal-wide .modal-dialog {
-  width: 100%;
-  margin-bottom:800px;
+.modal-dialog.full-screen {
+    position:fixed;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    width:100%;
 }
 
+.modal-dialog.full-screen .modal-content {
+      position:absolute;
+      left:10px;
+      right:10px;
+      top:10px;
+      bottom:10px;
+}
+
+.modal-dialog.full-screen .modal-content .modal-header {
+        height:55px;  
+}
+
+.modal-dialog.full-screen .modal-content .modal-body {
+        overflow-y: auto;
+	      position: absolute;
+	      top: 0;
+	      bottom: 0;
+        left:0;
+        right:0;
+	      margin-top: 55px; 
+	      margin-bottom: 80px; 
+}
+
+.modal-dialog.full-screen .modal-content .modal-body .box .box-body{
+       max-height:100%
+}
+
+.modal-dialog.full-screen .modal-content .modal-footer {
+        height:80px;  
+        position:absolute;
+        bottom:0;
+        left:0;
+        right:0;
+}
 
 
 

@@ -12,6 +12,7 @@ $(document).ready(function () {
     addFirstRow();
 });
 
+
 Date.prototype.toMMDDYYYY = function () {
     return this.getMonth() + 1 + "/" + this.getDate() + "/" + this.getFullYear()
 };

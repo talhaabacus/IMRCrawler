@@ -3,6 +3,7 @@
 };
 
 
+
 function clearSearch() {
     document.getElementById('txtSearch').value = "";
     return false;

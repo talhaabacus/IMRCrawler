@@ -191,9 +191,15 @@ function buildSearchCriteria()
                     values = values + "'" + arr[j] + "'";
             }
         }
-        searchCriteria = searchCriteria + " " + col + " " + op + " (" + values + ") ";
-    }
+        if (op == 'NOT LIKE') {
 
+            searchCriteria = searchCriteria + " ((" + col + " " + op + " (" + values + "))  OR (" + col + " IS NULL)) " ;
+            
+        }
+        else
+            searchCriteria = searchCriteria + " (" + col + " " + op + " (" + values + ")) ";
+    }
+    alert(searchCriteria);
     return searchCriteria;
 }
 

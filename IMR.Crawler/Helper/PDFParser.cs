@@ -168,7 +168,7 @@ namespace IMR.Crawler.Helper
                 {
                     licenseIndex = licenseIndex + 22;
                     string licensureText = _text.Substring(licenseIndex, _text.IndexOf("\r\n", licenseIndex) - licenseIndex);
-                    f.StateOfLincesure = licensureText;
+                    f.StateOfLincesure = licensureText.Trim();
 
                 }
 
@@ -177,7 +177,7 @@ namespace IMR.Crawler.Helper
                 {
                     certificationIndex = certificationIndex + 27;
                     string certs = _text.Substring(certificationIndex, _text.IndexOf("\r\n", certificationIndex) - certificationIndex);
-                    f.Certifications = certs;
+                    f.Certifications = certs.Trim();
 
                 }
 

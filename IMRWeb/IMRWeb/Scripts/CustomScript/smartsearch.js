@@ -199,7 +199,6 @@ function buildSearchCriteria()
         else
             searchCriteria = searchCriteria + " (" + col + " " + op + " (" + values + ")) ";
     }
-    alert(searchCriteria);
     return searchCriteria;
 }
 
@@ -351,9 +350,6 @@ function onSmartSuccess(data, status, jqXHR) {
         results.push("</tbody></table>");
         $("#tablediv").html(results.join(''));
 
-
     }
-
     hideLoader();
-
 };

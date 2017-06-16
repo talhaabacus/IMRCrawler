@@ -61,7 +61,7 @@ function checkCol(sel, rowid)
     {
         showOperators(rowid);
     }
-}
+ }
 function hideOperators(rowid)
 {
     for (var i = 0; i < notTextOps.length; i++) {
@@ -120,6 +120,11 @@ function validateSearchCriteria() {
     var z1 = /^[\w\-\s\,]+$/;
     var totalSearch = parseInt($("#hdTotalSearch").val());
     for (i = 1; i <= totalSearch; i++) {
+        if ($('#op_' + i).val() == null)
+        {
+            $("#invalidsearchstring").removeClass('hidden');
+            return false;
+        }
         if ($('#col_' + i).val() == "Age") {
             if ($('#txt_' + i).val().indexOf(",") != -1) {
                 var op = $('#op_' + i).val();
@@ -199,6 +204,7 @@ function buildSearchCriteria()
         else
             searchCriteria = searchCriteria + " (" + col + " " + op + " (" + values + ")) ";
     }
+    
     return searchCriteria;
 }
 
